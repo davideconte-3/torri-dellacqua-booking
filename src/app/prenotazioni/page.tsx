@@ -24,6 +24,22 @@ export default function PrenotazioniPage() {
   const [toggling, setToggling] = useState(false);
   const [closedMessage, setClosedMessage] = useState('Le prenotazioni sono momentaneamente sospese');
   const [editingMessage, setEditingMessage] = useState(false);
+  const [notificationEmail, setNotificationEmail] = useState('');
+  const [editingEmail, setEditingEmail] = useState(false);
+
+  const fetchSettings = async (pinToUse: string) => {
+    try {
+      const res = await fetch('/api/settings', {
+        headers: { 'X-View-Pin': pinToUse },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setNotificationEmail(data.notificationEmail || '');
+      }
+    } catch (e) {
+      console.error('Error fetching settings:', e);
+    }
+  };
 
   const fetchBookings = async (pinToUse: string) => {
     setLoading(true);
@@ -49,6 +65,8 @@ export default function PrenotazioniPage() {
 
       // Fetch booking status
       fetchBookingStatus();
+      // Fetch settings
+      fetchSettings(pinToUse);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Errore di connessione');
       setBookings(null);
@@ -67,6 +85,25 @@ export default function PrenotazioniPage() {
       }
     } catch (e) {
       console.error('Error fetching status:', e);
+    }
+  };
+
+  const saveEmail = async () => {
+    try {
+      const res = await fetch('/api/settings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-View-Pin': pin,
+        },
+        body: JSON.stringify({ notificationEmail }),
+      });
+
+      if (!res.ok) throw new Error('Errore');
+      setEditingEmail(false);
+      alert('Email salvata!');
+    } catch (e) {
+      alert('Errore durante il salvataggio');
     }
   };
 
@@ -225,6 +262,50 @@ export default function PrenotazioniPage() {
                 )}
               </div>
             )}
+
+            {/* Email notifiche */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                📧 Email per notifiche prenotazioni:
+              </label>
+              {editingEmail ? (
+                <div className="space-y-2">
+                  <input
+                    type="email"
+                    value={notificationEmail}
+                    onChange={(e) => setNotificationEmail(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="email@torridellacqua.it"
+                  />
+                  <div className="flex gap-2">
+                    <button
+                      onClick={saveEmail}
+                      className="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700"
+                    >
+                      Salva
+                    </button>
+                    <button
+                      onClick={() => setEditingEmail(false)}
+                      className="px-3 py-1.5 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300"
+                    >
+                      Annulla
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-start justify-between gap-4">
+                  <p className="text-gray-700 text-sm flex-1">
+                    {notificationEmail || <span className="text-gray-400 italic">Non configurata (usa RESTAURANT_EMAIL da env)</span>}
+                  </p>
+                  <button
+                    onClick={() => setEditingEmail(true)}
+                    className="text-blue-600 hover:text-blue-700 text-sm font-medium whitespace-nowrap"
+                  >
+                    Modifica
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           {bookings.length === 0 ? (

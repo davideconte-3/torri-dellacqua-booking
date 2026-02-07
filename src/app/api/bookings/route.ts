@@ -26,7 +26,6 @@ async function sendBookingEmails(booking: {
   marketingConsent: boolean;
 }) {
   const restaurantName = process.env.RESTAURANT_NAME || "Torri dell'Acqua";
-  const restaurantEmail = process.env.RESTAURANT_EMAIL || 'info@torridellacqua.it';
   const restaurantAddress =
     process.env.RESTAURANT_ADDRESS ||
     "Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)";
@@ -34,8 +33,22 @@ async function sendBookingEmails(booking: {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.warn('RESEND_API_KEY non configurata, email non inviata.');
+    console.warn('⚠️ RESEND_API_KEY non configurata, email non inviata.');
     return;
+  }
+
+  // Recupera email notifica da DB o fallback su env
+  let restaurantEmail = process.env.RESTAURANT_EMAIL || 'info@torridellacqua.it';
+  try {
+    const notificationEmailSetting = await prisma.settings.findUnique({
+      where: { key: 'notification_email' },
+    });
+    if (notificationEmailSetting?.value) {
+      restaurantEmail = notificationEmailSetting.value;
+      console.log('📧 Email notifica da DB:', restaurantEmail);
+    }
+  } catch (err) {
+    console.warn('⚠️ Errore recupero email notifica da DB, uso env:', err);
   }
 
   const resend = new Resend(apiKey);
@@ -123,7 +136,11 @@ async function sendBookingEmails(booking: {
   </div>`;
 
   try {
-    await resend.emails.send({
+    console.log('📤 Invio email CLIENTE...');
+    console.log('  - Destinatario:', booking.customerEmail);
+    console.log('  - From:', process.env.RESEND_FROM);
+
+    const result = await resend.emails.send({
       from:
         process.env.RESEND_FROM ||
         `Torri dell'Acqua <no-reply@${process.env.RESEND_DOMAIN || 'example.com'}>`,
@@ -131,16 +148,26 @@ async function sendBookingEmails(booking: {
       subject: subjectCustomer,
       html: baseHtml(
         'La tua prenotazione è stata ricevuta',
-        'Grazie per aver prenotato la cena di San Valentino a Torri dell’acqua. Riceverai conferma della prenotazione via email.',
+        'Grazie per aver prenotato la cena di San Valentino a Torri dell\'acqua. Riceverai conferma della prenotazione via email.',
         'Se hai bisogno di modificare o annullare la prenotazione, rispondi a questa email o contatta direttamente il ristorante.'
       ),
     });
+    console.log('✅ Email cliente inviata con successo! ID:', result.data?.id);
   } catch (err) {
-    console.error('Errore invio email cliente:', err);
+    console.error('❌ ERRORE invio email cliente:');
+    console.error('  - Errore completo:', err);
+    console.error('  - Tipo errore:', typeof err);
+    if (err && typeof err === 'object') {
+      console.error('  - Dettagli:', JSON.stringify(err, null, 2));
+    }
   }
 
   try {
-    await resend.emails.send({
+    console.log('📤 Invio email RISTORANTE...');
+    console.log('  - Destinatario:', restaurantEmail);
+    console.log('  - From:', process.env.RESEND_FROM);
+
+    const result = await resend.emails.send({
       from:
         process.env.RESEND_FROM ||
         `Torri dell'Acqua <no-reply@${process.env.RESEND_DOMAIN || 'example.com'}>`,
@@ -152,8 +179,14 @@ async function sendBookingEmails(booking: {
         ''
       ),
     });
+    console.log('✅ Email ristorante inviata con successo! ID:', result.data?.id);
   } catch (err) {
-    console.error('Errore invio email ristorante:', err);
+    console.error('❌ ERRORE invio email ristorante:');
+    console.error('  - Errore completo:', err);
+    console.error('  - Tipo errore:', typeof err);
+    if (err && typeof err === 'object') {
+      console.error('  - Dettagli:', JSON.stringify(err, null, 2));
+    }
   }
 }
 
