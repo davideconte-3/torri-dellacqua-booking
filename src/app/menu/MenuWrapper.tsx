@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import MenuSplash from './MenuSplash';
 import MenuList from './MenuList';
-import CookieBanner from './CookieBanner';
 
 type Item = { id: string; name: string; price: number; description: string | null; order: number };
 type Category = { id: string; name: string; order: number; items: Item[] };
@@ -36,12 +35,7 @@ export default function MenuWrapper({ categories }: { categories: Category[] }) 
   }, []);
 
   if (showSplash) {
-    return (
-      <>
-        <MenuSplash onEnter={() => setShowSplash(false)} />
-        <CookieBanner isEvening={isEvening} />
-      </>
-    );
+    return <MenuSplash onEnter={() => setShowSplash(false)} />;
   }
 
   // Refined theme: warm and welcoming, not too dark
@@ -126,7 +120,6 @@ export default function MenuWrapper({ categories }: { categories: Category[] }) 
           </div>
         </footer>
       </div>
-      <CookieBanner isEvening={isEvening} />
     </main>
   );
 }
