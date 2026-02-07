@@ -56,114 +56,142 @@ async function sendBookingEmails(booking: {
   const subjectCustomer = `Conferma prenotazione San Valentino - ${restaurantName}`;
   const subjectAdmin = `Nuova prenotazione San Valentino - ${booking.customerName}`;
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://prenota.torridellacqua.it';
-
   const baseHtml = (title: string, intro: string, extra?: string) => `
-  <div style="background:#1a0a0c;margin:0;padding:32px 16px;font-family:'Playfair Display',Georgia,serif;">
-    <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:linear-gradient(180deg,#3d1a1a 0%,#2d1515 100%);border-radius:24px;overflow:hidden;border:1px solid rgba(254,205,211,0.2);box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+  <!DOCTYPE html>
+  <html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body style="margin:0;padding:0;background-color:#f5f5f5;font-family:Georgia,serif;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f5f5f5;padding:20px 0;">
+      <tr>
+        <td align="center">
+          <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background-color:#4a1f1f;border-radius:12px;">
 
-      <!-- Logo Ristorante -->
-      <tr>
-        <td style="padding:40px 24px 24px 24px;text-align:center;">
-          <img src="${siteUrl}/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="180" height="auto" style="display:block;margin:0 auto;max-width:180px;height:auto;filter:brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(766%) hue-rotate(296deg) brightness(103%) contrast(97%);" />
-        </td>
-      </tr>
-
-      <!-- Titolo San Valentino -->
-      <tr>
-        <td style="padding:0 24px 32px 24px;text-align:center;">
-          <img src="${siteUrl}/sanvalentino-title.svg" alt="San Valentino" width="240" height="auto" style="display:block;margin:0 auto;max-width:240px;height:auto;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));" />
-        </td>
-      </tr>
-
-      <!-- Info Badge -->
-      <tr>
-        <td style="padding:0 24px 24px 24px;text-align:center;">
-          <div style="display:inline-block;padding:8px 24px;border-radius:999px;background:rgba(254,205,211,0.1);border:1px solid rgba(254,205,211,0.3);color:#fecddd;font-size:13px;font-weight:500;letter-spacing:0.05em;">
-            Sabato 14 Febbraio 2026 · Menu Degustazione 60€
-          </div>
-        </td>
-      </tr>
-
-      <!-- Titolo Sezione -->
-      <tr>
-        <td style="padding:32px 24px 16px 24px;color:#fecddd;font-size:22px;font-weight:600;text-align:center;letter-spacing:0.02em;">
-          ${title}
-        </td>
-      </tr>
-
-      <!-- Intro Text -->
-      <tr>
-        <td style="padding:0 32px 24px 32px;color:rgba(254,205,211,0.85);font-size:15px;line-height:1.7;text-align:center;">
-          ${intro}
-        </td>
-      </tr>
-      <!-- Dettagli Prenotazione -->
-      <tr>
-        <td style="padding:0 32px 32px 32px;">
-          <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(0,0,0,0.3);border-radius:16px;border:1px solid rgba(254,205,211,0.15);padding:24px;">
+            <!-- Header con Logo Testuale -->
             <tr>
-              <td>
-                <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border-spacing:0 10px;font-size:14px;color:#fecddd;">
+              <td style="padding:40px 30px 20px 30px;text-align:center;background-color:#3d1a1a;border-radius:12px 12px 0 0;">
+                <h1 style="margin:0;color:#fecddd;font-size:32px;font-weight:normal;letter-spacing:2px;font-family:Georgia,serif;">
+                  TORRI DELL'ACQUA
+                </h1>
+                <div style="margin-top:8px;color:#fecddd;font-size:14px;letter-spacing:3px;opacity:0.8;">
+                  RISTORANTE
+                </div>
+              </td>
+            </tr>
+
+            <!-- Titolo San Valentino -->
+            <tr>
+              <td style="padding:30px 30px 20px 30px;text-align:center;background-color:#3d1a1a;">
+                <h2 style="margin:0;color:#ffa6b8;font-size:36px;font-weight:normal;font-family:Georgia,serif;text-shadow:2px 2px 4px rgba(0,0,0,0.3);">
+                  ♥ San Valentino ♥
+                </h2>
+              </td>
+            </tr>
+
+            <!-- Badge Info -->
+            <tr>
+              <td style="padding:0 30px 30px 30px;text-align:center;background-color:#3d1a1a;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;background-color:rgba(255,255,255,0.1);border:2px solid #fecddd;border-radius:25px;">
                   <tr>
-                    <td style="padding:8px 0;width:120px;color:rgba(254,205,211,0.6);font-weight:500;">Nome</td>
-                    <td style="padding:8px 0;color:#fecddd;font-weight:500;">${booking.customerName}</td>
+                    <td style="padding:10px 25px;color:#fecddd;font-size:14px;font-weight:bold;white-space:nowrap;">
+                      Sabato 14 Febbraio 2026 · 60€
+                    </td>
                   </tr>
-                  <tr>
-                    <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Quando</td>
-                    <td style="padding:8px 0;color:#fecddd;">${when}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Ospiti</td>
-                    <td style="padding:8px 0;color:#fecddd;">${booking.guests} ${booking.guests === 1 ? 'persona' : 'persone'}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Telefono</td>
-                    <td style="padding:8px 0;color:#fecddd;">${booking.customerPhone}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Email</td>
-                    <td style="padding:8px 0;color:#fecddd;">${booking.customerEmail}</td>
-                  </tr>
-                  ${booking.notes ? `<tr>
-                    <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;vertical-align:top;">Note</td>
-                    <td style="padding:8px 0;color:#fecddd;">${booking.notes.replace(/</g, '&lt;')}</td>
-                  </tr>` : ''}
                 </table>
               </td>
             </tr>
+
+            <!-- Titolo Sezione -->
+            <tr>
+              <td style="padding:30px 30px 15px 30px;text-align:center;background-color:#4a1f1f;">
+                <h3 style="margin:0;color:#ffa6b8;font-size:24px;font-weight:normal;font-family:Georgia,serif;">
+                  ${title}
+                </h3>
+              </td>
+            </tr>
+
+            <!-- Intro Text -->
+            <tr>
+              <td style="padding:0 40px 25px 40px;text-align:center;background-color:#4a1f1f;color:#fecddd;font-size:16px;line-height:1.6;">
+                ${intro}
+              </td>
+            </tr>
+            <!-- Dettagli Prenotazione -->
+            <tr>
+              <td style="padding:0 30px 25px 30px;background-color:#4a1f1f;">
+                <table width="100%" cellpadding="15" cellspacing="0" border="0" style="background-color:#5a2828;border:2px solid #8a4a4a;border-radius:8px;">
+                  <tr>
+                    <td>
+                      <table width="100%" cellpadding="8" cellspacing="0" border="0" style="font-size:15px;">
+                        <tr>
+                          <td style="padding:8px 0;width:110px;color:#ffa6b8;font-weight:bold;">Nome:</td>
+                          <td style="padding:8px 0;color:#ffffff;font-weight:bold;">${booking.customerName}</td>
+                        </tr>
+                        <tr>
+                          <td style="padding:8px 0;color:#ffa6b8;font-weight:bold;">Data:</td>
+                          <td style="padding:8px 0;color:#ffffff;">${when}</td>
+                        </tr>
+                        <tr>
+                          <td style="padding:8px 0;color:#ffa6b8;font-weight:bold;">Ospiti:</td>
+                          <td style="padding:8px 0;color:#ffffff;">${booking.guests} ${booking.guests === 1 ? 'persona' : 'persone'}</td>
+                        </tr>
+                        <tr>
+                          <td style="padding:8px 0;color:#ffa6b8;font-weight:bold;">Telefono:</td>
+                          <td style="padding:8px 0;color:#ffffff;">${booking.customerPhone}</td>
+                        </tr>
+                        <tr>
+                          <td style="padding:8px 0;color:#ffa6b8;font-weight:bold;">Email:</td>
+                          <td style="padding:8px 0;color:#ffffff;">${booking.customerEmail}</td>
+                        </tr>
+                        ${booking.notes ? `<tr>
+                          <td style="padding:8px 0;color:#ffa6b8;font-weight:bold;vertical-align:top;">Note:</td>
+                          <td style="padding:8px 0;color:#ffffff;">${booking.notes.replace(/</g, '&lt;')}</td>
+                        </tr>` : ''}
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            ${
+              extra
+                ? `<tr>
+                    <td style="padding:0 30px 25px 30px;background-color:#4a1f1f;">
+                      <table width="100%" cellpadding="15" cellspacing="0" border="0" style="background-color:#6a3838;border-left:4px solid #ffa6b8;border-radius:8px;">
+                        <tr>
+                          <td style="color:#ffffff;font-size:15px;line-height:1.6;">
+                            ${extra}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>`
+                : ''
+            }
+
+            <!-- Footer -->
+            <tr>
+              <td style="padding:30px;text-align:center;background-color:#3d1a1a;border-top:2px solid #8a4a4a;">
+                <div style="color:#fecddd;font-size:18px;font-weight:bold;margin-bottom:10px;letter-spacing:1px;">
+                  TORRI DELL'ACQUA
+                </div>
+                <div style="color:#ffa6b8;font-size:14px;line-height:1.6;margin-bottom:15px;">
+                  ${restaurantAddress}
+                </div>
+                <div style="color:#cc8899;font-size:12px;line-height:1.5;">
+                  Messaggio generato automaticamente<br />dal sistema prenotazioni San Valentino
+                </div>
+              </td>
+            </tr>
+
           </table>
         </td>
       </tr>
-      ${
-        extra
-          ? `<tr>
-              <td style="padding:0 32px 24px 32px;">
-                <div style="background:rgba(212,149,160,0.1);border-left:3px solid #D495A0;padding:16px 20px;border-radius:8px;color:rgba(254,205,211,0.9);font-size:14px;line-height:1.7;">
-                  ${extra}
-                </div>
-              </td>
-            </tr>`
-          : ''
-      }
-
-      <!-- Footer -->
-      <tr>
-        <td style="padding:32px 24px 24px 24px;border-top:1px solid rgba(254,205,211,0.15);text-align:center;">
-          <img src="${siteUrl}/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="140" height="auto" style="display:block;margin:0 auto 16px auto;max-width:140px;height:auto;opacity:0.5;filter:brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(766%) hue-rotate(296deg) brightness(103%) contrast(97%);" />
-
-          <div style="color:rgba(254,205,211,0.7);font-size:13px;line-height:1.6;margin-bottom:8px;">
-            <strong style="color:rgba(254,205,211,0.9);">${restaurantName}</strong><br />
-            ${restaurantAddress}
-          </div>
-
-          <div style="color:rgba(254,205,211,0.5);font-size:11px;line-height:1.5;margin-top:16px;">
-            Questo messaggio è stato generato automaticamente<br />dal sistema di prenotazioni San Valentino
-          </div>
-        </td>
-      </tr>
     </table>
-  </div>`;
+  </body>
+  </html>`;
 
   try {
     console.log('📤 Invio email CLIENTE...');
