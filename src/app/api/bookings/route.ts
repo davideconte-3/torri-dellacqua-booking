@@ -56,6 +56,8 @@ async function sendBookingEmails(booking: {
   const subjectCustomer = `Conferma prenotazione San Valentino - ${restaurantName}`;
   const subjectAdmin = `Nuova prenotazione San Valentino - ${booking.customerName}`;
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://prenota.torridellacqua.it';
+
   const baseHtml = (title: string, intro: string, extra?: string) => `
   <!DOCTYPE html>
   <html lang="it">
@@ -69,24 +71,17 @@ async function sendBookingEmails(booking: {
         <td align="center">
           <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background-color:#4a1f1f;border-radius:12px;">
 
-            <!-- Header con Logo Testuale -->
+            <!-- Logo Torri dell'Acqua -->
             <tr>
               <td style="padding:40px 30px 20px 30px;text-align:center;background-color:#3d1a1a;border-radius:12px 12px 0 0;">
-                <h1 style="margin:0;color:#fecddd;font-size:32px;font-weight:normal;letter-spacing:2px;font-family:Georgia,serif;">
-                  TORRI DELL'ACQUA
-                </h1>
-                <div style="margin-top:8px;color:#fecddd;font-size:14px;letter-spacing:3px;opacity:0.8;">
-                  RISTORANTE
-                </div>
+                <img src="${siteUrl}/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="200" style="display:block;margin:0 auto;width:200px;height:auto;max-width:100%;" />
               </td>
             </tr>
 
-            <!-- Titolo San Valentino -->
+            <!-- Titolo San Valentino SVG -->
             <tr>
               <td style="padding:30px 30px 20px 30px;text-align:center;background-color:#3d1a1a;">
-                <h2 style="margin:0;color:#ffa6b8;font-size:36px;font-weight:normal;font-family:Georgia,serif;text-shadow:2px 2px 4px rgba(0,0,0,0.3);">
-                  ♥ San Valentino ♥
-                </h2>
+                <img src="${siteUrl}/sanvalentino-title.svg" alt="San Valentino" width="280" style="display:block;margin:0 auto;width:280px;height:auto;max-width:100%;" />
               </td>
             </tr>
 
@@ -174,9 +169,7 @@ async function sendBookingEmails(booking: {
             <!-- Footer -->
             <tr>
               <td style="padding:30px;text-align:center;background-color:#3d1a1a;border-top:2px solid #8a4a4a;">
-                <div style="color:#fecddd;font-size:18px;font-weight:bold;margin-bottom:10px;letter-spacing:1px;">
-                  TORRI DELL'ACQUA
-                </div>
+                <img src="${siteUrl}/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="150" style="display:block;margin:0 auto 15px auto;width:150px;height:auto;max-width:100%;opacity:0.7;" />
                 <div style="color:#ffa6b8;font-size:14px;line-height:1.6;margin-bottom:15px;">
                   ${restaurantAddress}
                 </div>
