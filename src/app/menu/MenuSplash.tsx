@@ -47,7 +47,7 @@ export default function MenuSplash({ onEnter }: { onEnter: () => void }) {
       };
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <div className={`fixed inset-0 z-40 flex items-center justify-center transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image

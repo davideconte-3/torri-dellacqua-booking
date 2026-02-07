@@ -57,7 +57,7 @@ export default function CookieBanner() {
     <>
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 z-[39] transition-opacity duration-300 pointer-events-none ${
+        className={`fixed inset-0 z-[49] transition-opacity duration-300 pointer-events-none ${
           isAnimating ? 'opacity-40 bg-black pointer-events-auto' : 'opacity-0'
         }`}
         onClick={handleAccept}
@@ -65,7 +65,7 @@ export default function CookieBanner() {
 
       {/* Banner */}
       <div
-        className={`fixed bottom-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed bottom-0 left-0 right-0 z-[50] transition-all duration-300 ${
           isAnimating ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
         }`}
       >
