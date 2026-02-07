@@ -56,80 +56,110 @@ async function sendBookingEmails(booking: {
   const subjectCustomer = `Conferma prenotazione San Valentino - ${restaurantName}`;
   const subjectAdmin = `Nuova prenotazione San Valentino - ${booking.customerName}`;
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://prenota.torridellacqua.it';
+
   const baseHtml = (title: string, intro: string, extra?: string) => `
-  <div style="background:#0b0202;margin:0;padding:32px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-    <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:linear-gradient(135deg,#3d1a1a,#120506);border-radius:24px;overflow:hidden;border:1px solid rgba(212,175,55,0.16);">
+  <div style="background:#1a0a0c;margin:0;padding:32px 16px;font-family:'Playfair Display',Georgia,serif;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:linear-gradient(180deg,#3d1a1a 0%,#2d1515 100%);border-radius:24px;overflow:hidden;border:1px solid rgba(254,205,211,0.2);box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+
+      <!-- Logo Ristorante -->
       <tr>
-        <td style="padding:28px 24px 8px 24px;text-align:center;">
-          <div style="color:#fbe9f1;font-size:24px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">San Valentino</div>
-          <div style="color:#f9d5dd;font-size:12px;letter-spacing:0.3em;text-transform:uppercase;">Torri dell'acqua</div>
+        <td style="padding:40px 24px 24px 24px;text-align:center;">
+          <img src="${siteUrl}/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="180" height="auto" style="display:block;margin:0 auto;max-width:180px;height:auto;filter:brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(766%) hue-rotate(296deg) brightness(103%) contrast(97%);" />
         </td>
       </tr>
+
+      <!-- Titolo San Valentino -->
       <tr>
-        <td style="padding:0 24px 8px 24px;text-align:center;">
-          <div style="display:inline-block;padding:6px 18px;border-radius:999px;border:1px solid rgba(249,213,221,0.7);color:#f9d5dd;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;">
-            Sabato 14 Febbraio · 60 € a persona
+        <td style="padding:0 24px 32px 24px;text-align:center;">
+          <img src="${siteUrl}/sanvalentino-title.svg" alt="San Valentino" width="240" height="auto" style="display:block;margin:0 auto;max-width:240px;height:auto;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));" />
+        </td>
+      </tr>
+
+      <!-- Info Badge -->
+      <tr>
+        <td style="padding:0 24px 24px 24px;text-align:center;">
+          <div style="display:inline-block;padding:8px 24px;border-radius:999px;background:rgba(254,205,211,0.1);border:1px solid rgba(254,205,211,0.3);color:#fecddd;font-size:13px;font-weight:500;letter-spacing:0.05em;">
+            Sabato 14 Febbraio 2026 · Menu Degustazione 60€
           </div>
         </td>
       </tr>
+
+      <!-- Titolo Sezione -->
       <tr>
-        <td style="padding:24px 24px 8px 24px;color:#ffeef5;font-size:18px;font-weight:600;text-align:center;">
+        <td style="padding:32px 24px 16px 24px;color:#fecddd;font-size:22px;font-weight:600;text-align:center;letter-spacing:0.02em;">
           ${title}
         </td>
       </tr>
+
+      <!-- Intro Text -->
       <tr>
-        <td style="padding:0 24px 16px 24px;color:#fbe9f1;font-size:14px;line-height:1.6;text-align:center;">
+        <td style="padding:0 32px 24px 32px;color:rgba(254,205,211,0.85);font-size:15px;line-height:1.7;text-align:center;">
           ${intro}
         </td>
       </tr>
+      <!-- Dettagli Prenotazione -->
       <tr>
-        <td style="padding:0 24px 24px 24px;">
-          <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border-spacing:0 6px;font-size:13px;color:#fbe9f1;">
+        <td style="padding:0 32px 32px 32px;">
+          <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(0,0,0,0.3);border-radius:16px;border:1px solid rgba(254,205,211,0.15);padding:24px;">
             <tr>
-              <td style="padding:6px 0;width:110px;color:rgba(249,213,221,0.8);">Nome</td>
-              <td style="padding:6px 0;">${booking.customerName}</td>
-            </tr>
-            <tr>
-              <td style="padding:6px 0;color:rgba(249,213,221,0.8);">Quando</td>
-              <td style="padding:6px 0;">${when}</td>
-            </tr>
-            <tr>
-              <td style="padding:6px 0;color:rgba(249,213,221,0.8);">Ospiti</td>
-              <td style="padding:6px 0;">${booking.guests}</td>
-            </tr>
-            <tr>
-              <td style="padding:6px 0;color:rgba(249,213,221,0.8);">Telefono</td>
-              <td style="padding:6px 0;">${booking.customerPhone}</td>
-            </tr>
-            <tr>
-              <td style="padding:6px 0;color:rgba(249,213,221,0.8);">Email</td>
-              <td style="padding:6px 0;">${booking.customerEmail}</td>
-            </tr>
-            <tr>
-              <td style="padding:6px 0;color:rgba(249,213,221,0.8);vertical-align:top;">Note</td>
-              <td style="padding:6px 0;">${booking.notes ? booking.notes.replace(/</g, '&lt;') : '—'}</td>
-            </tr>
-            <tr>
-              <td style="padding:6px 0;color:rgba(249,213,221,0.8);">Consenso privacy</td>
-              <td style="padding:6px 0;">${booking.privacyConsent ? 'Sì' : 'No'}</td>
-            </tr>
-            <tr>
-              <td style="padding:6px 0;color:rgba(249,213,221,0.8);">Consenso marketing</td>
-              <td style="padding:6px 0;">${booking.marketingConsent ? 'Sì' : 'No'}</td>
+              <td>
+                <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border-spacing:0 10px;font-size:14px;color:#fecddd;">
+                  <tr>
+                    <td style="padding:8px 0;width:120px;color:rgba(254,205,211,0.6);font-weight:500;">Nome</td>
+                    <td style="padding:8px 0;color:#fecddd;font-weight:500;">${booking.customerName}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Quando</td>
+                    <td style="padding:8px 0;color:#fecddd;">${when}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Ospiti</td>
+                    <td style="padding:8px 0;color:#fecddd;">${booking.guests} ${booking.guests === 1 ? 'persona' : 'persone'}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Telefono</td>
+                    <td style="padding:8px 0;color:#fecddd;">${booking.customerPhone}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Email</td>
+                    <td style="padding:8px 0;color:#fecddd;">${booking.customerEmail}</td>
+                  </tr>
+                  ${booking.notes ? `<tr>
+                    <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;vertical-align:top;">Note</td>
+                    <td style="padding:8px 0;color:#fecddd;">${booking.notes.replace(/</g, '&lt;')}</td>
+                  </tr>` : ''}
+                </table>
+              </td>
             </tr>
           </table>
         </td>
       </tr>
       ${
         extra
-          ? `<tr><td style="padding:0 24px 20px 24px;color:#fbe9f1;font-size:13px;line-height:1.5;">${extra}</td></tr>`
+          ? `<tr>
+              <td style="padding:0 32px 24px 32px;">
+                <div style="background:rgba(212,149,160,0.1);border-left:3px solid #D495A0;padding:16px 20px;border-radius:8px;color:rgba(254,205,211,0.9);font-size:14px;line-height:1.7;">
+                  ${extra}
+                </div>
+              </td>
+            </tr>`
           : ''
       }
+
+      <!-- Footer -->
       <tr>
-        <td style="padding:16px 24px 20px 24px;border-top:1px solid rgba(212,175,55,0.16);color:rgba(249,213,221,0.7);font-size:11px;line-height:1.6;text-align:center;">
-          ${restaurantName}<br />
-          ${restaurantAddress}<br />
-          Questo messaggio è stato generato automaticamente dal sistema prenotazioni San Valentino.
+        <td style="padding:32px 24px 24px 24px;border-top:1px solid rgba(254,205,211,0.15);text-align:center;">
+          <img src="${siteUrl}/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="140" height="auto" style="display:block;margin:0 auto 16px auto;max-width:140px;height:auto;opacity:0.5;filter:brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(766%) hue-rotate(296deg) brightness(103%) contrast(97%);" />
+
+          <div style="color:rgba(254,205,211,0.7);font-size:13px;line-height:1.6;margin-bottom:8px;">
+            <strong style="color:rgba(254,205,211,0.9);">${restaurantName}</strong><br />
+            ${restaurantAddress}
+          </div>
+
+          <div style="color:rgba(254,205,211,0.5);font-size:11px;line-height:1.5;margin-top:16px;">
+            Questo messaggio è stato generato automaticamente<br />dal sistema di prenotazioni San Valentino
+          </div>
         </td>
       </tr>
     </table>
@@ -147,9 +177,9 @@ async function sendBookingEmails(booking: {
       to: booking.customerEmail,
       subject: subjectCustomer,
       html: baseHtml(
-        'La tua prenotazione è stata ricevuta',
-        'Grazie per aver prenotato la cena di San Valentino a Torri dell\'acqua. Riceverai conferma della prenotazione via email.',
-        'Se hai bisogno di modificare o annullare la prenotazione, rispondi a questa email o contatta direttamente il ristorante.'
+        'Prenotazione Ricevuta',
+        'Grazie per aver scelto Torri dell\'Acqua per la vostra cena di San Valentino. La tua richiesta di prenotazione è stata ricevuta con successo.',
+        'Per qualsiasi modifica o annullamento, contattaci rispondendo a questa email o telefonando al ristorante. Ti aspettiamo per una serata indimenticabile.'
       ),
     });
     console.log('✅ Email cliente inviata con successo! ID:', result.data?.id);
@@ -174,9 +204,9 @@ async function sendBookingEmails(booking: {
       to: restaurantEmail,
       subject: subjectAdmin,
       html: baseHtml(
-        'Nuova prenotazione San Valentino',
-        'Hai ricevuto una nuova richiesta di prenotazione per la cena di San Valentino.',
-        ''
+        'Nuova Prenotazione Ricevuta',
+        'È stata ricevuta una nuova richiesta di prenotazione per la cena di San Valentino. Verifica i dettagli qui sotto.',
+        `<strong>Totale:</strong> ${booking.guests} ${booking.guests === 1 ? 'persona' : 'persone'} × 60€ = ${booking.guests * 60}€`
       ),
     });
     console.log('✅ Email ristorante inviata con successo! ID:', result.data?.id);
