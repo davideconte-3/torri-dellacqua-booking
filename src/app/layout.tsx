@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Playfair_Display } from 'next/font/google';
+import Script from 'next/script';
 import '@/styles/globals.css';
 import { ConsentProvider } from '@/contexts/ConsentContext';
 import CookieBanner from '@/components/CookieBanner';
@@ -27,6 +28,11 @@ export default function RootLayout({
   return (
     <html lang="it" className={playfair.variable}>
       <body className="antialiased font-serif">
+        {/* Google Consent Mode v2: default denied così la modalità consenso è attiva e i tool la vedono */}
+        <Script id="google-consent-default" strategy="beforeInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{'ad_storage':'denied','analytics_storage':'denied','ad_user_data':'denied','ad_personalization':'denied'});`}
+        </Script>
         <ConsentProvider>
           {children}
           <CookieBanner />

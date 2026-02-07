@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useConsent, PROFILING_COOKIES } from '@/contexts/ConsentContext';
+import { useConsent } from '@/contexts/ConsentContext';
 
 export default function CookieBanner() {
   const { consent, acceptProfiling, rejectProfiling } = useConsent();
@@ -87,10 +87,10 @@ export default function CookieBanner() {
             {/* Text Content */}
             <div className="flex-1 min-w-0">
               <h3 className={`${theme.text} text-lg font-light tracking-wide mb-2`} style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
-                Preferenze Cookie
+                Utilizzo dei cookie
               </h3>
               <p className={`${theme.textSecondary} text-sm leading-relaxed font-light`} style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>
-                Utilizziamo cookie tecnici necessari per il funzionamento del sito. Per attivare gli strumenti di profilazione e tracciamento (inclusi <strong>ad_storage</strong> e cookie per pubblicità e analytics) devi accettare i cookie per la profilazione. Con l’accettazione si abilitano {PROFILING_COOKIES.length} tipi in totale: ad_storage, analytics_storage, cookie Meta Pixel (_fbp, _fbc), cookie Google Analytics (_ga, _gid) e cookie di targeting. Puoi modificare le preferenze dalla pagina Privacy.
+                Utilizziamo cookie necessari per il funzionamento del sito. Con il tuo consenso possiamo usare anche cookie per analisi del traffico e per la personalizzazione di contenuti e annunci. Puoi accettare tutti i cookie o rifiutare quelli non strettamente necessari.
               </p>
             </div>
 

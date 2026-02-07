@@ -116,7 +116,7 @@ export default function Analytics({ metaPixelId, googleAnalyticsId }: AnalyticsP
         </>
       )}
 
-      {/* Google Analytics 4: caricato solo dopo consenso (ad_storage e analytics_storage concessi) */}
+      {/* Google Analytics 4: caricato solo dopo consenso; prima è già stato impostato consent default denied nel layout */}
       {googleAnalyticsId && (
         <>
           <Script
@@ -128,7 +128,12 @@ export default function Analytics({ metaPixelId, googleAnalyticsId }: AnalyticsP
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted' });
+              gtag('consent', 'update', {
+                ad_storage: 'granted',
+                analytics_storage: 'granted',
+                ad_user_data: 'granted',
+                ad_personalization: 'granted'
+              });
               gtag('config', '${googleAnalyticsId}', {
                 page_path: window.location.pathname,
               });
