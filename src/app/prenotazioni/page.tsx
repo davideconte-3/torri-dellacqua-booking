@@ -26,6 +26,7 @@ export default function PrenotazioniPage() {
   const [editingMessage, setEditingMessage] = useState(false);
   const [notificationEmail, setNotificationEmail] = useState('');
   const [editingEmail, setEditingEmail] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const fetchSettings = async (pinToUse: string) => {
     try {
@@ -104,6 +105,27 @@ export default function PrenotazioniPage() {
       alert('Email salvata!');
     } catch (e) {
       alert('Errore durante il salvataggio');
+    }
+  };
+
+  const deleteBooking = async (id: string, customerName: string) => {
+    if (!confirm(`Eliminare prenotazione di ${customerName}?`)) return;
+
+    setDeletingId(id);
+    try {
+      const res = await fetch(`/api/bookings/${id}`, {
+        method: 'DELETE',
+        headers: { 'X-View-Pin': pin },
+      });
+
+      if (!res.ok) throw new Error('Errore');
+
+      // Ricarica lista
+      await fetchBookings(pin);
+    } catch (e) {
+      alert('Errore durante l\'eliminazione');
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -326,6 +348,7 @@ export default function PrenotazioniPage() {
                       <th className="p-3 font-medium">Ospiti</th>
                       <th className="p-3 font-medium hidden lg:table-cell">Note</th>
                       <th className="p-3 font-medium hidden xl:table-cell">Inviata il</th>
+                      <th className="p-3 font-medium">Azioni</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -349,6 +372,15 @@ export default function PrenotazioniPage() {
                           {b.notes || '–'}
                         </td>
                         <td className="p-3 text-gray-500 text-xs hidden xl:table-cell">{formatDateTime(b.createdAt)}</td>
+                        <td className="p-3">
+                          <button
+                            onClick={() => deleteBooking(b.id, b.customerName)}
+                            disabled={deletingId === b.id}
+                            className="text-red-600 hover:text-red-800 text-sm font-medium disabled:opacity-50"
+                          >
+                            {deletingId === b.id ? '...' : 'Elimina'}
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
