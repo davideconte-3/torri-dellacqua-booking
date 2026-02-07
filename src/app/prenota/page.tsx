@@ -44,10 +44,8 @@ export default function PrenotaPage() {
   useEffect(() => {
     if (showSuccess) {
       window.scrollTo(0, 0);
-      // Track conversion
-      analytics.lead(60 * parseInt(formData.guests || '2'), parseInt(formData.guests || '2'));
     }
-  }, [showSuccess, formData.guests]);
+  }, [showSuccess]);
 
   // Track page engagement & check booking status
   useEffect(() => {
@@ -135,6 +133,9 @@ export default function PrenotaPage() {
       const data = await response.json().catch(() => ({}));
 
       if (response.ok) {
+        const guests = parseInt(formData.guests || '2', 10);
+        const value = 60 * guests;
+        analytics.lead(value, guests);
         setShowSuccess(true);
         // Clear localStorage after successful booking
         localStorage.removeItem('booking_draft');

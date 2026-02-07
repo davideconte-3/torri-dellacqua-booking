@@ -48,13 +48,17 @@ export const analytics = {
   },
 
   lead: (value: number, guests: number) => {
-    trackEvent('Lead', {
+    const params = {
       value,
       currency: 'EUR',
       guests,
       event_category: 'Booking',
       event_label: 'San Valentino 2026',
-    });
+    };
+    if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+      console.log('Track Event: Lead (conversione prenotazione)', params);
+    }
+    trackEvent('Lead', params);
   },
 
   customEvent: (name: string, params?: Record<string, any>) => {
