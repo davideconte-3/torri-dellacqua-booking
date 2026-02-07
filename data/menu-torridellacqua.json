@@ -1,0 +1,810 @@
+{
+  "extractedAt": "2026-02-06T17:23:04.756Z",
+  "note": "coperto 3,50€ - terrazza 5,00€",
+  "categories": [
+    {
+      "id": 1,
+      "categoria": "ANTIPASTI",
+      "items": [
+        {
+          "nome": "baccalà",
+          "prezzo": 15,
+          "descrizione": "tocchetto di baccalà in panatura di panko e salsa di senape in agrodolce"
+        },
+        {
+          "nome": "capocollo",
+          "prezzo": 12,
+          "descrizione": "capocollo di martina franca con crema di formaggio fresco erborinato"
+        },
+        {
+          "nome": "carpaccio di black angus",
+          "prezzo": 16,
+          "descrizione": "carpaccio di black angus con crema di pecorino"
+        },
+        {
+          "nome": "degustazione dello chef",
+          "prezzo": 40,
+          "descrizione": "degustazione di antipasti a discrezione dello chef"
+        },
+        {
+          "nome": "pezzetto pop art",
+          "prezzo": 14,
+          "descrizione": "pezzetti di cavallo su crema di carote e polvere di cipolla rossa"
+        },
+        {
+          "nome": "seppia",
+          "prezzo": 14,
+          "descrizione": "seppia dorata su vellutata di piselli e crumble di olive nere"
+        },
+        {
+          "nome": "spada",
+          "prezzo": 14,
+          "descrizione": "carpaccio di spada affumicato con crema al basilico"
+        },
+        {
+          "nome": "tonno",
+          "prezzo": 16,
+          "descrizione": "tonno su caponata di verdure"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "categoria": "PRIMI",
+      "items": [
+        {
+          "nome": "orecchiette al pomodoro",
+          "prezzo": 8,
+          "descrizione": "orecchiette salentine al pomodoro"
+        },
+        {
+          "nome": "calamarata",
+          "prezzo": 18,
+          "descrizione": "calamarata con tocchetti di scorfano mantecato al pecorino"
+        },
+        {
+          "nome": "foglie d'ulivo",
+          "prezzo": 18,
+          "descrizione": "foglie d'ulivo in salsa pescatrice e datterino giallo"
+        },
+        {
+          "nome": "maccheroncino",
+          "prezzo": 15,
+          "descrizione": "maccheroncino ai funghi porcini con pancetta e granella di pistacchio"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "categoria": "SECONDI",
+      "items": [
+        {
+          "nome": "anatra d'inverno",
+          "prezzo": 28,
+          "descrizione": "petto d'anatra cotto a bassa temperatura con riduzione di mandarino e soia e spuntoni di castagne affumicate"
+        },
+        {
+          "nome": "cotoletta",
+          "prezzo": 12,
+          "descrizione": "cotolotta di pollo con stick di patate fritte"
+        },
+        {
+          "nome": "frittura",
+          "prezzo": 18,
+          "descrizione": "frittura di calamari e gamberi"
+        },
+        {
+          "nome": "polpo",
+          "prezzo": 18,
+          "descrizione": "polpo arrosto su cicoria ripassata e crema di pomodorino arrosto"
+        },
+        {
+          "nome": "tonno",
+          "prezzo": 18,
+          "descrizione": "tonno in carpione con uvetta e pinoli"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "categoria": "CONTORNI",
+      "items": [
+        {
+          "nome": "novelle",
+          "prezzo": 6,
+          "descrizione": "patate novelle spadellate al burro e rosmarino"
+        },
+        {
+          "nome": "stick di patate fritte",
+          "prezzo": 6
+        },
+        {
+          "nome": "cicoria ripassata",
+          "prezzo": 8
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "categoria": "BEVANDE",
+      "items": [
+        {
+          "nome": "acqua frizzante 75ml",
+          "prezzo": 3
+        },
+        {
+          "nome": "acqua naturale 50ml",
+          "prezzo": 2
+        },
+        {
+          "nome": "acqua naturale 75ml",
+          "prezzo": 3
+        },
+        {
+          "nome": "calice",
+          "prezzo": 6
+        },
+        {
+          "nome": "campari soda",
+          "prezzo": 3.5
+        },
+        {
+          "nome": "coca cola 33cl vetro",
+          "prezzo": 3.5
+        },
+        {
+          "nome": "coca cola zero 33cl vetro",
+          "prezzo": 3.5
+        },
+        {
+          "nome": "cocktail san pellegrino",
+          "prezzo": 3.5
+        },
+        {
+          "nome": "crodino",
+          "prezzo": 3
+        },
+        {
+          "nome": "esta thè limone 33cl",
+          "prezzo": 3.5
+        },
+        {
+          "nome": "esta thè pesca 33cl",
+          "prezzo": 3.5
+        },
+        {
+          "nome": "fanta 33cl vetro",
+          "prezzo": 3.5
+        },
+        {
+          "nome": "lemon soda lattina",
+          "prezzo": 3
+        },
+        {
+          "nome": "red bull",
+          "prezzo": 3.5
+        },
+        {
+          "nome": "succo di frutta santal ace",
+          "prezzo": 3.5
+        },
+        {
+          "nome": "succo di frutta santal arancia",
+          "prezzo": 3.5
+        },
+        {
+          "nome": "succo di frutta santal pesca",
+          "prezzo": 3.5
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "categoria": "VINI",
+      "items": [
+        {
+          "nome": "cala porto",
+          "prezzo": 23,
+          "descrizione": "i.g.p. fiano del salento vol. 13,5% cantina le vigne di sammarco"
+        },
+        {
+          "nome": "lamaforca",
+          "prezzo": 24,
+          "descrizione": "verdeca del salento igp 2024 13,5% vol, cantina le vigne di sammarco"
+        },
+        {
+          "nome": "nottetempo",
+          "prezzo": 23,
+          "descrizione": "chardonnay del salento igp 2024 vol. 14% vol, cantina le vigne di sammarco"
+        },
+        {
+          "nome": "bisol 1542",
+          "prezzo": 29,
+          "descrizione": "valdobbiadene, prosecco superiore docg etra dry, vendemmia 2023 vol 11,5%"
+        },
+        {
+          "nome": "champagne brut henriot",
+          "prezzo": 90,
+          "descrizione": "brut souverain 2017, 45% pinot nero 40% chardonnay 15% pinot meunier, 12% vol. francia"
+        },
+        {
+          "nome": "champagne rosè henriot",
+          "prezzo": 115,
+          "descrizione": "60% pinot nero 30% chardonnay 10% pinot meunier 2013 12% vol, francia"
+        },
+        {
+          "nome": "champagne veuve clicquot",
+          "prezzo": 160,
+          "descrizione": "brut cuvèe saint-petersbourg vol 12,5%"
+        },
+        {
+          "nome": "clelia coppo rosè",
+          "prezzo": 46,
+          "descrizione": "brut rosé metodo classico, 2021 sboccatura gennaio 2024, uvaggio con 95% chardonnay 5% pinot nero, cantina coppo."
+        },
+        {
+          "nome": "edea",
+          "prezzo": 70,
+          "descrizione": "franciacorta blanc de blanc brut sboccatura 2024 12,5 vol. cantina mirabella"
+        },
+        {
+          "nome": "ferrari maximum",
+          "prezzo": 52,
+          "descrizione": "blanc de blancs metodo classico chardonnay trento doc brut, sboccatura 2024, 12,5 vol."
+        },
+        {
+          "nome": "ferrari perlè",
+          "prezzo": 69,
+          "descrizione": "metodo classico chardonnay trento doc brut 2016 sboccatura 2024 vol 12,5%."
+        },
+        {
+          "nome": "ferrari perlè nero",
+          "prezzo": 85,
+          "descrizione": "metodo classico pinot nero in purezza trento doc extra brut riserva 2017 12,5 vol."
+        },
+        {
+          "nome": "ferrari perlè rosè",
+          "prezzo": 65,
+          "descrizione": "metodo classico pinot nero e chardonnay trento doc brut riserva 2017, sboccatura 2023, 12,5% vol."
+        },
+        {
+          "nome": "five roses rosè",
+          "prezzo": 35,
+          "descrizione": "negroamaro metodo classico brut rosè 2020 12,5% vol., cantina leone de castris"
+        },
+        {
+          "nome": "pitars rosè colors",
+          "prezzo": 26,
+          "descrizione": "prosecco rosé doc millessimato 11,5%"
+        },
+        {
+          "nome": "saten",
+          "prezzo": 60,
+          "descrizione": "franciacorta millessimato brut sboccatura 2024 12,5% vol. cantina mirabella"
+        },
+        {
+          "nome": "trento doc",
+          "prezzo": 40,
+          "descrizione": "chardonnay doc extra brut 12,5 vol. cantina roeno"
+        },
+        {
+          "nome": "ebur rosè",
+          "prezzo": 50,
+          "descrizione": "negroamaro metoo classico rosé pas dosé millesimato 2020 sboccatura 2024, 12,5% vol, cantina le vigne di sammarco"
+        },
+        {
+          "nome": "ebur",
+          "prezzo": 50,
+          "descrizione": "negroamaro metodo classico brut millesimato, 2020 sboccatura 2024, 12,5 vol, cantina l vigne di sammarco"
+        },
+        {
+          "nome": "siroq",
+          "prezzo": 20,
+          "descrizione": "malvasia bianca con verdeca i.g.p. extra dry, 11,5% vol, cantina le vigne di sammarco"
+        },
+        {
+          "nome": "siroq rosè",
+          "prezzo": 20,
+          "descrizione": "susumaniello rosé extradry, 11% vol, cantina le vigne di sammarco"
+        },
+        {
+          "nome": "etra",
+          "prezzo": 25,
+          "descrizione": "passito aleatico rosso di puglia igp 2020 16% vol, cantina le vigne di sammarco"
+        },
+        {
+          "nome": "lunevo",
+          "prezzo": 25,
+          "descrizione": "passito malvasia bianca del salento igp 2022 15% vol, cantina le vigne di sammarco"
+        },
+        {
+          "nome": "attanasio",
+          "prezzo": 30,
+          "descrizione": "primitivo di manduria igp 2024, 15% vol"
+        },
+        {
+          "nome": "murex",
+          "prezzo": 24,
+          "descrizione": "negramaro e malvasia nera igp rosato 2024 13,5%vol, cantina le vigne di sammarco"
+        },
+        {
+          "nome": "rosevo",
+          "prezzo": 24,
+          "descrizione": "primitivo rosato del salento igp 2024 14% vol, cantina le vigne di sammarco"
+        },
+        {
+          "nome": "susumà",
+          "prezzo": 24,
+          "descrizione": "susumaniello rosato del salento igp 2024 13,5% vol, cantina le vigne di sammarco."
+        },
+        {
+          "nome": "archè blend",
+          "prezzo": 30,
+          "descrizione": "negroamaro 50% primitivo 50 % igp 2017 (selezione franco rizzello), 15% vol, cantina le vigne di sammarco"
+        },
+        {
+          "nome": "attanasio",
+          "prezzo": 37,
+          "descrizione": "primitivo di manduria dop 2016 16,5% vol."
+        },
+        {
+          "nome": "barbaresco",
+          "prezzo": 60,
+          "descrizione": "docg 2021 14,5% vol. cantina batasiolo"
+        },
+        {
+          "nome": "barbera d'alba",
+          "prezzo": 40,
+          "descrizione": "sovrana doc 2022 14,5% vol. cantina batasiolo"
+        },
+        {
+          "nome": "barbera d'asti",
+          "prezzo": 40,
+          "descrizione": "camp du rouss docg 2022 15,5 vol. cantina coppo"
+        },
+        {
+          "nome": "barolo",
+          "prezzo": 120,
+          "descrizione": "bussia vigneto bofani docg 2016 14,5 vol. cantina batasiolo"
+        },
+        {
+          "nome": "barolo",
+          "prezzo": 130,
+          "descrizione": "briccolina docg 2016 14,5 vol. cantina batasiolo"
+        },
+        {
+          "nome": "contesa dei venti",
+          "prezzo": 30,
+          "descrizione": "vittoria doc nero d'avola di sicilia, anno 2022.\n13% vol.\ncantina dona fugata."
+        },
+        {
+          "nome": "donna lisa",
+          "prezzo": 38,
+          "descrizione": "negramaro riserva doc 2019 14.5% vol, cantina leone de castris."
+        },
+        {
+          "nome": "enantio red point.",
+          "prezzo": 35,
+          "descrizione": "'valdadige' doc 2021 13,5% vol azienda agricola roeno"
+        },
+        {
+          "nome": "marasia",
+          "prezzo": 25,
+          "descrizione": "malvasia nera igp 2018 15% vol. cantina le vigne di sammarco"
+        },
+        {
+          "nome": "marchesa",
+          "prezzo": 60,
+          "descrizione": "etna rosso doc 2020 14% vol. cantina donna fugata"
+        },
+        {
+          "nome": "nebbiolo",
+          "prezzo": 35,
+          "descrizione": "langhe doc 2022 14% vol. cantina batasiolo"
+        },
+        {
+          "nome": "per lui",
+          "prezzo": 55,
+          "descrizione": "ottavianello igt 2019 13% vol.\ncantina leone de castris."
+        },
+        {
+          "nome": "salicale",
+          "prezzo": 25,
+          "descrizione": "negroamaro riserva dop 2020 14,5% vol. cantina le vigne di sammarco"
+        },
+        {
+          "nome": "somiero",
+          "prezzo": 30,
+          "descrizione": "susumaniello igp 2018 (selezione franco rizzello), 15% vol., cantina le vigne di sammarco."
+        },
+        {
+          "nome": "sul vulcano",
+          "prezzo": 35,
+          "descrizione": "etna rosso doc di sicilia 2021, 14% vol.\ncantina donna fugata"
+        },
+        {
+          "nome": "villa gresti",
+          "prezzo": 75,
+          "descrizione": "vigneti delle dolomiti igt 2020 2,5% vol. cantina san leonardo"
+        },
+        {
+          "nome": "villa santera",
+          "prezzo": 38,
+          "descrizione": "primitivo igt 2023 vol 13,5%, cantina leone de castris"
+        },
+        {
+          "nome": "zigurat bio",
+          "prezzo": 30,
+          "descrizione": "blend sangiovese e montefalco doc 2022, biologico, 15% vol. cantina tenute lunelli"
+        },
+        {
+          "nome": "parva culpa",
+          "prezzo": 28,
+          "descrizione": "nero di troia i.g.p. 2018 (selezione franco rizello), 15% vol, cantina le vigne di sammarco."
+        },
+        {
+          "nome": "calice",
+          "prezzo": 6
+        },
+        {
+          "nome": "archè",
+          "prezzo": 42,
+          "descrizione": "primitivo di manduria d.o.p. 2018, 15% vol, cantina le vigne di sammarco"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "categoria": "AMARI E DIGESTIVI",
+      "items": [
+        {
+          "nome": "amaro jefferson",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro san marzano",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaretto di saronno",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro averna",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro braulio",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro del capo",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro fernet branca",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro lucano",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro menta fernet branca menta",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro montenegro",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro petrus",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro poli vaca mora",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro ramazzotti",
+          "prezzo": 4
+        },
+        {
+          "nome": "amaro salento 35°",
+          "prezzo": 4.5
+        },
+        {
+          "nome": "amaro salento amarissimo",
+          "prezzo": 4.5
+        },
+        {
+          "nome": "caffe' borghetti",
+          "prezzo": 4
+        },
+        {
+          "nome": "cognac le courvoisier",
+          "prezzo": 7
+        },
+        {
+          "nome": "grappa della valle amarone xo",
+          "prezzo": 9
+        },
+        {
+          "nome": "grappa della valle castagno",
+          "prezzo": 9
+        },
+        {
+          "nome": "grappa della valle cilegio",
+          "prezzo": 9
+        },
+        {
+          "nome": "grappa poli bianca",
+          "prezzo": 6
+        },
+        {
+          "nome": "grappa poli cleopatra amarone",
+          "prezzo": 9
+        },
+        {
+          "nome": "grappa segnana bianca",
+          "prezzo": 6,
+          "descrizione": "grappa trentina di traminer, moscato, pinot nero o chardonnay"
+        },
+        {
+          "nome": "grappa segnana invecchiata",
+          "prezzo": 7,
+          "descrizione": "grappa trentina solera collezione"
+        },
+        {
+          "nome": "limoncello",
+          "prezzo": 4
+        },
+        {
+          "nome": "mezcal san cosme",
+          "prezzo": 9
+        },
+        {
+          "nome": "rhum bacardi",
+          "prezzo": 6
+        },
+        {
+          "nome": "rhum don papa baroko",
+          "prezzo": 9
+        },
+        {
+          "nome": "rhum dos maderas",
+          "prezzo": 9,
+          "descrizione": "5 + 5 anosx"
+        },
+        {
+          "nome": "rhum hampden",
+          "prezzo": 12,
+          "descrizione": "estate classics"
+        },
+        {
+          "nome": "rhum havana club 7 anni",
+          "prezzo": 7
+        },
+        {
+          "nome": "rhum santa teresa 1796",
+          "prezzo": 9
+        },
+        {
+          "nome": "sambuca molinari",
+          "prezzo": 4
+        },
+        {
+          "nome": "tequila casamigos reposado",
+          "prezzo": 9
+        },
+        {
+          "nome": "tequila don julio anejo",
+          "prezzo": 9
+        },
+        {
+          "nome": "tequila don julio bianca",
+          "prezzo": 9
+        },
+        {
+          "nome": "vodka belvedere",
+          "prezzo": 7
+        },
+        {
+          "nome": "vodka eiko",
+          "prezzo": 7
+        },
+        {
+          "nome": "vodka grey goose",
+          "prezzo": 7
+        },
+        {
+          "nome": "vodka ketel one",
+          "prezzo": 7
+        },
+        {
+          "nome": "vodka moscovskaya",
+          "prezzo": 4
+        },
+        {
+          "nome": "vodka moscovskaya",
+          "prezzo": 5
+        },
+        {
+          "nome": "vodka nemiroff de luxe",
+          "prezzo": 5
+        },
+        {
+          "nome": "whisky aberfeldy 12y",
+          "prezzo": 9
+        },
+        {
+          "nome": "whisky baileys",
+          "prezzo": 4
+        },
+        {
+          "nome": "whisky caol ila 12y",
+          "prezzo": 9
+        },
+        {
+          "nome": "whisky jack daniel's",
+          "prezzo": 7
+        },
+        {
+          "nome": "whisky lagavulin 16y",
+          "prezzo": 12
+        },
+        {
+          "nome": "rhum pampero",
+          "prezzo": 7
+        },
+        {
+          "nome": "grappa franciacorta barrique",
+          "prezzo": 7
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "categoria": "DESSERT e FRUTTA",
+      "items": [
+        {
+          "nome": "frutta fresca",
+          "prezzo": 9,
+          "descrizione": "tagliata di frutta di stagione a seconda della disponibilità."
+        },
+        {
+          "nome": "mandorle e fichi",
+          "prezzo": 7,
+          "descrizione": "gelato alla mandorla, gelato al pistacchio con al centro meringa italiana, cupeta macinata (croccante alle mandorle) e salsa di fichi.\nprodotto senza glutine."
+        },
+        {
+          "nome": "spumone caffè leccese",
+          "prezzo": 7,
+          "descrizione": "gelato al caffè, gelato alla mandorla con meringa."
+        },
+        {
+          "nome": "spumone caramello salato e arachidi",
+          "prezzo": 7.5,
+          "descrizione": "gelato al caramello salato, arachidi, gelato al cioccolato fondente con cuore di meringa e croccante alle mandorle.\nprodotto senza glutine"
+        },
+        {
+          "nome": "dolce al cucchiaio",
+          "prezzo": 7,
+          "descrizione": "a seconda della disponibiltà"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "categoria": "BIRRE",
+      "items": [
+        {
+          "nome": "ceres",
+          "prezzo": 5
+        },
+        {
+          "nome": "leffe 33cl",
+          "prezzo": 7,
+          "descrizione": "blonde"
+        },
+        {
+          "nome": "nastro azzurro",
+          "prezzo": 3.5
+        },
+        {
+          "nome": "primitiva 33cl",
+          "prezzo": 7,
+          "descrizione": "birra arigianale rossa ad alta fermentazione (iga).\nalc. 6,5% vol."
+        },
+        {
+          "nome": "tennent's",
+          "prezzo": 5
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "categoria": "cocktail",
+      "items": [
+        {
+          "nome": "gin lemon",
+          "prezzo": 8
+        },
+        {
+          "nome": "gin tonic",
+          "prezzo": 8
+        },
+        {
+          "nome": "long drink",
+          "prezzo": 8
+        },
+        {
+          "nome": "sprizt",
+          "prezzo": 8
+        },
+        {
+          "nome": "vodka lemon",
+          "prezzo": 8
+        },
+        {
+          "nome": "vodka tonic",
+          "prezzo": 8
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "categoria": "PASSITI IN CALICE",
+      "items": [
+        {
+          "nome": "ben ryè",
+          "prezzo": 10,
+          "descrizione": "caratterizzato da piacevoli sentori di albicocca frsca unita alla scorza di agrumi candita e note di macchia mediterranea."
+        },
+        {
+          "nome": "vinsanto quaranta altari",
+          "prezzo": 6,
+          "descrizione": "vinsanto del chianti doc, trebbiano toscano e malvasia bianca lunga, vino da fine pasto."
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "categoria": "caffetteria",
+      "items": [
+        {
+          "nome": "caffè",
+          "prezzo": 2
+        },
+        {
+          "nome": "caffè corretto",
+          "prezzo": 4
+        },
+        {
+          "nome": "caffè d'orzo",
+          "prezzo": 2.5
+        },
+        {
+          "nome": "caffè decaffeinato",
+          "prezzo": 2
+        },
+        {
+          "nome": "caffè in ghiaccio",
+          "prezzo": 3
+        },
+        {
+          "nome": "caffe leccese",
+          "prezzo": 4
+        },
+        {
+          "nome": "caffè macchiato",
+          "prezzo": 2.5
+        },
+        {
+          "nome": "susuma",
+          "prezzo": 30
+        }
+      ]
+    }
+  ]
+}

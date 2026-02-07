@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+}
+
+model Booking {
+  id               String   @id @default(cuid())
+  customerName     String
+  customerEmail    String
+  customerPhone    String
+  date             String
+  time             String
+  guests           Int
+  notes            String?
+  privacyConsent   Boolean  @default(false)
+  marketingConsent Boolean  @default(false)
+  createdAt        DateTime @default(now())
+}
+
+model MenuCategory {
+  id    String     @id @default(cuid())
+  name  String
+  order Int        @default(0)
+  items MenuItem[]
+}
+
+model MenuItem {
+  id          String       @id @default(cuid())
+  categoryId  String
+  category   MenuCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  name        String
+  price       Float
+  description String?
+  order       Int          @default(0)
+}
+
+model Settings {
+  id               String   @id @default(cuid())
+  key              String   @unique
+  value            String
+  updatedAt        DateTime @updatedAt
+}
