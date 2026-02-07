@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   description: 'Menu del ristorante Torri dell\'Acqua - Castrignano del Capo',
 };
 
+// Force dynamic rendering to avoid build-time database queries
+export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Revalidate every 60 seconds
+
 const MENU_NOTE = 'coperto 3,50€ - terrazza 5,00€';
 
 const RESTAURANT = {
