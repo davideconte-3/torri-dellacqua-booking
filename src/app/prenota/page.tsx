@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { analytics } from '@/components/Analytics';
+import Credits from '@/components/Credits';
 
 const SAN_VALENTINO_DATE = '2026-02-14';
 
@@ -583,6 +584,11 @@ export default function PrenotaPage() {
               </a>
               .
             </p>
+          </div>
+
+          {/* Credits */}
+          <div className="mt-12 pt-6 border-t border-rose-300/20">
+            <Credits />
           </div>
         </footer>
       </div>

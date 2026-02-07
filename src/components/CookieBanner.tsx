@@ -6,8 +6,12 @@ export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isEvening, setIsEvening] = useState(false);
+  const [isSanValentino, setIsSanValentino] = useState(false);
 
   useEffect(() => {
+    // Check if we're on San Valentino page
+    setIsSanValentino(window.location.pathname === '/prenota');
+
     // Check if user has already made a choice
     const cookieConsent = localStorage.getItem('cookie-consent');
     if (!cookieConsent) {
@@ -37,7 +41,17 @@ export default function CookieBanner() {
 
   if (!isVisible) return null;
 
-  const theme = isEvening
+  // San Valentino theme (pink/rose colors)
+  const sanValentinoTheme = {
+    bg: 'bg-gradient-to-r from-[#3d1a1a]/95 to-[#5a2626]/95',
+    text: 'text-rose-100',
+    textSecondary: 'text-rose-200/80',
+    acceptBtn: 'bg-white text-rose-900 hover:bg-rose-50 shadow-lg hover:shadow-rose-300/30',
+    rejectBtn: 'border-rose-300/50 text-rose-100 hover:bg-rose-300/10 hover:border-rose-300/80',
+  };
+
+  // Regular themes
+  const regularTheme = isEvening
     ? {
         bg: 'bg-gradient-to-r from-[#2c3e50]/95 to-[#34495e]/95',
         text: 'text-white',
@@ -52,6 +66,8 @@ export default function CookieBanner() {
         acceptBtn: 'bg-white text-[#63B1D2] hover:bg-white/95 shadow-lg hover:shadow-white/30',
         rejectBtn: 'border-white/60 text-white hover:bg-white/15 hover:border-white/80',
       };
+
+  const theme = isSanValentino ? sanValentinoTheme : regularTheme;
 
   return (
     <>
