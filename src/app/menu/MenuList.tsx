@@ -31,12 +31,12 @@ export default function MenuList({ categories }: { categories: Category[] }) {
   }
 
   return (
-    <div className="space-y-4">
-      {/* Search input */}
-      <div className="relative">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+    <div className="space-y-6">
+      {/* Refined Search input */}
+      <div className="relative group">
+        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           <svg
-            className="h-5 w-5 text-white/60"
+            className="h-5 w-5 text-white/50 group-focus-within:text-white/70 transition-colors duration-300"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -44,7 +44,7 @@ export default function MenuList({ categories }: { categories: Category[] }) {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={1.5}
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
           </svg>
@@ -54,13 +54,14 @@ export default function MenuList({ categories }: { categories: Category[] }) {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Cerca nel menu..."
-          className="w-full pl-10 pr-10 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all text-sm backdrop-blur-sm"
+          className="w-full pl-12 pr-12 py-4 bg-white/20 border border-white/30 rounded-2xl text-gray-900 placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/40 focus:border-white/50 focus:bg-white/30 transition-all duration-300 text-sm backdrop-blur-lg font-light tracking-wide"
+          style={{ fontFamily: 'ui-serif, Georgia, serif' }}
         />
         {searchQuery && (
           <button
             type="button"
             onClick={() => setSearchQuery('')}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-white/60 hover:text-white transition-colors"
+            className="absolute inset-y-0 right-0 pr-4 flex items-center text-white/50 hover:text-white transition-all duration-300 hover:scale-110"
             aria-label="Cancella ricerca"
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,19 +71,19 @@ export default function MenuList({ categories }: { categories: Category[] }) {
         )}
       </div>
 
-      {/* Search results count */}
+      {/* Refined Search results count */}
       {searchQuery && (
-        <p className="text-white/70 text-xs">
+        <p className="text-white/60 text-xs font-light tracking-wide" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
           {filteredCategories.length === 0
             ? 'Nessun risultato trovato'
-            : `${filteredCategories.reduce((sum, cat) => sum + cat.items.length, 0)} risultati trovati`}
+            : `${filteredCategories.reduce((sum, cat) => sum + cat.items.length, 0)} piatti trovati`}
         </p>
       )}
 
-      {/* Categories list */}
-      <div className="space-y-2.5">
+      {/* Elegant Categories list */}
+      <div className="space-y-4">
         {filteredCategories.length === 0 ? (
-          <p className="text-white/70 text-sm text-center py-8">
+          <p className="text-white/60 text-sm text-center py-12 font-light" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
             Nessun piatto trovato per &ldquo;{searchQuery}&rdquo;
           </p>
         ) : (
@@ -91,47 +92,52 @@ export default function MenuList({ categories }: { categories: Category[] }) {
         return (
           <section
             key={cat.id}
-            className={`rounded-xl overflow-hidden border transition-all ${
-              isOpen ? 'border-white/50 shadow-lg' : 'border-white/25 shadow-md'
-            } bg-white/10 backdrop-blur-sm`}
+            className={`rounded-2xl overflow-hidden border transition-all duration-300 ${
+              isOpen ? 'border-white/40 shadow-2xl shadow-black/20' : 'border-white/20 shadow-lg shadow-black/10'
+            } bg-white/[0.07] backdrop-blur-md hover:border-white/50`}
           >
             <button
               type="button"
               onClick={() => !searchQuery && setOpenId(isOpen ? null : cat.id)}
-              className={`w-full flex items-center justify-between gap-2 px-4 py-3.5 min-h-[48px] text-left font-semibold text-base transition-all ${
-                searchQuery ? 'cursor-default' : 'hover:bg-white/15 touch-manipulation'
-              } focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-inset rounded-xl ${
-                isOpen ? 'bg-white/15' : ''
+              className={`w-full flex items-center justify-between gap-3 px-6 py-5 min-h-[56px] text-left font-light text-lg transition-all duration-300 ${
+                searchQuery ? 'cursor-default' : 'hover:bg-white/10 active:bg-white/15 touch-manipulation'
+              } focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-inset ${
+                isOpen ? 'bg-white/10' : ''
               }`}
               aria-expanded={isOpen}
               disabled={!!searchQuery}
+              style={{ fontFamily: 'ui-serif, Georgia, serif' }}
             >
-              <span className="uppercase text-white">{cat.name}</span>
+              <span className="uppercase text-white tracking-[0.15em] text-base">{cat.name}</span>
               {!searchQuery && (
                 <svg
-                  className={`w-5 h-5 shrink-0 text-white transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                  className={`w-5 h-5 shrink-0 text-white/70 transition-all duration-300 ${isOpen ? 'rotate-180' : ''}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  strokeWidth={1.5}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               )}
             </button>
             {isOpen && (
-              <ul className="border-t border-white/20 px-4 py-3 space-y-2.5 max-h-[65vh] overflow-y-auto">
-                {cat.items.map((item) => (
+              <ul className="border-t border-white/15 px-6 py-4 space-y-4 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                {cat.items.map((item, index) => (
                   <li
                     key={item.id}
-                    className="flex justify-between items-baseline gap-3 py-2 border-b border-white/10 last:border-0"
+                    className="flex justify-between items-start gap-4 py-3 border-b border-white/8 last:border-0 transition-all duration-300 hover:bg-white/5 hover:px-2 rounded-lg group"
+                    style={{
+                      animation: `fadeInItem 0.3s ease-out ${index * 0.05}s both`
+                    }}
                   >
                     <div className="min-w-0 flex-1">
-                      <span className="text-white text-sm font-medium">{item.name}</span>
+                      <span className="text-white text-base font-normal tracking-wide block mb-1" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>{item.name}</span>
                       {item.description && (
-                        <p className="text-white/70 text-xs mt-0.5 line-clamp-2">{item.description}</p>
+                        <p className="text-white/60 text-xs mt-1.5 leading-relaxed font-light line-clamp-3" style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>{item.description}</p>
                       )}
                     </div>
-                    <span className="text-white font-bold whitespace-nowrap shrink-0">
+                    <span className="text-white font-light text-base whitespace-nowrap shrink-0 pt-0.5 tracking-wide" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
                       € {item.price.toFixed(2)}
                     </span>
                   </li>
@@ -143,6 +149,19 @@ export default function MenuList({ categories }: { categories: Category[] }) {
       })
         )}
       </div>
+
+      <style jsx>{`
+        @keyframes fadeInItem {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }

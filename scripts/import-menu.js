@@ -40,17 +40,18 @@ async function importMenu() {
     let totalItems = 0;
 
     for (const category of menuData.categories) {
-      console.log(`  📁 Importing category: ${category.name}`);
+      const categoryName = category.name || category.categoria;
+      console.log(`  📁 Importing category: ${categoryName}`);
 
       const createdCategory = await prisma.menuCategory.create({
         data: {
-          name: category.name,
-          order: category.order || 0,
+          name: categoryName,
+          order: category.order || category.id || 0,
           items: {
             create: (category.items || []).map((item, index) => ({
-              name: item.name,
-              price: item.price,
-              description: item.description || null,
+              name: item.name || item.nome,
+              price: item.price || item.prezzo,
+              description: item.description || item.descrizione || null,
               order: item.order !== undefined ? item.order : index,
             })),
           },
