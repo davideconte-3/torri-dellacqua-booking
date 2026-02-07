@@ -116,31 +116,7 @@ export default function Analytics({ metaPixelId, googleAnalyticsId }: AnalyticsP
         </>
       )}
 
-      {/* Google Analytics 4: caricato solo dopo consenso; prima è già stato impostato consent default denied nel layout */}
-      {googleAnalyticsId && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('consent', 'update', {
-                ad_storage: 'granted',
-                analytics_storage: 'granted',
-                ad_user_data: 'granted',
-                ad_personalization: 'granted'
-              });
-              gtag('config', '${googleAnalyticsId}', {
-                page_path: window.location.pathname,
-              });
-            `}
-          </Script>
-        </>
-      )}
+      {/* GA è già caricato nel layout root con consenso denied; ConsentModeUpdater passa a granted quando l’utente accetta */}
     </>
   );
 }
