@@ -1,40 +1,37 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useConsent, PROFILING_COOKIES } from '@/contexts/ConsentContext';
 
 export default function CookieBanner() {
+  const { consent, acceptProfiling, rejectProfiling } = useConsent();
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isEvening, setIsEvening] = useState(false);
   const [isSanValentino, setIsSanValentino] = useState(false);
 
   useEffect(() => {
-    // Check if we're on San Valentino page
     setIsSanValentino(window.location.pathname === '/prenota');
+    const hour = new Date().getHours();
+    setIsEvening(hour >= 18 || hour < 6);
 
-    // Check if user has already made a choice
-    const cookieConsent = localStorage.getItem('cookie-consent');
-    if (!cookieConsent) {
-      // Detect time of day
-      const hour = new Date().getHours();
-      setIsEvening(hour >= 18 || hour < 6);
-
-      // Show banner after a short delay
-      setTimeout(() => {
+    if (consent === 'pending') {
+      const t = setTimeout(() => {
         setIsVisible(true);
         setTimeout(() => setIsAnimating(true), 50);
       }, 500);
+      return () => clearTimeout(t);
     }
-  }, []);
+  }, [consent]);
 
   const handleAccept = () => {
-    localStorage.setItem('cookie-consent', 'accepted');
+    acceptProfiling();
     setIsAnimating(false);
     setTimeout(() => setIsVisible(false), 300);
   };
 
   const handleReject = () => {
-    localStorage.setItem('cookie-consent', 'rejected');
+    rejectProfiling();
     setIsAnimating(false);
     setTimeout(() => setIsVisible(false), 300);
   };
@@ -93,7 +90,7 @@ export default function CookieBanner() {
                 Preferenze Cookie
               </h3>
               <p className={`${theme.textSecondary} text-sm leading-relaxed font-light`} style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>
-                Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito. Accettando, aiuti noi a fornire un servizio migliore e più personalizzato. Puoi sempre modificare le tue preferenze nel tempo.
+                Utilizziamo cookie tecnici necessari per il funzionamento del sito. Per attivare gli strumenti di profilazione e tracciamento (inclusi <strong>ad_storage</strong> e cookie per pubblicità e analytics) devi accettare i cookie per la profilazione. Con l’accettazione si abilitano {PROFILING_COOKIES.length} tipi in totale: ad_storage, analytics_storage, cookie Meta Pixel (_fbp, _fbc), cookie Google Analytics (_ga, _gid) e cookie di targeting. Puoi modificare le preferenze dalla pagina Privacy.
               </p>
             </div>
 

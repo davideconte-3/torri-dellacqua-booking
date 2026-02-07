@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Playfair_Display } from 'next/font/google';
 import '@/styles/globals.css';
+import { ConsentProvider } from '@/contexts/ConsentContext';
 import CookieBanner from '@/components/CookieBanner';
 
 const playfair = Playfair_Display({
@@ -26,8 +27,10 @@ export default function RootLayout({
   return (
     <html lang="it" className={playfair.variable}>
       <body className="antialiased font-serif">
-        {children}
-        <CookieBanner />
+        <ConsentProvider>
+          {children}
+          <CookieBanner />
+        </ConsentProvider>
       </body>
     </html>
   );

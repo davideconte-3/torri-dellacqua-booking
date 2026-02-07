@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Script from 'next/script';
+import { useProfilingConsent } from '@/contexts/ConsentContext';
 
 // Tracking events for conversion optimization
 export const trackEvent = (eventName: string, params?: Record<string, any>) => {
@@ -72,14 +73,21 @@ interface AnalyticsProps {
 }
 
 export default function Analytics({ metaPixelId, googleAnalyticsId }: AnalyticsProps) {
+  const profilingAccepted = useProfilingConsent();
+
   useEffect(() => {
-    // Track page view on mount
-    analytics.pageView(window.location.pathname);
-  }, []);
+    if (profilingAccepted) {
+      analytics.pageView(window.location.pathname);
+    }
+  }, [profilingAccepted]);
+
+  if (!profilingAccepted) {
+    return null;
+  }
 
   return (
     <>
-      {/* Meta Pixel */}
+      {/* Meta Pixel: caricato solo dopo consenso alla profilazione */}
       {metaPixelId && (
         <>
           <Script id="meta-pixel" strategy="afterInteractive">
@@ -108,7 +116,7 @@ export default function Analytics({ metaPixelId, googleAnalyticsId }: AnalyticsP
         </>
       )}
 
-      {/* Google Analytics 4 */}
+      {/* Google Analytics 4: caricato solo dopo consenso (ad_storage e analytics_storage concessi) */}
       {googleAnalyticsId && (
         <>
           <Script
@@ -120,6 +128,7 @@ export default function Analytics({ metaPixelId, googleAnalyticsId }: AnalyticsP
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
+              gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted' });
               gtag('config', '${googleAnalyticsId}', {
                 page_path: window.location.pathname,
               });
