@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import MenuSplash from './MenuSplash';
 import MenuList from './MenuList';
+import Credits from '@/components/Credits';
 
 type Item = { id: string; name: string; price: number; description: string | null; order: number };
 type Category = { id: string; name: string; order: number; items: Item[] };
@@ -117,6 +118,11 @@ export default function MenuWrapper({ categories }: { categories: Category[] }) 
               </svg>
               {RESTAURANT.instagramHandle}
             </a>
+          </div>
+
+          {/* Credits */}
+          <div className="mt-8 pt-6 border-t border-white/15">
+            <Credits />
           </div>
         </footer>
       </div>

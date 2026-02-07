@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Credits from '@/components/Credits';
 
 const RESTAURANT = {
   companyName: "TORRI DELL'ACQUA S.R.L.",
@@ -107,6 +108,11 @@ export default function PrivacyPage() {
         >
           Torna alla prenotazione
         </Link>
+
+        {/* Credits */}
+        <div className="mt-12 pt-6 border-t border-rose-300/20">
+          <Credits />
+        </div>
       </div>
     </main>
   );
