@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 // DELETE - Elimina prenotazione
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   const pin = request.headers.get('x-view-pin');
   const expectedPin = process.env.BOOKING_VIEW_PIN;
@@ -16,6 +16,7 @@ export async function DELETE(
   }
 
   try {
+    const params = await context.params;
     await prisma.booking.delete({
       where: { id: params.id },
     });
