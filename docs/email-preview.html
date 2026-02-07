@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview Email - Conferma Prenotazione San Valentino</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #111;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #fecddd;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .tab {
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .tab.active {
+      background: #D495A0;
+    }
+    .email-preview {
+      display: none;
+    }
+    .email-preview.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📧 Preview Email San Valentino</h1>
+
+    <div class="tabs">
+      <button class="tab active" onclick="showEmail('customer')">Email Cliente</button>
+      <button class="tab" onclick="showEmail('restaurant')">Email Ristorante</button>
+    </div>
+
+    <!-- EMAIL CLIENTE -->
+    <div id="customer" class="email-preview active">
+      <div style="background:#1a0a0c;margin:0;padding:32px 16px;font-family:'Playfair Display',Georgia,serif;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:linear-gradient(180deg,#3d1a1a 0%,#2d1515 100%);border-radius:24px;overflow:hidden;border:1px solid rgba(254,205,211,0.2);box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+
+          <!-- Logo Ristorante -->
+          <tr>
+            <td style="padding:40px 24px 24px 24px;text-align:center;">
+              <img src="https://prenota.torridellacqua.it/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="180" height="auto" style="display:block;margin:0 auto;max-width:180px;height:auto;filter:brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(766%) hue-rotate(296deg) brightness(103%) contrast(97%);" />
+            </td>
+          </tr>
+
+          <!-- Titolo San Valentino -->
+          <tr>
+            <td style="padding:0 24px 32px 24px;text-align:center;">
+              <img src="https://prenota.torridellacqua.it/sanvalentino-title.svg" alt="San Valentino" width="240" height="auto" style="display:block;margin:0 auto;max-width:240px;height:auto;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));" />
+            </td>
+          </tr>
+
+          <!-- Info Badge -->
+          <tr>
+            <td style="padding:0 24px 24px 24px;text-align:center;">
+              <div style="display:inline-block;padding:8px 24px;border-radius:999px;background:rgba(254,205,211,0.1);border:1px solid rgba(254,205,211,0.3);color:#fecddd;font-size:13px;font-weight:500;letter-spacing:0.05em;">
+                Sabato 14 Febbraio 2026 · Menu Degustazione 60€
+              </div>
+            </td>
+          </tr>
+
+          <!-- Titolo Sezione -->
+          <tr>
+            <td style="padding:32px 24px 16px 24px;color:#fecddd;font-size:22px;font-weight:600;text-align:center;letter-spacing:0.02em;">
+              Prenotazione Ricevuta
+            </td>
+          </tr>
+
+          <!-- Intro Text -->
+          <tr>
+            <td style="padding:0 32px 24px 32px;color:rgba(254,205,211,0.85);font-size:15px;line-height:1.7;text-align:center;">
+              Grazie per aver scelto Torri dell'Acqua per la vostra cena di San Valentino. La tua richiesta di prenotazione è stata ricevuta con successo.
+            </td>
+          </tr>
+
+          <!-- Dettagli Prenotazione -->
+          <tr>
+            <td style="padding:0 32px 32px 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(0,0,0,0.3);border-radius:16px;border:1px solid rgba(254,205,211,0.15);padding:24px;">
+                <tr>
+                  <td>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border-spacing:0 10px;font-size:14px;color:#fecddd;">
+                      <tr>
+                        <td style="padding:8px 0;width:120px;color:rgba(254,205,211,0.6);font-weight:500;">Nome</td>
+                        <td style="padding:8px 0;color:#fecddd;font-weight:500;">Mario Rossi</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Quando</td>
+                        <td style="padding:8px 0;color:#fecddd;">14/02/2026 · ore 20:00</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Ospiti</td>
+                        <td style="padding:8px 0;color:#fecddd;">2 persone</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Telefono</td>
+                        <td style="padding:8px 0;color:#fecddd;">+39 333 1234567</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Email</td>
+                        <td style="padding:8px 0;color:#fecddd;">mario.rossi@email.com</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;vertical-align:top;">Note</td>
+                        <td style="padding:8px 0;color:#fecddd;">Tavolo vicino alla finestra se possibile</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Extra Info -->
+          <tr>
+            <td style="padding:0 32px 24px 32px;">
+              <div style="background:rgba(212,149,160,0.1);border-left:3px solid #D495A0;padding:16px 20px;border-radius:8px;color:rgba(254,205,211,0.9);font-size:14px;line-height:1.7;">
+                Per qualsiasi modifica o annullamento, contattaci rispondendo a questa email o telefonando al ristorante. Ti aspettiamo per una serata indimenticabile.
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:32px 24px 24px 24px;border-top:1px solid rgba(254,205,211,0.15);text-align:center;">
+              <img src="https://prenota.torridellacqua.it/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="140" height="auto" style="display:block;margin:0 auto 16px auto;max-width:140px;height:auto;opacity:0.5;filter:brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(766%) hue-rotate(296deg) brightness(103%) contrast(97%);" />
+
+              <div style="color:rgba(254,205,211,0.7);font-size:13px;line-height:1.6;margin-bottom:8px;">
+                <strong style="color:rgba(254,205,211,0.9);">Torri dell'Acqua</strong><br />
+                Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)
+              </div>
+
+              <div style="color:rgba(254,205,211,0.5);font-size:11px;line-height:1.5;margin-top:16px;">
+                Questo messaggio è stato generato automaticamente<br />dal sistema di prenotazioni San Valentino
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- EMAIL RISTORANTE -->
+    <div id="restaurant" class="email-preview">
+      <div style="background:#1a0a0c;margin:0;padding:32px 16px;font-family:'Playfair Display',Georgia,serif;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:linear-gradient(180deg,#3d1a1a 0%,#2d1515 100%);border-radius:24px;overflow:hidden;border:1px solid rgba(254,205,211,0.2);box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+
+          <!-- Logo Ristorante -->
+          <tr>
+            <td style="padding:40px 24px 24px 24px;text-align:center;">
+              <img src="https://prenota.torridellacqua.it/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="180" height="auto" style="display:block;margin:0 auto;max-width:180px;height:auto;filter:brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(766%) hue-rotate(296deg) brightness(103%) contrast(97%);" />
+            </td>
+          </tr>
+
+          <!-- Titolo San Valentino -->
+          <tr>
+            <td style="padding:0 24px 32px 24px;text-align:center;">
+              <img src="https://prenota.torridellacqua.it/sanvalentino-title.svg" alt="San Valentino" width="240" height="auto" style="display:block;margin:0 auto;max-width:240px;height:auto;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));" />
+            </td>
+          </tr>
+
+          <!-- Info Badge -->
+          <tr>
+            <td style="padding:0 24px 24px 24px;text-align:center;">
+              <div style="display:inline-block;padding:8px 24px;border-radius:999px;background:rgba(254,205,211,0.1);border:1px solid rgba(254,205,211,0.3);color:#fecddd;font-size:13px;font-weight:500;letter-spacing:0.05em;">
+                Sabato 14 Febbraio 2026 · Menu Degustazione 60€
+              </div>
+            </td>
+          </tr>
+
+          <!-- Titolo Sezione -->
+          <tr>
+            <td style="padding:32px 24px 16px 24px;color:#fecddd;font-size:22px;font-weight:600;text-align:center;letter-spacing:0.02em;">
+              Nuova Prenotazione Ricevuta
+            </td>
+          </tr>
+
+          <!-- Intro Text -->
+          <tr>
+            <td style="padding:0 32px 24px 32px;color:rgba(254,205,211,0.85);font-size:15px;line-height:1.7;text-align:center;">
+              È stata ricevuta una nuova richiesta di prenotazione per la cena di San Valentino. Verifica i dettagli qui sotto.
+            </td>
+          </tr>
+
+          <!-- Dettagli Prenotazione -->
+          <tr>
+            <td style="padding:0 32px 32px 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:rgba(0,0,0,0.3);border-radius:16px;border:1px solid rgba(254,205,211,0.15);padding:24px;">
+                <tr>
+                  <td>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate;border-spacing:0 10px;font-size:14px;color:#fecddd;">
+                      <tr>
+                        <td style="padding:8px 0;width:120px;color:rgba(254,205,211,0.6);font-weight:500;">Nome</td>
+                        <td style="padding:8px 0;color:#fecddd;font-weight:500;">Mario Rossi</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Quando</td>
+                        <td style="padding:8px 0;color:#fecddd;">14/02/2026 · ore 20:00</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Ospiti</td>
+                        <td style="padding:8px 0;color:#fecddd;">2 persone</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Telefono</td>
+                        <td style="padding:8px 0;color:#fecddd;">+39 333 1234567</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;">Email</td>
+                        <td style="padding:8px 0;color:#fecddd;">mario.rossi@email.com</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0;color:rgba(254,205,211,0.6);font-weight:500;vertical-align:top;">Note</td>
+                        <td style="padding:8px 0;color:#fecddd;">Tavolo vicino alla finestra se possibile</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Totale -->
+          <tr>
+            <td style="padding:0 32px 24px 32px;">
+              <div style="background:rgba(212,149,160,0.1);border-left:3px solid #D495A0;padding:16px 20px;border-radius:8px;color:rgba(254,205,211,0.9);font-size:14px;line-height:1.7;">
+                <strong>Totale:</strong> 2 persone × 60€ = 120€
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:32px 24px 24px 24px;border-top:1px solid rgba(254,205,211,0.15);text-align:center;">
+              <img src="https://prenota.torridellacqua.it/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="140" height="auto" style="display:block;margin:0 auto 16px auto;max-width:140px;height:auto;opacity:0.5;filter:brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(766%) hue-rotate(296deg) brightness(103%) contrast(97%);" />
+
+              <div style="color:rgba(254,205,211,0.7);font-size:13px;line-height:1.6;margin-bottom:8px;">
+                <strong style="color:rgba(254,205,211,0.9);">Torri dell'Acqua</strong><br />
+                Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)
+              </div>
+
+              <div style="color:rgba(254,205,211,0.5);font-size:11px;line-height:1.5;margin-top:16px;">
+                Questo messaggio è stato generato automaticamente<br />dal sistema di prenotazioni San Valentino
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function showEmail(type) {
+      // Hide all
+      document.querySelectorAll('.email-preview').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+
+      // Show selected
+      document.getElementById(type).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
