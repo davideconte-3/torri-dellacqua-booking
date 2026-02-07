@@ -74,14 +74,14 @@ async function sendBookingEmails(booking: {
             <!-- Logo Torri dell'Acqua -->
             <tr>
               <td style="padding:40px 30px 20px 30px;text-align:center;background-color:#3d1a1a;border-radius:12px 12px 0 0;">
-                <img src="${siteUrl}/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="200" style="display:block;margin:0 auto;width:200px;height:auto;max-width:100%;" />
+                <img src="${siteUrl}/torri-dellacqua-logo-white.png" alt="Torri dell'Acqua" width="200" style="display:block;margin:0 auto;width:200px;height:auto;max-width:100%;" />
               </td>
             </tr>
 
-            <!-- Titolo San Valentino SVG -->
+            <!-- Titolo San Valentino -->
             <tr>
               <td style="padding:30px 30px 20px 30px;text-align:center;background-color:#3d1a1a;">
-                <img src="${siteUrl}/sanvalentino-title.svg" alt="San Valentino" width="280" style="display:block;margin:0 auto;width:280px;height:auto;max-width:100%;" />
+                <img src="${siteUrl}/sanvalentino-title-white.png" alt="San Valentino" width="280" style="display:block;margin:0 auto;width:280px;height:auto;max-width:100%;" />
               </td>
             </tr>
 
@@ -169,7 +169,7 @@ async function sendBookingEmails(booking: {
             <!-- Footer -->
             <tr>
               <td style="padding:30px;text-align:center;background-color:#3d1a1a;border-top:2px solid #8a4a4a;">
-                <img src="${siteUrl}/torri-dellacqua-logo.svg" alt="Torri dell'Acqua" width="150" style="display:block;margin:0 auto 15px auto;width:150px;height:auto;max-width:100%;opacity:0.7;" />
+                <img src="${siteUrl}/torri-dellacqua-logo-white.png" alt="Torri dell'Acqua" width="150" style="display:block;margin:0 auto 15px auto;width:150px;height:auto;max-width:100%;opacity:0.6;" />
                 <div style="color:#ffa6b8;font-size:14px;line-height:1.6;margin-bottom:15px;">
                   ${restaurantAddress}
                 </div>
