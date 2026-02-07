@@ -31,6 +31,7 @@ export default function MenuWrapper({ categories }: { categories: Category[] }) 
     return hour >= 18 || hour < 6;
   });
   const [isVisible, setIsVisible] = useState(false);
+  const [splashExiting, setSplashExiting] = useState(false);
 
   useEffect(() => {
     const hour = new Date().getHours();
@@ -41,14 +42,21 @@ export default function MenuWrapper({ categories }: { categories: Category[] }) 
 
   useEffect(() => {
     if (!showSplash) {
-      const timer = setTimeout(() => setIsVisible(true), 100);
-      return () => clearTimeout(timer);
+      // Menu becomes visible immediately when splash is hidden
+      setIsVisible(true);
     }
   }, [showSplash]);
 
-  if (showSplash) {
-    return <MenuSplash onEnter={() => setShowSplash(false)} />;
-  }
+  const handleEnterMenu = () => {
+    // Start menu fade-in BEFORE splash exits
+    setIsVisible(true);
+    setSplashExiting(true);
+
+    // Remove splash after animation completes
+    setTimeout(() => {
+      setShowSplash(false);
+    }, 1000);
+  };
 
   // Refined theme: warm and welcoming, not too dark
   const theme = isEvening
@@ -74,7 +82,11 @@ export default function MenuWrapper({ categories }: { categories: Category[] }) 
       };
 
   return (
-    <main className={`min-h-screen ${theme.bg} ${theme.text} py-8 px-4 pb-10 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <>
+      {/* Main Menu - Rendered behind splash */}
+      <main className={`min-h-screen ${theme.bg} ${theme.text} py-8 px-4 pb-10 transition-all duration-1000 ease-out ${
+        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-98'
+      }`}>
       <div className="max-w-2xl mx-auto flex flex-col min-h-screen">
         <header className="flex flex-col items-center mt-6 mb-10">
           <div
@@ -197,6 +209,10 @@ export default function MenuWrapper({ categories }: { categories: Category[] }) 
           animation: expand-width 0.8s ease-out both;
         }
       `}</style>
-    </main>
+      </main>
+
+      {/* Splash Screen - Overlays menu with cross-fade */}
+      {showSplash && <MenuSplash onEnter={handleEnterMenu} isExiting={splashExiting} />}
+    </>
   );
 }

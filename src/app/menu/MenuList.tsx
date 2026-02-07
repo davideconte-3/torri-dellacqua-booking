@@ -9,12 +9,31 @@ export default function MenuList({ categories }: { categories: Category[] }) {
   const [openId, setOpenId] = useState<string | null>(categories[0]?.id ?? null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+  const [closingId, setClosingId] = useState<string | null>(null);
 
   // Entrance animation
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleToggleCategory = (categoryId: string) => {
+    if (searchQuery) return;
+
+    const isCurrentlyOpen = openId === categoryId;
+
+    if (isCurrentlyOpen) {
+      // Closing
+      setClosingId(categoryId);
+      setTimeout(() => {
+        setOpenId(null);
+        setClosingId(null);
+      }, 300); // Match collapse animation duration
+    } else {
+      // Opening
+      setOpenId(categoryId);
+    }
+  };
 
   // Filter categories based on search query
   const filteredCategories = useMemo(() => {
@@ -96,6 +115,9 @@ export default function MenuList({ categories }: { categories: Category[] }) {
         ) : (
           filteredCategories.map((cat, categoryIndex) => {
         const isOpen = searchQuery ? true : openId === cat.id;
+        const isClosing = closingId === cat.id;
+        const shouldShowContent = isOpen || isClosing;
+
         return (
           <section
             key={cat.id}
@@ -106,7 +128,7 @@ export default function MenuList({ categories }: { categories: Category[] }) {
           >
             <button
               type="button"
-              onClick={() => !searchQuery && setOpenId(isOpen ? null : cat.id)}
+              onClick={() => handleToggleCategory(cat.id)}
               className={`w-full flex items-center justify-between gap-3 px-6 py-5 min-h-[56px] text-left font-light text-lg transition-all duration-500 ${
                 searchQuery ? 'cursor-default' : 'hover:bg-white/10 active:bg-white/15 touch-manipulation hover:pl-7'
               } focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-inset ${
@@ -129,8 +151,10 @@ export default function MenuList({ categories }: { categories: Category[] }) {
                 </svg>
               )}
             </button>
-            {isOpen && (
-              <ul className="border-t border-white/15 px-6 py-4 space-y-2 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent animate-expand-down">
+            {shouldShowContent && (
+              <ul className={`border-t border-white/15 px-6 py-4 space-y-2 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent ${
+                isClosing ? 'animate-collapse-up' : 'animate-expand-down'
+              }`}>
                 {cat.items.map((item, index) => (
                   <li
                     key={item.id}
@@ -212,10 +236,25 @@ export default function MenuList({ categories }: { categories: Category[] }) {
           from {
             opacity: 0;
             max-height: 0;
+            transform: translateY(-10px);
           }
           to {
             opacity: 1;
             max-height: 70vh;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes collapse-up {
+          from {
+            opacity: 1;
+            max-height: 70vh;
+            transform: translateY(0);
+          }
+          to {
+            opacity: 0;
+            max-height: 0;
+            transform: translateY(-10px);
           }
         }
 
@@ -232,7 +271,11 @@ export default function MenuList({ categories }: { categories: Category[] }) {
         }
 
         .animate-expand-down {
-          animation: expand-down 0.5s ease-out;
+          animation: expand-down 0.4s ease-out;
+        }
+
+        .animate-collapse-up {
+          animation: collapse-up 0.3s ease-in;
         }
 
         /* Custom scrollbar styling */
