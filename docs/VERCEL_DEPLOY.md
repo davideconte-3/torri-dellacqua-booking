@@ -35,10 +35,10 @@ Nel pannello Vercel → **Settings** → **Environment Variables**, aggiungi:
 #### 🔴 OBBLIGATORIE:
 
 ```bash
-# Database (auto-generate se usi Vercel Postgres)
-POSTGRES_PRISMA_URL="postgresql://..."
-POSTGRES_URL="postgresql://..."
-POSTGRES_URL_NON_POOLING="postgresql://..."
+# Database - Prisma standard variable
+DATABASE_URL="postgresql://..."
+# Vercel Postgres fornisce anche: POSTGRES_URL, POSTGRES_PRISMA_URL
+# Puoi usare DATABASE_URL o PRISMA_DATABASE_URL
 
 # Email (Resend)
 RESEND_API_KEY="re_..."
