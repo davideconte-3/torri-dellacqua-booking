@@ -104,7 +104,7 @@ export default function CookieBanner() {
           {/* Privacy Link */}
           <div className="mt-4 flex justify-center md:justify-start">
             <a
-              href="/privacy-policy"
+              href="/privacy"
               className={`${theme.textSecondary} text-xs hover:${theme.text} transition-colors duration-300 font-light underline opacity-70 hover:opacity-100`}
             >
               Leggi la nostra informativa sulla privacy
