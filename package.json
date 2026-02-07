@@ -9,7 +9,9 @@
     "start": "next start",
     "postinstall": "prisma generate",
     "db:seed": "node prisma/seed.js",
-    "db:push": "prisma db push"
+    "db:push": "prisma db push",
+    "menu:import": "node scripts/import-menu.js",
+    "postbuild": "node scripts/import-menu.js"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

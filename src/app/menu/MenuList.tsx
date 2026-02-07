@@ -27,7 +27,7 @@ export default function MenuList({ categories }: { categories: Category[] }) {
   }, [categories, searchQuery]);
 
   if (categories.length === 0) {
-    return <p className="text-[#49738C]/80 text-sm">Nessuna voce in menu.</p>;
+    return <p className="text-white/80 text-sm">Nessuna voce in menu.</p>;
   }
 
   return (
@@ -36,7 +36,7 @@ export default function MenuList({ categories }: { categories: Category[] }) {
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <svg
-            className="h-5 w-5 text-[#49738C]"
+            className="h-5 w-5 text-white/60"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -54,13 +54,13 @@ export default function MenuList({ categories }: { categories: Category[] }) {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Cerca nel menu..."
-          className="w-full pl-10 pr-10 py-3 bg-[#162228] border border-[#49738C]/30 rounded-xl text-[#e8eef1] placeholder-[#49738C]/60 focus:outline-none focus:ring-2 focus:ring-[#ff8b42]/50 focus:border-[#ff8b42]/50 transition-all text-sm"
+          className="w-full pl-10 pr-10 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all text-sm backdrop-blur-sm"
         />
         {searchQuery && (
           <button
             type="button"
             onClick={() => setSearchQuery('')}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#49738C] hover:text-[#ff8b42] transition-colors"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-white/60 hover:text-white transition-colors"
             aria-label="Cancella ricerca"
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,7 +72,7 @@ export default function MenuList({ categories }: { categories: Category[] }) {
 
       {/* Search results count */}
       {searchQuery && (
-        <p className="text-[#49738C]/80 text-xs">
+        <p className="text-white/70 text-xs">
           {filteredCategories.length === 0
             ? 'Nessun risultato trovato'
             : `${filteredCategories.reduce((sum, cat) => sum + cat.items.length, 0)} risultati trovati`}
@@ -82,7 +82,7 @@ export default function MenuList({ categories }: { categories: Category[] }) {
       {/* Categories list */}
       <div className="space-y-2.5">
         {filteredCategories.length === 0 ? (
-          <p className="text-[#49738C]/80 text-sm text-center py-8">
+          <p className="text-white/70 text-sm text-center py-8">
             Nessun piatto trovato per &ldquo;{searchQuery}&rdquo;
           </p>
         ) : (
@@ -92,24 +92,24 @@ export default function MenuList({ categories }: { categories: Category[] }) {
           <section
             key={cat.id}
             className={`rounded-xl overflow-hidden border transition-all ${
-              isOpen ? 'border-[#ff8b42]/40 shadow-md' : 'border-[#49738C]/25 shadow-sm'
-            } bg-[#162228]`}
+              isOpen ? 'border-white/50 shadow-lg' : 'border-white/25 shadow-md'
+            } bg-white/10 backdrop-blur-sm`}
           >
             <button
               type="button"
               onClick={() => !searchQuery && setOpenId(isOpen ? null : cat.id)}
               className={`w-full flex items-center justify-between gap-2 px-4 py-3.5 min-h-[48px] text-left font-semibold text-base transition-all ${
-                searchQuery ? 'cursor-default' : 'hover:bg-[#49738C]/15 touch-manipulation'
-              } focus:outline-none focus:ring-2 focus:ring-[#ff8b42]/50 focus:ring-inset rounded-xl ${
-                isOpen ? 'bg-[#49738C]/10' : ''
+                searchQuery ? 'cursor-default' : 'hover:bg-white/15 touch-manipulation'
+              } focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-inset rounded-xl ${
+                isOpen ? 'bg-white/15' : ''
               }`}
               aria-expanded={isOpen}
               disabled={!!searchQuery}
             >
-              <span className={`uppercase ${isOpen ? 'text-[#ff8b42]' : 'text-[#e8eef1]'}`}>{cat.name}</span>
+              <span className="uppercase text-white">{cat.name}</span>
               {!searchQuery && (
                 <svg
-                  className={`w-5 h-5 shrink-0 text-[#ff8b42] transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                  className={`w-5 h-5 shrink-0 text-white transition-transform ${isOpen ? 'rotate-180' : ''}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -119,19 +119,19 @@ export default function MenuList({ categories }: { categories: Category[] }) {
               )}
             </button>
             {isOpen && (
-              <ul className="border-t border-[#49738C]/20 px-4 py-3 space-y-2.5 max-h-[65vh] overflow-y-auto">
+              <ul className="border-t border-white/20 px-4 py-3 space-y-2.5 max-h-[65vh] overflow-y-auto">
                 {cat.items.map((item) => (
                   <li
                     key={item.id}
-                    className="flex justify-between items-baseline gap-3 py-2 border-b border-[#49738C]/10 last:border-0"
+                    className="flex justify-between items-baseline gap-3 py-2 border-b border-white/10 last:border-0"
                   >
                     <div className="min-w-0 flex-1">
-                      <span className="text-[#e8eef1] text-sm">{item.name}</span>
+                      <span className="text-white text-sm font-medium">{item.name}</span>
                       {item.description && (
-                        <p className="text-[#49738C]/70 text-xs mt-0.5 line-clamp-2">{item.description}</p>
+                        <p className="text-white/70 text-xs mt-0.5 line-clamp-2">{item.description}</p>
                       )}
                     </div>
-                    <span className="text-[#ff8b42] font-medium whitespace-nowrap shrink-0">
+                    <span className="text-white font-bold whitespace-nowrap shrink-0">
                       € {item.price.toFixed(2)}
                     </span>
                   </li>
