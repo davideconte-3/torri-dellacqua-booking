@@ -52,11 +52,21 @@ NEXT_PUBLIC_SITE_URL="https://prenota.torridellacqua.it"
 BOOKING_VIEW_PIN="1234"
 ADMIN_EMAIL="info@torridellacqua.it"
 
-# Restaurant Info
+# Restaurant Info (Server-side)
 RESTAURANT_NAME="Torri dell'Acqua"
 RESTAURANT_EMAIL="info@torridellacqua.it"
-RESTAURANT_PHONE="+39 ..."
+RESTAURANT_PHONE="+39 0833 123456"
 RESTAURANT_ADDRESS="Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)"
+
+# Restaurant Info (Client-side - for menu and booking pages)
+NEXT_PUBLIC_RESTAURANT_NAME="Torri dell'Acqua"
+NEXT_PUBLIC_RESTAURANT_COMPANY_NAME="TORRI DELL'ACQUA S.R.L."
+NEXT_PUBLIC_RESTAURANT_ADDRESS="Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)"
+NEXT_PUBLIC_RESTAURANT_PHONE="+39 0833 123456"
+NEXT_PUBLIC_RESTAURANT_EMAIL="info@torridellacqua.it"
+NEXT_PUBLIC_RESTAURANT_PIVA="05375440756"
+NEXT_PUBLIC_RESTAURANT_INSTAGRAM="https://www.instagram.com/torridellacqua_restaurant/"
+NEXT_PUBLIC_RESTAURANT_INSTAGRAM_HANDLE="@torridellacqua_restaurant"
 ```
 
 #### 🟡 CONSIGLIATE (Analytics):

@@ -7,15 +7,18 @@ import Credits from '@/components/Credits';
 
 const SAN_VALENTINO_DATE = '2026-02-14';
 
+// Restaurant info from environment variables
 const RESTAURANT = {
-  companyName: "TORRI DELL'ACQUA S.R.L.",
-  address: "Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)",
-  addressUrl: "https://www.google.com/maps/search/?api=1&query=Via+Dante+Alighieri+8+Castrignano+del+Capo+LE",
-  piva: "05375440756",
-  phone: "+39 080 123 4567",
-  email: "info@torridellacqua.it",
-  instagram: "https://www.instagram.com/torridellacqua_restaurant/",
-  instagramHandle: "@torridellacqua_restaurant",
+  companyName: process.env.NEXT_PUBLIC_RESTAURANT_COMPANY_NAME || "TORRI DELL'ACQUA S.R.L.",
+  address: process.env.NEXT_PUBLIC_RESTAURANT_ADDRESS || "Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)",
+  addressUrl: process.env.NEXT_PUBLIC_RESTAURANT_ADDRESS
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(process.env.NEXT_PUBLIC_RESTAURANT_ADDRESS)}`
+    : "https://www.google.com/maps/search/?api=1&query=Via+Dante+Alighieri+8+Castrignano+del+Capo+LE",
+  piva: process.env.NEXT_PUBLIC_RESTAURANT_PIVA || "05375440756",
+  phone: process.env.NEXT_PUBLIC_RESTAURANT_PHONE || "+39 0833 123456",
+  email: process.env.NEXT_PUBLIC_RESTAURANT_EMAIL || "info@torridellacqua.it",
+  instagram: process.env.NEXT_PUBLIC_RESTAURANT_INSTAGRAM || "https://www.instagram.com/torridellacqua_restaurant/",
+  instagramHandle: process.env.NEXT_PUBLIC_RESTAURANT_INSTAGRAM_HANDLE || "@torridellacqua_restaurant",
 };
 
 export default function PrenotaPage() {

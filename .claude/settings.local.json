@@ -10,7 +10,9 @@
       "Bash(git push:*)",
       "Bash(ls:*)",
       "Bash(node scripts/convert-svg-to-png.js:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npx next lint:*)",
+      "Bash(npm run lint:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
