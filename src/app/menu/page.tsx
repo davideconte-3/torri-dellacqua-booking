@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import MenuWrapper from './MenuWrapper';
 
 export const metadata: Metadata = {
-  title: 'Menu | Torri Dell\'Acqua',
+  title: 'Menu',
   description: 'Menu del ristorante Torri dell\'Acqua - Castrignano del Capo',
 };
 
