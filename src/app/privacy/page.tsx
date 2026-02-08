@@ -91,7 +91,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className={`${t.heading} font-medium mb-2`}>3. Base giuridica</h2>
               <p>
-                Il trattamento per la gestione della prenotazione si basa sull'esecuzione di un contratto o su misure precontrattuali (art. 6, comma 1, lett. b) GDPR). Il trattamento per finalità di marketing si basa sul consenso (art. 6, comma 1, lett. a) GDPR), revocabile in qualsiasi momento.
+                Il trattamento per la gestione della prenotazione si basa sull&apos;esecuzione di un contratto o su misure precontrattuali (art. 6, comma 1, lett. b) GDPR). Il trattamento per finalità di marketing si basa sul consenso (art. 6, comma 1, lett. a) GDPR), revocabile in qualsiasi momento.
               </p>
             </section>
 
@@ -103,9 +103,9 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className={`${t.heading} font-medium mb-2`}>5. Diritti dell'interessato</h2>
+              <h2 className={`${t.heading} font-medium mb-2`}>5. Diritti dell&apos;interessato</h2>
               <p>
-                In qualità di interessato puoi esercitare i diritti previsti dal GDPR (Regolamento UE 2016/679): diritto di accesso (art. 15), rettifica (art. 16), cancellazione (art. 17), limitazione del trattamento (art. 18), portabilità (art. 20), opposizione (art. 21), nonché revocare il consenso dove previsto. Puoi proporre reclamo all'Autorità di controllo (Garante per la protezione dei dati personali – Italia: <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer" className={t.link}>www.garanteprivacy.it</a>).
+                In qualità di interessato puoi esercitare i diritti previsti dal GDPR (Regolamento UE 2016/679): diritto di accesso (art. 15), rettifica (art. 16), cancellazione (art. 17), limitazione del trattamento (art. 18), portabilità (art. 20), opposizione (art. 21), nonché revocare il consenso dove previsto. Puoi proporre reclamo all&apos;Autorità di controllo (Garante per la protezione dei dati personali – Italia: <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer" className={t.link}>www.garanteprivacy.it</a>).
               </p>
             </section>
 
@@ -122,7 +122,7 @@ export default function PrivacyPage() {
                 Il sito utilizza cookie e tecnologie analoghe per il corretto funzionamento delle pagine e per ricordare le tue preferenze (es. consenso cookie).
               </p>
               <p className="mt-2">
-                <strong className={t.heading}>Cookie tecnici (necessari):</strong> sono indispensabili per l'uso del sito (es. gestione della sessione, sicurezza). Non richiedono il tuo consenso; puoi comunque disattivarli dalle impostazioni del browser, con possibile limitazione di alcune funzioni.
+                <strong className={t.heading}>Cookie tecnici (necessari):</strong> sono indispensabili per l&apos;uso del sito (es. gestione della sessione, sicurezza). Non richiedono il tuo consenso; puoi comunque disattivarli dalle impostazioni del browser, con possibile limitazione di alcune funzioni.
               </p>
               <p className="mt-2">
                 <strong className={t.heading}>Cookie analytics o di profilazione:</strong> se presenti (es. per statistiche o pubblicità), vengono attivati solo in caso di consenso tramite il banner cookie. Puoi modificare le tue scelte in qualsiasi momento tramite il link in fondo alla pagina o dalle impostazioni del browser.
@@ -134,7 +134,7 @@ export default function PrivacyPage() {
           </div>
 
           <p className={`mt-8 ${t.textMuted} text-xs`}>
-            Per ulteriori informazioni o per esercitare i tuoi diritti contatta il titolare all'indirizzo {RESTAURANT.email}.
+            Per ulteriori informazioni o per esercitare i tuoi diritti contatta il titolare all&apos;indirizzo {RESTAURANT.email}.
           </p>
         </div>
 
