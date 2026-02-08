@@ -12,13 +12,15 @@ export const revalidate = 60;
 
 type Category = { id: string; name: string; order: number; items: { id: string; name: string; price: number; description: string | null; order: number }[] };
 
+type SearchParams = { skipSplash?: string };
+
 export default async function MenuPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ skipSplash?: string }>;
+  searchParams?: Promise<SearchParams>;
 }) {
-  const sp = await (searchParams ?? Promise.resolve({}));
-  const skipSplash = sp?.skipSplash === '1';
+  const sp = await (searchParams ?? Promise.resolve({} as SearchParams));
+  const skipSplash = sp.skipSplash === '1';
 
   let categories: Category[] = [];
 
