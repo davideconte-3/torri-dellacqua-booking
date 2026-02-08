@@ -125,6 +125,7 @@ export default function SanValentinoPage() {
         body: JSON.stringify({
           ...formData,
           date: SAN_VALENTINO_DATE,
+          source: 'sanvalentino',
           privacyConsent: privacyAccepted,
           marketingConsent,
         }),

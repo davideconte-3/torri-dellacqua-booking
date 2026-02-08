@@ -214,18 +214,21 @@ function buildEmailHtml(
   </html>`;
 }
 
-async function sendBookingEmails(booking: {
-  id: string;
-  customerName: string;
-  customerEmail: string;
-  customerPhone: string;
-  date: string;
-  time: string;
-  guests: number;
-  notes: string | null;
-  privacyConsent: boolean;
-  marketingConsent: boolean;
-}) {
+async function sendBookingEmails(
+  booking: {
+    id: string;
+    customerName: string;
+    customerEmail: string;
+    customerPhone: string;
+    date: string;
+    time: string;
+    guests: number;
+    notes: string | null;
+    privacyConsent: boolean;
+    marketingConsent: boolean;
+  },
+  options: { fromSanValentino: boolean }
+) {
   const restaurantName = process.env.RESTAURANT_NAME || "Torri dell'Acqua";
   const restaurantAddress =
     process.env.RESTAURANT_ADDRESS ||
@@ -251,7 +254,7 @@ async function sendBookingEmails(booking: {
 
   const resend = new Resend(apiKey);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://prenota.torridellacqua.it';
-  const isSanValentino = booking.date === SAN_VALENTINO_DATE;
+  const isSanValentino = options.fromSanValentino;
 
   const theme = isSanValentino ? themeSanValentino : themeGeneric;
   const eventBadgeGeneric = formatItalianDateLong(booking.date);
@@ -355,8 +358,8 @@ export async function POST(request: Request) {
       },
     });
 
-    // Invia email di conferma (non blocca la risposta in caso di errore)
-    sendBookingEmails(booking).catch((err) =>
+    const fromSanValentino = data.source === 'sanvalentino';
+    sendBookingEmails(booking, { fromSanValentino }).catch((err) =>
       console.error('Errore invio email (async):', err)
     );
 
