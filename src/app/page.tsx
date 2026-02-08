@@ -111,6 +111,17 @@ export default function HomePage() {
   }, [showSuccess]);
 
   useEffect(() => {
+    if (showSplash) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+    document.body.style.overflow = '';
+  }, [showSplash]);
+
+  useEffect(() => {
     const slots = getTimeSlots(mealType);
     if (formData.time && !slots.includes(formData.time)) {
       setFormData((prev) => ({ ...prev, time: '' }));
