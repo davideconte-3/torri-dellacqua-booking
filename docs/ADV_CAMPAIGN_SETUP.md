@@ -97,7 +97,7 @@ Salva in `/public/og-sanvalentino.jpg`
 
 #### 2. Pubblico:
 **Targeting Locale:**
-- Località: 30km da Castrignano del Capo
+- Località: 30km da Marina di Leuca (LE)
 - Età: 25-55 anni
 - Interessi:
   - Ristoranti
@@ -119,7 +119,7 @@ Salva in `/public/og-sanvalentino.jpg`
 💕 San Valentino 2026 - Una Serata Indimenticabile
 
 🍷 Menu Degustazione Esclusivo
-📍 Torri dell'Acqua - Castrignano del Capo
+📍 Torri dell'Acqua - Marina di Leuca (LE)
 💰 60€ a persona
 ⏰ Sabato 14 Febbraio
 

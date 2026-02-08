@@ -29,7 +29,7 @@ Le informazioni del ristorante devono essere configurate **DUE VOLTE**:
 RESTAURANT_NAME="Torri dell'Acqua"
 RESTAURANT_EMAIL="info@torridellacqua.it"
 RESTAURANT_PHONE="+39 0833 123456"
-RESTAURANT_ADDRESS="Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)"
+RESTAURANT_ADDRESS="Via Dante Alighieri n. 8, 73040 Marina di Leuca (LE)"
 ```
 
 **Usate in:**
@@ -42,7 +42,7 @@ RESTAURANT_ADDRESS="Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)"
 ```bash
 NEXT_PUBLIC_RESTAURANT_NAME="Torri dell'Acqua"
 NEXT_PUBLIC_RESTAURANT_COMPANY_NAME="TORRI DELL'ACQUA S.R.L."
-NEXT_PUBLIC_RESTAURANT_ADDRESS="Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)"
+NEXT_PUBLIC_RESTAURANT_ADDRESS="Via Dante Alighieri n. 8, 73040 Marina di Leuca (LE)"
 NEXT_PUBLIC_RESTAURANT_PHONE="+39 0833 123456"
 NEXT_PUBLIC_RESTAURANT_EMAIL="info@torridellacqua.it"
 NEXT_PUBLIC_RESTAURANT_PIVA="05375440756"

@@ -17,10 +17,10 @@ const MENU_NOTE = 'coperto 3,50€ - terrazza 5,00€';
 // Restaurant info from environment variables
 const RESTAURANT = {
   name: process.env.NEXT_PUBLIC_RESTAURANT_NAME || "Torri dell'Acqua",
-  address: process.env.NEXT_PUBLIC_RESTAURANT_ADDRESS || "Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)",
+  address: process.env.NEXT_PUBLIC_RESTAURANT_ADDRESS || "Via Dante Alighieri n. 8, 73040 Marina di Leuca (LE)",
   addressUrl: process.env.NEXT_PUBLIC_RESTAURANT_ADDRESS
     ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(process.env.NEXT_PUBLIC_RESTAURANT_ADDRESS)}`
-    : "https://www.google.com/maps/search/?api=1&query=Via+Dante+Alighieri+8+Castrignano+del+Capo+LE",
+    : "https://www.google.com/maps/search/?api=1&query=Via+Dante+Alighieri+8+Marina+di+Leuca+LE",
   phone: process.env.NEXT_PUBLIC_RESTAURANT_PHONE || "+39 0833 123456",
   email: process.env.NEXT_PUBLIC_RESTAURANT_EMAIL || "info@torridellacqua.it",
   instagram: process.env.NEXT_PUBLIC_RESTAURANT_INSTAGRAM || "https://www.instagram.com/torridellacqua_restaurant/",

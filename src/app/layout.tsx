@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: 'Prenota | Ristorante Torri Dell\'Acqua',
     template: '%s | Torri Dell\'Acqua',
   },
-  description: 'Prenota al ristorante Torri dell\'Acqua a Castrignano del Capo. Cena di San Valentino e prenotazioni.',
+  description: 'Prenota al ristorante Torri dell\'Acqua a Marina di Leuca (LE). Cena di San Valentino e prenotazioni.',
 };
 
 export const viewport = {

@@ -2,10 +2,13 @@ import type { Metadata } from 'next';
 import Analytics from '@/components/Analytics';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://torridellacqua.it';
+const RESTAURANT_NAME = process.env.NEXT_PUBLIC_RESTAURANT_NAME || "Torri dell'Acqua";
+const RESTAURANT_COMPANY = process.env.NEXT_PUBLIC_RESTAURANT_COMPANY_NAME || "TORRI DELL'ACQUA S.R.L.";
+const RESTAURANT_ADDRESS = process.env.NEXT_PUBLIC_RESTAURANT_ADDRESS || 'Via Dante Alighieri n. 8, 73040 Marina di Leuca (LE)';
 
 export const metadata: Metadata = {
   title: 'Cena di San Valentino 2026 | Ristorante Torri Dell\'Acqua',
-  description: 'Prenota la cena di San Valentino al ristorante Torri dell\'Acqua. Menu degustazione 60€ a persona, sabato 14 febbraio 2026 a Castrignano del Capo. Posti limitati.',
+  description: 'Prenota la cena di San Valentino al ristorante Torri dell\'Acqua. Menu degustazione 60€ a persona, sabato 14 febbraio 2026 a Marina di Leuca (LE). Posti limitati.',
   keywords: 'cena san valentino, ristorante san valentino castrignano del capo, menu san valentino salento, prenotazione san valentino 2026, torri dell\'acqua, ristorante salento',
 
   openGraph: {
@@ -14,7 +17,7 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/sanvalentino`,
     siteName: 'Torri Dell\'Acqua',
     title: 'Cena di San Valentino 2026 - Ristorante Torri Dell\'Acqua',
-    description: 'Prenota la tua cena di San Valentino. Menu degustazione 60€ a persona. Sabato 14 febbraio 2026 a Castrignano del Capo. Posti limitati.',
+    description: 'Prenota la tua cena di San Valentino. Menu degustazione 60€ a persona. Sabato 14 febbraio 2026 a Marina di Leuca (LE). Posti limitati.',
     images: [
       { url: `${SITE_URL}/og-sanvalentino.jpg`, width: 1200, height: 630, alt: 'San Valentino 2026 - Torri Dell\'Acqua' },
     ],
@@ -22,7 +25,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Cena di San Valentino 2026 | Torri Dell\'Acqua',
-    description: 'Menu degustazione 60€ a persona. Sabato 14 febbraio 2026 a Castrignano del Capo. Prenota ora.',
+    description: 'Menu degustazione 60€ a persona. Sabato 14 febbraio 2026 a Marina di Leuca (LE). Prenota ora.',
     images: [`${SITE_URL}/og-sanvalentino.jpg`],
   },
   robots: { index: true, follow: true },
@@ -47,13 +50,13 @@ export default function SanValentinoLayout({ children }: { children: React.React
             eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
             location: {
               '@type': 'Restaurant',
-              name: 'Torri Dell\'Acqua',
-              address: { '@type': 'PostalAddress', streetAddress: 'Via Dante Alighieri n. 8', addressLocality: 'Castrignano del Capo', addressRegion: 'LE', postalCode: '73040', addressCountry: 'IT' },
+              name: RESTAURANT_NAME,
+              address: { '@type': 'PostalAddress', streetAddress: RESTAURANT_ADDRESS, addressCountry: 'IT' },
               geo: { '@type': 'GeoCoordinates', latitude: 39.8333, longitude: 18.3667 },
             },
             offers: { '@type': 'Offer', name: 'Menu San Valentino', price: '60', priceCurrency: 'EUR', availability: 'https://schema.org/LimitedAvailability', url: `${SITE_URL}/sanvalentino`, validFrom: '2026-01-15T00:00:00+01:00' },
-            performer: { '@type': 'Restaurant', name: 'Torri Dell\'Acqua' },
-            organizer: { '@type': 'Organization', name: 'TORRI DELL\'ACQUA S.R.L.', url: SITE_URL },
+            performer: { '@type': 'Restaurant', name: RESTAURANT_NAME },
+            organizer: { '@type': 'Organization', name: RESTAURANT_COMPANY, url: SITE_URL },
             image: [`${SITE_URL}/og-sanvalentino.jpg`],
           }),
         }}

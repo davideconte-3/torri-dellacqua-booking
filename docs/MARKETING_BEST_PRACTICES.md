@@ -51,7 +51,7 @@ Guida completa per ottimizzare la landing page di San Valentino per campagne ADV
 ### Open Graph (Facebook/Instagram/WhatsApp)
 ```html
 <meta property="og:title" content="San Valentino 2026 - Cena San Valentino | Torri dell'Acqua" />
-<meta property="og:description" content="Prenota la tua cena di San Valentino. Menu degustazione €60/persona. Sabato 14 Febbraio a Castrignano del Capo." />
+<meta property="og:description" content="Prenota la tua cena di San Valentino. Menu degustazione €60/persona. Sabato 14 Febbraio a Marina di Leuca (LE)." />
 <meta property="og:image" content="/og-sanvalentino.jpg" />
 <meta property="og:type" content="event" />
 ```
@@ -72,7 +72,7 @@ Per condivisioni ottimizzate su X/Twitter
   "location": {
     "@type": "Restaurant",
     "name": "Torri dell'Acqua",
-    "address": "Via Dante Alighieri 8, Castrignano del Capo (LE)"
+    "address": "Via Dante Alighieri 8, Marina di Leuca (LE)"
   },
   "offers": {
     "@type": "Offer",

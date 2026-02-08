@@ -5,8 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const RESTAURANT = {
-  instagram: "https://www.instagram.com/torridellacqua_restaurant/",
-  instagramHandle: "@torridellacqua_restaurant",
+  instagram: process.env.NEXT_PUBLIC_RESTAURANT_INSTAGRAM || "https://www.instagram.com/torridellacqua_restaurant/",
+  instagramHandle: process.env.NEXT_PUBLIC_RESTAURANT_INSTAGRAM_HANDLE || "@torridellacqua_restaurant",
 };
 
 const BOOKING_BASE = process.env.NEXT_PUBLIC_BOOKING_URL || '/';

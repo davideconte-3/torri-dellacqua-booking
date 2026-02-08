@@ -6,7 +6,7 @@ import Credits from '@/components/Credits';
 
 const RESTAURANT = {
   companyName: process.env.NEXT_PUBLIC_RESTAURANT_COMPANY_NAME || "TORRI DELL'ACQUA S.R.L.",
-  address: process.env.NEXT_PUBLIC_RESTAURANT_ADDRESS || "Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)",
+  address: process.env.NEXT_PUBLIC_RESTAURANT_ADDRESS || "Via Dante Alighieri n. 8, 73040 Marina di Leuca (LE)",
   piva: process.env.NEXT_PUBLIC_RESTAURANT_PIVA || "05375440756",
   email: process.env.NEXT_PUBLIC_RESTAURANT_EMAIL || "info@torridellacqua.it",
 };

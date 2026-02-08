@@ -4,7 +4,7 @@ import MenuWrapper from './MenuWrapper';
 
 export const metadata: Metadata = {
   title: 'Menu',
-  description: 'Menu del ristorante Torri dell\'Acqua - Castrignano del Capo',
+  description: 'Menu del ristorante Torri dell\'Acqua - Marina di Leuca (LE)',
 };
 
 export const dynamic = 'force-dynamic';

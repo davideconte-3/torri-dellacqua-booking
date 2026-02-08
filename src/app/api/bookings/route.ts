@@ -232,7 +232,7 @@ async function sendBookingEmails(
   const restaurantName = process.env.RESTAURANT_NAME || "Torri dell'Acqua";
   const restaurantAddress =
     process.env.RESTAURANT_ADDRESS ||
-    "Via Dante Alighieri n. 8, 73040 Castrignano del Capo (LE)";
+    "Via Dante Alighieri n. 8, 73040 Marina di Leuca (LE)";
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
