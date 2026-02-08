@@ -13,7 +13,7 @@ export default function Credits() {
         <img
           src="/dc-logo.svg"
           alt="Davide Conte"
-          className="h-3 w-auto"
+          className="h-3   w-auto"
         />
       </a>
     </div>

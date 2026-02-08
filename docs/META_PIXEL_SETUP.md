@@ -4,6 +4,8 @@
 
 Il Meta Pixel è integrato nella piattaforma per tracciare le conversioni dalle campagne ADV Meta (Facebook/Instagram). Ogni prenotazione completata viene registrata come evento di conversione.
 
+Per dati di marketing più completi e migliore ROI puoi attivare il **Conversions API Gateway** (configurazione rapida e senza codice da Events Manager). Guida: [CONVERSIONS_API_GATEWAY.md](./CONVERSIONS_API_GATEWAY.md).
+
 ---
 
 ## Eventi Tracciati
@@ -316,7 +318,7 @@ Prima di lanciare le campagne:
 - [ ] Form prenotazione funzionante
 - [ ] Email conferma configurate
 - [ ] UTM parameters pronti
-- [ ] Conversioni API (opzionale) configurata
+- [ ] Conversions API Gateway (opzionale, senza codice): vedi [CONVERSIONS_API_GATEWAY.md](./CONVERSIONS_API_GATEWAY.md)
 - [ ] Budget campagna approvato
 - [ ] Creative (immagini/video) pronte
 - [ ] Testi annunci approvati

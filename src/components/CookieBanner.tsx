@@ -11,7 +11,7 @@ export default function CookieBanner() {
   const [isSanValentino, setIsSanValentino] = useState(false);
 
   useEffect(() => {
-    setIsSanValentino(window.location.pathname === '/prenota');
+    setIsSanValentino(window.location.pathname === '/sanvalentino');
     const hour = new Date().getHours();
     setIsEvening(hour >= 18 || hour < 6);
 

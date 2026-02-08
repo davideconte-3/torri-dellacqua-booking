@@ -52,7 +52,8 @@ NEXT_PUBLIC_RESTAURANT_INSTAGRAM_HANDLE="@torridellacqua_restaurant"
 
 **Usate in:**
 - `/menu` - Pagina menu pubblico
-- `/prenota` - Pagina prenotazioni San Valentino
+- `/` - Prenotazione (scelta data + form)
+- `/sanvalentino` - Cena San Valentino 2026 (data fissa)
 - Footer e contatti
 
 ## 🎯 Perché Serve la Doppia Configurazione?
@@ -158,6 +159,13 @@ npm run start
 ### "Variabili funzionano in locale ma non in produzione"
 
 ✅ **Soluzione**: Aggiungi su Vercel UI (non basta `.env` nel repo)
+
+### "La raccolta dei dati non è attiva" (Google Analytics)
+
+✅ **Soluzione**:
+1. Imposta `NEXT_PUBLIC_GA_ID` (formato `G-XXXXXXXXXX`) in Vercel → Settings → Environment Variables.
+2. Le variabili `NEXT_PUBLIC_*` vengono iniettate a **build time**: dopo aver aggiunto la variabile fai un **nuovo deploy** (Redeploy).
+3. Verifica in GA4 che l’ID proprietà corrisponda a quello in env.
 
 ## 📚 Documentazione Ufficiale
 

@@ -23,14 +23,14 @@ const RESTAURANT = {
   instagramHandle: process.env.NEXT_PUBLIC_RESTAURANT_INSTAGRAM_HANDLE || "@torridellacqua_restaurant",
 };
 
-export default function MenuWrapper({ categories }: { categories: Category[] }) {
-  const [showSplash, setShowSplash] = useState(true);
+export default function MenuWrapper({ categories, skipSplash = false }: { categories: Category[]; skipSplash?: boolean }) {
+  const [showSplash, setShowSplash] = useState(!skipSplash);
   const [isEvening, setIsEvening] = useState(() => {
     if (typeof window === 'undefined') return true;
     const hour = new Date().getHours();
     return hour >= 18 || hour < 6;
   });
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(skipSplash);
   const [splashExiting, setSplashExiting] = useState(false);
 
   useEffect(() => {

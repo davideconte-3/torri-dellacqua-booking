@@ -5,6 +5,7 @@ import '@/styles/globals.css';
 import { ConsentProvider } from '@/contexts/ConsentContext';
 import CookieBanner from '@/components/CookieBanner';
 import ConsentModeUpdater from '@/components/ConsentModeUpdater';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -15,9 +16,17 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'San Valentino - La Cena | Torri Dell\'Acqua',
-  description: 'Prenota la tua cena di San Valentino al ristorante Torri dell\'Acqua - Sabato 14 Febbraio',
-  viewport: { width: 'device-width', initialScale: 1, maximumScale: 5 },
+  title: {
+    default: 'Prenota | Ristorante Torri Dell\'Acqua',
+    template: '%s | Torri Dell\'Acqua',
+  },
+  description: 'Prenota al ristorante Torri dell\'Acqua a Castrignano del Capo. Cena di San Valentino e prenotazioni.',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
   themeColor: '#3d1a1a',
 };
 
@@ -39,18 +48,10 @@ gtag('consent','default',{'ad_storage':'denied','analytics_storage':'denied','ad
           {children}
           <CookieBanner />
         </ConsentProvider>
-      {/* gtag caricato su tutte le pagine con consenso denied: così Consent Mode risulta attiva nei tool */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics-config" strategy="afterInteractive">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');`}
-            </Script>
-          </>
-        )}
+      {/* GA: config dopo load di gtag.js così la raccolta dati parte subito */}
+        {process.env.NEXT_PUBLIC_GA_ID ? (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        ) : null}
       </body>
     </html>
   );
