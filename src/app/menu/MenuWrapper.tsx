@@ -9,6 +9,13 @@ import Credits from '@/components/Credits';
 const BOOKING_BASE = process.env.NEXT_PUBLIC_BOOKING_URL || '/';
 const BOOKING_URL = BOOKING_BASE + (BOOKING_BASE.includes('?') ? '&' : '?') + 'skipSplash=1';
 
+const MENU_SPLASH_DISMISSED_KEY = 'menu-splash-dismissed';
+
+function hasMenuSplashBeenDismissed(): boolean {
+  if (typeof window === 'undefined') return false;
+  return sessionStorage.getItem(MENU_SPLASH_DISMISSED_KEY) === '1';
+}
+
 type Item = { id: string; name: string; price: number; description: string | null; order: number };
 type Category = { id: string; name: string; order: number; items: Item[] };
 
@@ -28,19 +35,26 @@ const RESTAURANT = {
 };
 
 export default function MenuWrapper({ categories, skipSplash = false }: { categories: Category[]; skipSplash?: boolean }) {
-  const [showSplash, setShowSplash] = useState(!skipSplash);
+  const [showSplash, setShowSplash] = useState(true);
   const [isEvening, setIsEvening] = useState(() => {
     if (typeof window === 'undefined') return true;
     const hour = new Date().getHours();
     return hour >= 18 || hour < 6;
   });
-  const [isVisible, setIsVisible] = useState(skipSplash);
+  const [isVisible, setIsVisible] = useState(false);
   const [splashExiting, setSplashExiting] = useState(false);
 
   useEffect(() => {
     const hour = new Date().getHours();
     setIsEvening(hour >= 18 || hour < 6);
   }, []);
+
+  useEffect(() => {
+    if (skipSplash || hasMenuSplashBeenDismissed()) {
+      setShowSplash(false);
+      setIsVisible(true);
+    }
+  }, [skipSplash]);
 
   useEffect(() => {
     if (!showSplash) {
@@ -60,11 +74,12 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
   }, [showSplash]);
 
   const handleEnterMenu = () => {
-    // Start menu fade-in BEFORE splash exits
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem(MENU_SPLASH_DISMISSED_KEY, '1');
+    }
     setIsVisible(true);
     setSplashExiting(true);
 
-    // Remove splash after animation completes
     setTimeout(() => {
       setShowSplash(false);
     }, 1000);
