@@ -35,16 +35,24 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
 
   useEffect(() => {
     const hour = new Date().getHours();
-    const shouldBeEvening = hour >= 18 || hour < 6;
-    console.log('🌙 Menu - Ora:', hour, '| Tema sera:', shouldBeEvening);
-    setIsEvening(shouldBeEvening);
+    setIsEvening(hour >= 18 || hour < 6);
   }, []);
 
   useEffect(() => {
     if (!showSplash) {
-      // Menu becomes visible immediately when splash is hidden
       setIsVisible(true);
     }
+  }, [showSplash]);
+
+  useEffect(() => {
+    if (showSplash) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+    document.body.style.overflow = '';
   }, [showSplash]);
 
   const handleEnterMenu = () => {
@@ -84,7 +92,7 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
   return (
     <>
       {/* Main Menu - Rendered behind splash */}
-      <main className={`min-h-screen ${theme.bg} ${theme.text} py-8 px-4 pb-10 transition-all duration-1000 ease-out ${
+      <main className={`min-h-screen ${theme.bg} ${theme.text} py-8 px-4 pb-10 transition-all duration-1000 ease-out overflow-x-hidden ${
         isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-98'
       }`}>
       <div className="max-w-2xl mx-auto flex flex-col min-h-screen">
