@@ -1,9 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import MenuSplash from './MenuSplash';
 import MenuList from './MenuList';
 import Credits from '@/components/Credits';
+
+const BOOKING_BASE = process.env.NEXT_PUBLIC_BOOKING_URL || '/';
+const BOOKING_URL = BOOKING_BASE + (BOOKING_BASE.includes('?') ? '&' : '?') + 'skipSplash=1';
 
 type Item = { id: string; name: string; price: number; description: string | null; order: number };
 type Category = { id: string; name: string; order: number; items: Item[] };
@@ -106,6 +110,13 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
           <h1 className={`text-2xl font-light ${theme.text} mt-6 tracking-[0.2em] uppercase transition-all duration-500 hover:tracking-[0.25em] animate-fade-in`} style={{ fontFamily: 'ui-serif, Georgia, serif', animationDelay: '0.2s' }}>Menu</h1>
           <div className={`h-px ${theme.borderAccent} my-4 animate-expand-width`} style={{ animationDelay: '0.4s' }} />
           <p className={`${theme.textSecondary} text-xs tracking-wide font-light animate-fade-in`} style={{ fontFamily: 'ui-serif, Georgia, serif', animationDelay: '0.6s' }}>{MENU_NOTE}</p>
+          <Link
+            href={BOOKING_URL}
+            className={`mt-4 text-xs font-light tracking-wide ${theme.textTertiary} hover:${theme.text} transition-colors animate-fade-in`}
+            style={{ fontFamily: 'ui-serif, Georgia, serif', animationDelay: '0.5s' }}
+          >
+            Prenota un tavolo
+          </Link>
         </header>
         <div className="flex-1">
           <MenuList categories={categories} />

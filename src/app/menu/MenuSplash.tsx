@@ -2,11 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const RESTAURANT = {
   instagram: "https://www.instagram.com/torridellacqua_restaurant/",
   instagramHandle: "@torridellacqua_restaurant",
 };
+
+const BOOKING_BASE = process.env.NEXT_PUBLIC_BOOKING_URL || '/';
+const BOOKING_URL = BOOKING_BASE + (BOOKING_BASE.includes('?') ? '&' : '?') + 'skipSplash=1';
 
 export default function MenuSplash({ onEnter, isExiting = false }: { onEnter: () => void; isExiting?: boolean }) {
   const [isEvening, setIsEvening] = useState(() => {
@@ -18,11 +22,7 @@ export default function MenuSplash({ onEnter, isExiting = false }: { onEnter: ()
 
   useEffect(() => {
     const hour = new Date().getHours();
-    const shouldBeEvening = hour >= 18 || hour < 6;
-    console.log('🕐 Ora corrente:', hour, '| Tema sera:', shouldBeEvening);
-    setIsEvening(shouldBeEvening);
-
-    // Fade in animation
+    setIsEvening(hour >= 18 || hour < 6);
     setTimeout(() => setIsVisible(true), 100);
   }, []);
 
@@ -98,13 +98,23 @@ export default function MenuSplash({ onEnter, isExiting = false }: { onEnter: ()
         <button
           onClick={onEnter}
           disabled={isExiting}
-          className={`${theme.button} ${theme.buttonRing} px-12 py-4 rounded-full text-base font-light tracking-[0.15em] uppercase transition-all duration-800 transform hover:scale-105 hover:-translate-y-0.5 active:scale-100 active:translate-y-0 mb-8 focus:outline-none focus:ring-4 ${
+          className={`${theme.button} ${theme.buttonRing} px-12 py-4 rounded-full text-base font-light tracking-[0.15em] uppercase transition-all duration-800 transform hover:scale-105 hover:-translate-y-0.5 active:scale-100 active:translate-y-0 mb-6 focus:outline-none focus:ring-4 ${
             isExiting ? 'opacity-0 scale-80 translate-y-4' : ''
           } disabled:pointer-events-none`}
           style={{ fontFamily: 'ui-serif, Georgia, serif' }}
         >
           Visualizza Menu
         </button>
+
+        <Link
+          href={BOOKING_URL}
+          className={`text-sm font-light tracking-wide opacity-90 hover:opacity-100 transition-opacity mb-8 ${
+            isEvening ? 'text-white/90' : 'text-[#2c3e50]/90'
+          } ${isExiting ? 'opacity-0 pointer-events-none' : ''}`}
+          style={{ fontFamily: 'ui-serif, Georgia, serif' }}
+        >
+          Prenota un tavolo
+        </Link>
 
         {/* Refined Instagram Link */}
         <a

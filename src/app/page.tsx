@@ -95,6 +95,15 @@ export default function HomePage() {
   const [splashExiting, setSplashExiting] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const skip = new URLSearchParams(window.location.search).get('skipSplash') === '1';
+    if (skip) {
+      setShowSplash(false);
+      setContentVisible(true);
+    }
+  }, []);
+
   const handleEnterBooking = () => {
     setContentVisible(true);
     setSplashExiting(true);
