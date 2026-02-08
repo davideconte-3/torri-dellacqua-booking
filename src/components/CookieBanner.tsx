@@ -68,12 +68,12 @@ export default function CookieBanner() {
 
   return (
     <>
-      {/* Backdrop */}
+      {/* Backdrop: non trattare il click come accettazione; solo i pulsanti Accetta/Rifiuta contano */}
       <div
         className={`fixed inset-0 z-[49] transition-opacity duration-300 pointer-events-none ${
           isAnimating ? 'opacity-40 bg-black pointer-events-auto' : 'opacity-0'
         }`}
-        onClick={handleAccept}
+        aria-hidden="true"
       />
 
       {/* Banner */}
