@@ -12,13 +12,12 @@ export const revalidate = 60;
 
 type Category = { id: string; name: string; order: number; items: { id: string; name: string; price: number; description: string | null; order: number }[] };
 
-type PageProps = { searchParams?: Promise<{ skipSplash?: string }> | { skipSplash?: string } };
-
-export default async function MenuPage(props: PageProps) {
-  const raw = props.searchParams ?? {};
-  const sp = typeof (raw as Promise<{ skipSplash?: string }>).then === 'function'
-    ? await (raw as Promise<{ skipSplash?: string }>)
-    : (raw as { skipSplash?: string });
+export default async function MenuPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ skipSplash?: string }>;
+}) {
+  const sp = await (searchParams ?? Promise.resolve({}));
   const skipSplash = sp?.skipSplash === '1';
 
   let categories: Category[] = [];
