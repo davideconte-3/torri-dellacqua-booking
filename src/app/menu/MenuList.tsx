@@ -152,7 +152,7 @@ export default function MenuList({ categories }: { categories: Category[] }) {
               )}
             </button>
             {shouldShowContent && (
-              <ul className={`border-t border-white/15 px-6 py-4 space-y-2 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent ${
+              <ul className={`border-t border-white/15 px-6 py-4 space-y-2 max-h-[45vh] overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent ${
                 isClosing ? 'animate-collapse-up' : 'animate-expand-down'
               }`}>
                 {cat.items.map((item, index) => (
@@ -240,7 +240,7 @@ export default function MenuList({ categories }: { categories: Category[] }) {
           }
           to {
             opacity: 1;
-            max-height: 70vh;
+            max-height: 45vh;
             transform: translateY(0);
           }
         }
@@ -248,7 +248,7 @@ export default function MenuList({ categories }: { categories: Category[] }) {
         @keyframes collapse-up {
           from {
             opacity: 1;
-            max-height: 70vh;
+            max-height: 45vh;
             transform: translateY(0);
           }
           to {
