@@ -88,16 +88,16 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
   const theme = isEvening
     ? {
         bg: 'bg-gradient-to-b from-slate-700 via-slate-900 to-slate-700',
-        logo: '!bg-white',
-        text: '!text-white',
-        textSecondary: '!text-white/95',
-        textTertiary: '!text-white/90',
-        border: '!border-white/30',
-        borderAccent: '!border-white/40',
+        logo: 'bg-white',
+        text: 'text-white',
+        textSecondary: 'text-white/95',
+        textTertiary: 'text-white/90',
+        border: 'border-white/30',
+        borderAccent: 'border-white/40',
       }
     : {
         bg: 'bg-gray-50',
-        logo: 'bg-[#1e293b]',
+        logo: 'bg-slate-800',
         text: 'text-gray-900',
         textSecondary: 'text-gray-700',
         textTertiary: 'text-gray-600',
@@ -109,10 +109,9 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
     <>
       {/* Main Menu - Rendered behind splash */}
       <main
-        className={`min-h-screen ${theme.bg} py-8 px-4 pb-10 transition-all duration-1000 ease-out overflow-x-hidden ${
+        className={`min-h-screen ${theme.bg} ${theme.text} py-8 px-4 pb-10 transition-all duration-1000 ease-out overflow-x-hidden ${
           isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-98'
-        } ${isEvening ? '!text-white' : theme.text}`}
-        style={isEvening ? { color: '#ffffff !important' } : undefined}
+        }`}
       >
       <div className="max-w-2xl mx-auto flex flex-col min-h-screen">
         <header className="flex flex-col items-center mt-6 mb-10">
@@ -122,23 +121,13 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
             role="img"
             aria-label="Torri dell'Acqua"
           />
-          <h1
-            className={`text-2xl font-light mt-6 tracking-[0.2em] uppercase transition-all duration-500 hover:tracking-[0.25em] animate-fade-in ${isEvening ? '!text-white' : theme.text}`}
-            style={{ fontFamily: 'ui-serif, Georgia, serif', animationDelay: '0.2s', color: isEvening ? '#ffffff' : undefined }}
-          >
-            Menu
-          </h1>
+          <h1 className={`text-2xl font-light ${theme.text} mt-6 tracking-[0.2em] uppercase transition-all duration-500 hover:tracking-[0.25em] animate-fade-in`} style={{ fontFamily: 'ui-serif, Georgia, serif', animationDelay: '0.2s' }}>Menu</h1>
           <div className={`h-px ${theme.borderAccent} my-4 animate-expand-width`} style={{ animationDelay: '0.4s' }} />
-          <p
-            className={`text-xs tracking-wide font-light animate-fade-in ${isEvening ? '!text-white/95' : theme.textSecondary}`}
-            style={{ fontFamily: 'ui-serif, Georgia, serif', animationDelay: '0.6s', color: isEvening ? 'rgba(255,255,255,0.95)' : undefined }}
-          >
-            {MENU_NOTE}
-          </p>
+          <p className={`${theme.textSecondary} text-xs tracking-wide font-light animate-fade-in`} style={{ fontFamily: 'ui-serif, Georgia, serif', animationDelay: '0.6s' }}>{MENU_NOTE}</p>
           <Link
             href={BOOKING_URL}
-            className={`mt-4 text-xs font-light tracking-wide transition-colors animate-fade-in ${isEvening ? '!text-white/90 hover:!text-white' : `${theme.textTertiary} hover:text-gray-900`}`}
-            style={{ fontFamily: 'ui-serif, Georgia, serif', animationDelay: '0.5s', color: isEvening ? 'rgba(255,255,255,0.9)' : undefined }}
+            className={`mt-4 text-xs font-light tracking-wide ${theme.textTertiary} transition-colors animate-fade-in ${isEvening ? 'hover:text-white' : 'hover:text-gray-900'}`}
+            style={{ fontFamily: 'ui-serif, Georgia, serif', animationDelay: '0.5s' }}
           >
             Prenota un tavolo
           </Link>
