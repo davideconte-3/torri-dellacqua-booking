@@ -30,26 +30,26 @@ const light = {
 };
 const dark = {
   empty: 'text-white/90',
-  searchIcon: 'text-white/65 group-focus-within:text-white/90',
-  searchInput: 'bg-white/15 border-white/35 text-white placeholder-white/70 focus:ring-white/40 focus:border-white/55 focus:bg-white/25 focus:shadow-white/15',
-  searchClear: 'text-white/65 hover:text-white',
-  searchCount: 'text-white/75',
-  card: 'border-white/30 bg-white/[0.09] hover:border-white/50 shadow-black/20',
-  cardOpen: 'border-white/50 bg-white/[0.12] shadow-black/25',
-  cardBtn: 'hover:bg-white/12',
-  cardBtnOpen: 'bg-white/12',
-  focusRing: 'focus:ring-white/40',
+  searchIcon: 'text-white/70 group-focus-within:text-white',
+  searchInput: 'bg-white/[0.08] border-white/30 text-white placeholder-white/65 focus:ring-white/35 focus:border-white/45 focus:bg-white/[0.12] shadow-none',
+  searchClear: 'text-white/70 hover:text-white',
+  searchCount: 'text-white/80',
+  card: 'border-white/25 bg-white/[0.07] hover:border-white/40 shadow-black/15',
+  cardOpen: 'border-white/25 bg-white/[0.07] hover:border-white/40 shadow-black/15',
+  cardBtn: 'hover:bg-white/[0.06]',
+  cardBtnOpen: 'hover:bg-white/[0.06]',
+  focusRing: 'focus:ring-white/35',
   categoryName: 'text-white',
-  chevron: 'text-white/80',
-  listBorder: 'border-white/22',
-  item: 'border-white/12 hover:bg-white/[0.08]',
-  itemLine: 'bg-white/40',
+  chevron: 'text-white/85',
+  listBorder: 'border-white/20',
+  item: 'border-white/10 hover:bg-white/[0.05]',
+  itemLine: 'bg-white/35',
   itemName: 'text-white group-hover:text-white',
-  itemDesc: 'text-white/78 group-hover:text-white/88',
+  itemDesc: 'text-white/82 group-hover:text-white/92',
   price: 'text-white',
-  priceLine: 'bg-white/40',
-  scrollbarThumb: 'rgba(255,255,255,0.28)',
-  scrollbarThumbHover: 'rgba(255,255,255,0.4)',
+  priceLine: 'bg-white/35',
+  scrollbarThumb: 'rgba(255,255,255,0.25)',
+  scrollbarThumbHover: 'rgba(255,255,255,0.38)',
 };
 
 export default function MenuList({ categories, isLightTheme = false }: { categories: Category[]; isLightTheme?: boolean }) {
@@ -170,7 +170,7 @@ export default function MenuList({ categories, isLightTheme = false }: { categor
           <section
             key={cat.id}
             className={`rounded-2xl overflow-hidden border transition-all duration-500 animate-slide-up backdrop-blur-md ${
-              isOpen ? `${c.cardOpen} scale-[1.01]` : c.card
+              isOpen ? c.cardOpen : c.card
             } hover:shadow-xl`}
             style={{ animationDelay: `${categoryIndex * 0.1 + 0.2}s` }}
           >

@@ -90,8 +90,8 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
         bg: 'bg-gradient-to-b from-[#2d3a47] via-[#1e2a35] to-[#2d3a47]',
         logo: 'bg-white',
         text: 'text-white',
-        textSecondary: 'text-white/92',
-        textTertiary: 'text-white/82',
+        textSecondary: 'text-white/95',
+        textTertiary: 'text-white/88',
         border: 'border-white/25',
         borderAccent: 'border-white/35',
       }
