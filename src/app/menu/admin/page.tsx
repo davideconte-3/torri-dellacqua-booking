@@ -15,6 +15,9 @@ export default function MenuAdminPage() {
   const [error, setError] = useState<string | null>(null);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState<{type: 'category' | 'item', catIndex: number, itemIndex?: number} | null>(null);
+  const [scrapeUrl, setScrapeUrl] = useState('https://www.thinksmartmenu.it/menu/0GZ8O0RFO1');
+  const [scraping, setScraping] = useState(false);
+  const [scrapeError, setScrapeError] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -152,6 +155,46 @@ export default function MenuAdminPage() {
     setCategories((prev) => [...prev, { id: '', name: 'Nuova categoria', order: prev.length, items: [] }]);
   };
 
+  const handleScrape = async () => {
+    if (!pin.trim()) {
+      setScrapeError('Inserisci il PIN per importare');
+      return;
+    }
+    setScraping(true);
+    setScrapeError(null);
+    try {
+      const res = await fetch('/api/menu/scrape', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Admin-PIN': pin,
+        },
+        body: JSON.stringify({ url: scrapeUrl }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Importazione fallita');
+      const raw = (data.categories || []) as { name: string; order?: number; items: { name: string; price: number; description?: string | null; order?: number }[] }[];
+      const next: MenuCategory[] = raw.map((c, ci) => ({
+        id: '',
+        name: c.name,
+        order: c.order ?? ci,
+        items: (c.items || []).map((i, ji) => ({
+          id: '',
+          name: i.name,
+          price: Number(i.price),
+          description: i.description ?? null,
+          order: i.order ?? ji,
+        })),
+      }));
+      setCategories(next);
+      setHasUnsavedChanges(true);
+    } catch (e) {
+      setScrapeError(e instanceof Error ? e.message : 'Errore importazione');
+    } finally {
+      setScraping(false);
+    }
+  };
+
   if (loading) {
     return (
       <main className="min-h-screen bg-[#1a0a0c] text-rose-100 flex items-center justify-center">
@@ -253,6 +296,60 @@ export default function MenuAdminPage() {
               />
               <p id="pin-description" className="sr-only">PIN richiesto per salvare le modifiche</p>
             </div>
+          </div>
+        </div>
+
+        {/* Importa da ThinkSmartMenu */}
+        <div className="mb-8 p-6 rounded-xl bg-gradient-to-br from-[#2d1515]/80 to-[#1f0f0f]/80 border border-rose-300/20 shadow-xl">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-2">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/20 flex items-center justify-center">
+                <svg className="w-5 h-5 text-rose-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h2 className="text-rose-100 font-medium">Importa da ThinkSmartMenu</h2>
+                <p className="text-rose-200/60 text-sm">Scarica categorie e voci dal menu online e sostituisci l’anteprima. Salva con il pulsante sopra per applicare.</p>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="url"
+                value={scrapeUrl}
+                onChange={(e) => setScrapeUrl(e.target.value)}
+                placeholder="https://www.thinksmartmenu.it/menu/..."
+                className="flex-1 min-w-0 px-4 py-2.5 rounded-lg bg-black/40 border border-rose-300/30 text-rose-100 placeholder-rose-300/40 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500/50 transition-all text-sm"
+                aria-label="URL menu ThinkSmartMenu"
+              />
+              <button
+                type="button"
+                onClick={handleScrape}
+                disabled={scraping || !pin.trim()}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-rose-600 text-white text-sm font-medium hover:bg-rose-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                aria-label="Importa menu da ThinkSmartMenu"
+              >
+                {scraping ? (
+                  <>
+                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Importazione...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                    </svg>
+                    Importa menu
+                  </>
+                )}
+              </button>
+            </div>
+            {scrapeError && (
+              <p className="text-red-300 text-sm" role="alert">{scrapeError}</p>
+            )}
           </div>
         </div>
 

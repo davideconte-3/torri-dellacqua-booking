@@ -5,24 +5,30 @@ const SAN_VALENTINO_DATE = '2026-02-14';
 const EVENT_CLOSE_HOUR = 19; // 19:00
 
 // GET - Check if bookings are enabled
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    // Check if we're past event closing time
-    const now = new Date();
-    const eventDate = new Date(`${SAN_VALENTINO_DATE}T${EVENT_CLOSE_HOUR}:00:00`);
+    const url = new URL(request.url);
+    const source = url.searchParams.get('source');
 
-    if (now >= eventDate) {
-      return NextResponse.json({
-        enabled: false,
-        reason: 'event_closed',
-        message: 'Le prenotazioni sono chiuse'
-      });
+    // Per la landing di San Valentino, dopo le 19 del giorno stesso
+    // le prenotazioni devono risultare sempre chiuse, indipendentemente dal DB.
+    if (source === 'sanvalentino') {
+      const now = new Date();
+      const eventDate = new Date(`${SAN_VALENTINO_DATE}T${EVENT_CLOSE_HOUR}:00:00`);
+
+      if (now >= eventDate) {
+        return NextResponse.json({
+          enabled: false,
+          reason: 'event_closed',
+          message: 'Le prenotazioni sono chiuse',
+        });
+      }
     }
 
-    // Check admin settings
+    // Per tutte le altre pagine lo stato dipende solo dalle impostazioni su database.
     const [enabledSetting, messageSetting] = await Promise.all([
       prisma.settings.findUnique({ where: { key: 'bookings_enabled' } }),
-      prisma.settings.findUnique({ where: { key: 'bookings_closed_message' } })
+      prisma.settings.findUnique({ where: { key: 'bookings_closed_message' } }),
     ]);
 
     const enabled = enabledSetting?.value === 'true';
@@ -31,7 +37,7 @@ export async function GET() {
     return NextResponse.json({
       enabled,
       reason: enabled ? null : 'admin_disabled',
-      message: enabled ? null : customMessage
+      message: enabled ? null : customMessage,
     });
   } catch (error) {
     console.error('Error checking booking status:', error);

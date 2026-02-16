@@ -51,8 +51,8 @@ export default function SanValentinoPage() {
   useEffect(() => {
     analytics.viewContent('San Valentino Booking Page', 'Valentine Dinner');
 
-    // Check if bookings are enabled
-    fetch('/api/bookings/status')
+    // Check if bookings are enabled (San Valentino ha regola speciale dopo le 19)
+    fetch('/api/bookings/status?source=sanvalentino')
       .then(res => res.json())
       .then(data => {
         setBookingsEnabled(data.enabled);
