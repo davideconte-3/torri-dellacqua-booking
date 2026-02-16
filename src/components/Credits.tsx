@@ -13,7 +13,7 @@ export default function Credits({ onLightBg = false }: { onLightBg?: boolean }) 
         <img
           src="/dc-logo.svg"
           alt="Davide Conte"
-          className="h-3   w-auto"
+          className={`h-3 w-auto ${onLightBg ? 'brightness-0' : ''}`}
         />
       </a>
     </div>
