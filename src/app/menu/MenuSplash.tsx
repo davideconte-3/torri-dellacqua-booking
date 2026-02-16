@@ -37,11 +37,11 @@ export default function MenuSplash({ onEnter, isExiting = false }: { onEnter: ()
         photo: '/restaurant-night.jpg',
       }
     : {
-        overlay: 'bg-white/75',
-        text: 'text-[#2c3e50]',
+        overlay: 'bg-white/40',
+        text: 'text-[#1e293b]',
         button: 'bg-[#2563eb] text-white hover:bg-[#1d4ed8] shadow-2xl hover:shadow-[#2563eb]/25',
         buttonRing: 'focus:ring-[#2563eb]/30',
-        instagramBorder: 'border-[#475569] text-[#1e293b] hover:bg-gray-100 hover:border-[#64748b]',
+        instagramBorder: 'border-gray-600 text-gray-800 hover:bg-white/60 hover:border-gray-700',
         photo: '/restaurant-day.png',
       };
 
@@ -52,16 +52,17 @@ export default function MenuSplash({ onEnter, isExiting = false }: { onEnter: ()
       }`}
       style={{ pointerEvents: isExiting ? 'none' : 'auto' }}
     >
-      {/* Background Image */}
+      {/* Background Image - unoptimized per evitare problemi con PNG in public */}
       <div className={`absolute inset-0 transition-all duration-1000 ${isExiting ? 'opacity-0 scale-110' : ''}`}>
         <Image
           src={theme.photo}
           alt="Ristorante Torri dell'Acqua"
           fill
-          className={`object-cover transition-transform duration-1000 ${
+          className={`object-cover object-center transition-transform duration-1000 ${
             isExiting ? 'scale-110' : 'scale-105 animate-subtle-zoom'
           }`}
           priority
+          unoptimized
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             if (target.src.includes('restaurant-day')) {

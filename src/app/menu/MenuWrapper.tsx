@@ -96,7 +96,7 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
         borderAccent: 'border-white/30',
       }
     : {
-        bg: 'bg-white',
+        bg: 'bg-gray-50',
         logo: 'bg-[#1e293b]',
         text: 'text-gray-900',
         textSecondary: 'text-gray-700',
@@ -124,7 +124,7 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
           <p className={`${theme.textSecondary} text-xs tracking-wide font-light animate-fade-in`} style={{ fontFamily: 'ui-serif, Georgia, serif', animationDelay: '0.6s' }}>{MENU_NOTE}</p>
           <Link
             href={BOOKING_URL}
-            className={`mt-4 text-xs font-light tracking-wide ${theme.textTertiary} hover:${theme.text} transition-colors animate-fade-in`}
+            className={`mt-4 text-xs font-light tracking-wide ${theme.textTertiary} transition-colors animate-fade-in ${isEvening ? 'hover:text-white' : 'hover:text-gray-900'}`}
             style={{ fontFamily: 'ui-serif, Georgia, serif', animationDelay: '0.5s' }}
           >
             Prenota un tavolo
@@ -146,16 +146,16 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
                 href={RESTAURANT.addressUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`block hover:${theme.text} transition-all duration-300 hover:tracking-wide`}
+                className={`block transition-all duration-300 hover:tracking-wide ${isEvening ? 'hover:text-white' : 'hover:text-gray-900'}`}
               >
                 {RESTAURANT.address}
               </a>
               <div className="flex justify-center gap-4 text-xs">
-                <a href={`tel:${RESTAURANT.phone.replace(/\s/g, '')}`} className={`hover:${theme.text} transition-all duration-300 hover:scale-105 inline-block`}>
+                <a href={`tel:${RESTAURANT.phone.replace(/\s/g, '')}`} className={`transition-all duration-300 hover:scale-105 inline-block ${isEvening ? 'hover:text-white' : 'hover:text-gray-900'}`}>
                   {RESTAURANT.phone}
                 </a>
-                <span className={`${theme.textTertiary}`}>·</span>
-                <a href={`mailto:${RESTAURANT.email}`} className={`hover:${theme.text} transition-all duration-300 hover:scale-105 inline-block`}>
+                <span className={theme.textTertiary}>·</span>
+                <a href={`mailto:${RESTAURANT.email}`} className={`transition-all duration-300 hover:scale-105 inline-block ${isEvening ? 'hover:text-white' : 'hover:text-gray-900'}`}>
                   {RESTAURANT.email}
                 </a>
               </div>
@@ -175,8 +175,8 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
           </div>
 
           {/* Credits */}
-          <div className="mt-8 pt-6 border-t border-white/15 animate-fade-in" style={{ animationDelay: '1s' }}>
-            <Credits />
+          <div className={`mt-8 pt-6 border-t ${theme.border} animate-fade-in`} style={{ animationDelay: '1s' }}>
+            <Credits onLightBg={!isEvening} />
           </div>
         </footer>
       </div>
