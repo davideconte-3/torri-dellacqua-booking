@@ -36,11 +36,7 @@ const RESTAURANT = {
 
 export default function MenuWrapper({ categories, skipSplash = false }: { categories: Category[]; skipSplash?: boolean }) {
   const [showSplash, setShowSplash] = useState(true);
-  const [isEvening, setIsEvening] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    const hour = new Date().getHours();
-    return hour >= 18 || hour < 6;
-  });
+  const [isEvening, setIsEvening] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [splashExiting, setSplashExiting] = useState(false);
 

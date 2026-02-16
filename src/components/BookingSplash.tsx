@@ -10,11 +10,7 @@ const RESTAURANT = {
 };
 
 export default function BookingSplash({ onEnter, isExiting = false }: { onEnter: () => void; isExiting?: boolean }) {
-  const [isEvening, setIsEvening] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    const hour = new Date().getHours();
-    return hour >= 18 || hour < 6;
-  });
+  const [isEvening, setIsEvening] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useLayoutEffect(() => {

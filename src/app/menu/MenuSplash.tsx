@@ -13,11 +13,7 @@ const BOOKING_BASE = process.env.NEXT_PUBLIC_BOOKING_URL || '/';
 const BOOKING_URL = BOOKING_BASE + (BOOKING_BASE.includes('?') ? '&' : '?') + 'skipSplash=1';
 
 export default function MenuSplash({ onEnter, isExiting = false }: { onEnter: () => void; isExiting?: boolean }) {
-  const [isEvening, setIsEvening] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    const hour = new Date().getHours();
-    return hour >= 18 || hour < 6;
-  });
+  const [isEvening, setIsEvening] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useLayoutEffect(() => {
