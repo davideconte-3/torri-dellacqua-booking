@@ -5,42 +5,59 @@ import { useState, useMemo, useEffect, CSSProperties } from 'react';
 type Item = { id: string; name: string; price: number; description: string | null };
 type Category = { id: string; name: string; order: number; items: Item[] };
 
-function getStyles(isDark: boolean) {
+interface ThemeColors {
+  searchBg: CSSProperties;
+  searchIcon: string;
+  clearBtn: string;
+  countText: CSSProperties;
+  cardSection: CSSProperties;
+  cardButton: CSSProperties;
+  categoryName: CSSProperties;
+  chevron: string;
+  listUl: CSSProperties;
+  itemLi: CSSProperties;
+  itemName: CSSProperties;
+  itemDesc: CSSProperties;
+  itemPrice: CSSProperties;
+  scrollThumb: string;
+  scrollThumbHover: string;
+}
+
+function getTheme(isDark: boolean): ThemeColors {
   if (isDark) {
+    const cardBg = '#1e293b';
     return {
-      searchBg: { backgroundColor: '#1e293b', borderColor: 'rgba(255,255,255,0.3)', color: '#fff' } as CSSProperties,
-      searchPlaceholderColor: 'rgba(255,255,255,0.6)',
-      searchIconColor: 'rgba(255,255,255,0.7)',
-      cardBg: { backgroundColor: '#1e293b', borderColor: 'rgba(255,255,255,0.3)', color: '#fff' } as CSSProperties,
-      categoryColor: { color: '#fff' } as CSSProperties,
-      chevronColor: 'rgba(255,255,255,0.85)',
-      listBorder: { borderColor: 'rgba(255,255,255,0.25)' } as CSSProperties,
-      itemBorder: { borderColor: 'rgba(255,255,255,0.12)' } as CSSProperties,
-      itemNameColor: { color: '#fff' } as CSSProperties,
-      itemDescColor: { color: 'rgba(255,255,255,0.85)' } as CSSProperties,
-      priceColor: { color: '#fff' } as CSSProperties,
-      emptyColor: { color: 'rgba(255,255,255,0.9)' } as CSSProperties,
-      countColor: { color: 'rgba(255,255,255,0.9)' } as CSSProperties,
-      clearColor: 'rgba(255,255,255,0.7)',
+      searchBg: { backgroundColor: cardBg, borderColor: 'rgba(255,255,255,0.3)', color: '#ffffff' },
+      searchIcon: 'rgba(255,255,255,0.7)',
+      clearBtn: 'rgba(255,255,255,0.7)',
+      countText: { color: 'rgba(255,255,255,0.9)' },
+      cardSection: { backgroundColor: cardBg, borderColor: 'rgba(255,255,255,0.3)', borderWidth: '1px', borderStyle: 'solid', color: '#ffffff' },
+      cardButton: { backgroundColor: 'transparent', color: '#ffffff' },
+      categoryName: { color: '#ffffff' },
+      chevron: 'rgba(255,255,255,0.85)',
+      listUl: { backgroundColor: cardBg, borderTopColor: 'rgba(255,255,255,0.25)', borderTopWidth: '1px', borderTopStyle: 'solid' as const, color: '#ffffff' },
+      itemLi: { borderBottomColor: 'rgba(255,255,255,0.12)', color: '#ffffff' },
+      itemName: { color: '#ffffff' },
+      itemDesc: { color: 'rgba(255,255,255,0.85)' },
+      itemPrice: { color: '#ffffff' },
       scrollThumb: 'rgba(255,255,255,0.3)',
       scrollThumbHover: 'rgba(255,255,255,0.45)',
     };
   }
   return {
-    searchBg: {} as CSSProperties,
-    searchPlaceholderColor: '',
-    searchIconColor: '',
-    cardBg: {} as CSSProperties,
-    categoryColor: {} as CSSProperties,
-    chevronColor: '',
-    listBorder: {} as CSSProperties,
-    itemBorder: {} as CSSProperties,
-    itemNameColor: {} as CSSProperties,
-    itemDescColor: {} as CSSProperties,
-    priceColor: {} as CSSProperties,
-    emptyColor: {} as CSSProperties,
-    countColor: {} as CSSProperties,
-    clearColor: '',
+    searchBg: { backgroundColor: '#ffffff', borderColor: '#d1d5db', color: '#111827' },
+    searchIcon: '#6b7280',
+    clearBtn: '#6b7280',
+    countText: { color: '#4b5563' },
+    cardSection: { backgroundColor: '#ffffff', borderColor: '#e5e7eb', borderWidth: '1px', borderStyle: 'solid', color: '#111827', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' },
+    cardButton: { backgroundColor: 'transparent', color: '#111827' },
+    categoryName: { color: '#111827' },
+    chevron: '#4b5563',
+    listUl: { backgroundColor: '#ffffff', borderTopColor: '#e5e7eb', borderTopWidth: '1px', borderTopStyle: 'solid' as const, color: '#111827' },
+    itemLi: { borderBottomColor: '#f3f4f6', color: '#111827' },
+    itemName: { color: '#111827' },
+    itemDesc: { color: '#4b5563' },
+    itemPrice: { color: '#111827' },
     scrollThumb: 'rgba(0,0,0,0.15)',
     scrollThumbHover: 'rgba(0,0,0,0.25)',
   };
@@ -48,7 +65,7 @@ function getStyles(isDark: boolean) {
 
 export default function MenuList({ categories, isLightTheme = false }: { categories: Category[]; isLightTheme?: boolean }) {
   const isDark = !isLightTheme;
-  const s = getStyles(isDark);
+  const t = getTheme(isDark);
 
   const [openId, setOpenId] = useState<string | null>(categories[0]?.id ?? null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -87,21 +104,15 @@ export default function MenuList({ categories, isLightTheme = false }: { categor
   }, [categories, searchQuery]);
 
   if (categories.length === 0) {
-    return <p className="text-sm" style={isDark ? s.emptyColor : { color: '#4b5563' }}>Nessuna voce in menu.</p>;
+    return <p style={{ ...t.countText, fontSize: '0.875rem' }}>Nessuna voce in menu.</p>;
   }
 
   return (
-    <div className={`space-y-6 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <div style={{ opacity: isVisible ? 1 : 0, transition: 'opacity 0.7s' }}>
       {/* Search */}
-      <div className="relative group animate-slide-down" style={{ animationDelay: '0.1s' }}>
-        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-          <svg
-            className="h-5 w-5 transition-all duration-300 group-focus-within:scale-110"
-            style={{ color: isDark ? s.searchIconColor : '#6b7280' }}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+      <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
+        <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, paddingLeft: '1rem', display: 'flex', alignItems: 'center', pointerEvents: 'none' }}>
+          <svg style={{ width: '1.25rem', height: '1.25rem', color: t.searchIcon }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
@@ -110,23 +121,28 @@ export default function MenuList({ categories, isLightTheme = false }: { categor
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Cerca nel menu..."
-          className={`w-full pl-12 pr-12 py-4 border rounded-2xl focus:outline-none focus:ring-2 transition-all duration-500 text-sm font-light tracking-wide focus:shadow-lg focus:scale-[1.02] ${
-            isDark ? '' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-blue-300/30 focus:border-blue-400/50 shadow-sm'
-          }`}
+          className="w-full focus:outline-none focus:ring-2 focus:ring-white/30"
           style={{
+            ...t.searchBg,
             fontFamily: 'ui-serif, Georgia, serif',
-            ...s.searchBg,
+            paddingLeft: '3rem',
+            paddingRight: '3rem',
+            paddingTop: '1rem',
+            paddingBottom: '1rem',
+            borderRadius: '1rem',
+            fontSize: '0.875rem',
+            fontWeight: 300,
+            letterSpacing: '0.025em',
           }}
         />
         {searchQuery && (
           <button
             type="button"
             onClick={() => setSearchQuery('')}
-            className="absolute inset-y-0 right-0 pr-4 flex items-center transition-all duration-300 hover:scale-110 hover:rotate-90 active:scale-95"
-            style={{ color: isDark ? s.clearColor : '#6b7280' }}
+            style={{ position: 'absolute', top: 0, bottom: 0, right: 0, paddingRight: '1rem', display: 'flex', alignItems: 'center', color: t.clearBtn, background: 'transparent', border: 'none', cursor: 'pointer' }}
             aria-label="Cancella ricerca"
           >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg style={{ width: '1.25rem', height: '1.25rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -135,7 +151,7 @@ export default function MenuList({ categories, isLightTheme = false }: { categor
 
       {/* Search count */}
       {searchQuery && (
-        <p className="text-xs font-light tracking-wide animate-fade-in" style={{ fontFamily: 'ui-serif, Georgia, serif', ...(isDark ? s.countColor : { color: '#4b5563' }) }}>
+        <p style={{ ...t.countText, fontSize: '0.75rem', fontWeight: 300, letterSpacing: '0.025em', fontFamily: 'ui-serif, Georgia, serif', marginBottom: '1.5rem' }}>
           {filteredCategories.length === 0
             ? 'Nessun risultato trovato'
             : `${filteredCategories.reduce((sum, cat) => sum + cat.items.length, 0)} piatti trovati`}
@@ -143,13 +159,13 @@ export default function MenuList({ categories, isLightTheme = false }: { categor
       )}
 
       {/* Categories */}
-      <div className="space-y-4">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         {filteredCategories.length === 0 ? (
-          <p className="text-sm text-center py-12 font-light animate-fade-in" style={{ fontFamily: 'ui-serif, Georgia, serif', ...(isDark ? s.countColor : { color: '#4b5563' }) }}>
+          <p style={{ ...t.countText, fontSize: '0.875rem', textAlign: 'center', padding: '3rem 0', fontWeight: 300, fontFamily: 'ui-serif, Georgia, serif' }}>
             Nessun piatto trovato per &ldquo;{searchQuery}&rdquo;
           </p>
         ) : (
-          filteredCategories.map((cat, categoryIndex) => {
+          filteredCategories.map((cat) => {
             const isOpen = searchQuery ? true : openId === cat.id;
             const isClosing = closingId === cat.id;
             const shouldShowContent = isOpen || isClosing;
@@ -157,34 +173,48 @@ export default function MenuList({ categories, isLightTheme = false }: { categor
             return (
               <section
                 key={cat.id}
-                className={`rounded-2xl overflow-hidden border transition-all duration-500 animate-slide-up hover:shadow-xl ${
-                  isDark ? '' : (isOpen ? 'border-gray-300 bg-white shadow-md' : 'border-gray-200 bg-white shadow')
-                }`}
                 style={{
-                  animationDelay: `${categoryIndex * 0.1 + 0.2}s`,
-                  ...s.cardBg,
+                  ...t.cardSection,
+                  borderRadius: '1rem',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s ease',
                 }}
               >
                 <button
                   type="button"
                   onClick={() => handleToggleCategory(cat.id)}
-                  className={`w-full flex items-center justify-between gap-3 px-6 py-5 min-h-[56px] text-left font-light text-lg transition-all duration-500 ${
-                    searchQuery ? 'cursor-default' : 'touch-manipulation hover:pl-7'
-                  } focus:outline-none`}
-                  aria-expanded={isOpen}
                   disabled={!!searchQuery}
-                  style={{ fontFamily: 'ui-serif, Georgia, serif' }}
+                  style={{
+                    ...t.cardButton,
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '0.75rem',
+                    padding: '1.25rem 1.5rem',
+                    minHeight: '56px',
+                    textAlign: 'left',
+                    fontWeight: 300,
+                    fontSize: '1.125rem',
+                    border: 'none',
+                    cursor: searchQuery ? 'default' : 'pointer',
+                    fontFamily: 'ui-serif, Georgia, serif',
+                    transition: 'all 0.3s ease',
+                  }}
                 >
-                  <span
-                    className="uppercase tracking-[0.15em] text-base transition-all duration-300 hover:tracking-[0.2em]"
-                    style={isDark ? s.categoryColor : { color: '#111827' }}
-                  >
+                  <span style={{ ...t.categoryName, textTransform: 'uppercase', letterSpacing: '0.15em', fontSize: '1rem', transition: 'all 0.3s' }}>
                     {cat.name}
                   </span>
                   {!searchQuery && (
                     <svg
-                      className={`w-5 h-5 shrink-0 transition-all duration-500 ${isOpen ? 'rotate-180 scale-110' : ''}`}
-                      style={{ color: isDark ? s.chevronColor : '#4b5563' }}
+                      style={{
+                        width: '1.25rem',
+                        height: '1.25rem',
+                        flexShrink: 0,
+                        color: t.chevron,
+                        transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.4s ease',
+                      }}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -195,45 +225,42 @@ export default function MenuList({ categories, isLightTheme = false }: { categor
                   )}
                 </button>
                 {shouldShowContent && (
-                  <ul
-                    className={`border-t px-6 py-4 space-y-2 max-h-[45vh] overflow-y-auto scrollbar-thin scrollbar-track-transparent ${
-                      isClosing ? 'animate-collapse-up' : 'animate-expand-down'
-                    }`}
-                    style={isDark ? s.listBorder : { borderColor: '#e5e7eb' }}
-                  >
-                    {cat.items.map((item, index) => (
+                  <ul style={{
+                    ...t.listUl,
+                    padding: '1rem 1.5rem',
+                    margin: 0,
+                    listStyle: 'none',
+                    maxHeight: '45vh',
+                    overflowY: 'auto',
+                    animation: isClosing ? 'collapseUp 0.3s ease-in forwards' : 'expandDown 0.4s ease-out',
+                  }}>
+                    {cat.items.map((item) => (
                       <li
                         key={item.id}
-                        className="group relative flex justify-between items-start gap-4 py-3 px-3 -mx-3 border-b last:border-0 transition-all duration-500 hover:px-4 hover:-mx-4 rounded-xl"
                         style={{
-                          animation: `fadeInItem 0.4s ease-out ${index * 0.06}s both`,
-                          ...(isDark ? s.itemBorder : { borderColor: '#f3f4f6' }),
+                          ...t.itemLi,
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'flex-start',
+                          gap: '1rem',
+                          padding: '0.75rem 0',
+                          borderBottomWidth: '1px',
+                          borderBottomStyle: 'solid',
                         }}
                       >
-                        <div className="min-w-0 flex-1 transition-all duration-300 group-hover:translate-x-1">
-                          <span
-                            className="text-base font-normal tracking-wide block mb-1 transition-colors duration-300"
-                            style={{ fontFamily: 'ui-serif, Georgia, serif', ...(isDark ? s.itemNameColor : { color: '#111827' }) }}
-                          >
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <span style={{ ...t.itemName, fontFamily: 'ui-serif, Georgia, serif', fontSize: '1rem', fontWeight: 400, letterSpacing: '0.025em', display: 'block', marginBottom: '0.25rem' }}>
                             {item.name}
                           </span>
                           {item.description && (
-                            <p
-                              className="text-xs mt-1.5 leading-relaxed font-light line-clamp-3 transition-all duration-300"
-                              style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif', ...(isDark ? s.itemDescColor : { color: '#4b5563' }) }}
-                            >
+                            <p style={{ ...t.itemDesc, fontFamily: 'ui-sans-serif, system-ui, sans-serif', fontSize: '0.75rem', marginTop: '0.375rem', lineHeight: 1.6, fontWeight: 300, margin: '0.375rem 0 0 0' }}>
                               {item.description}
                             </p>
                           )}
                         </div>
-                        <div className="relative shrink-0 pt-0.5">
-                          <span
-                            className="font-light text-base whitespace-nowrap tracking-wide transition-all duration-500 group-hover:scale-110 group-hover:font-normal inline-block"
-                            style={{ fontFamily: 'ui-serif, Georgia, serif', ...(isDark ? s.priceColor : { color: '#111827' }) }}
-                          >
-                            &euro; {item.price.toFixed(2)}
-                          </span>
-                        </div>
+                        <span style={{ ...t.itemPrice, fontFamily: 'ui-serif, Georgia, serif', fontSize: '1rem', fontWeight: 300, letterSpacing: '0.025em', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                          &euro; {item.price.toFixed(2)}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -245,44 +272,18 @@ export default function MenuList({ categories, isLightTheme = false }: { categor
       </div>
 
       <style jsx>{`
-        @keyframes fadeInItem {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
+        @keyframes expandDown {
+          from { opacity: 0; max-height: 0; }
+          to { opacity: 1; max-height: 45vh; }
         }
-        @keyframes slide-down {
-          from { opacity: 0; transform: translateY(-20px); }
-          to { opacity: 1; transform: translateY(0); }
+        @keyframes collapseUp {
+          from { opacity: 1; max-height: 45vh; }
+          to { opacity: 0; max-height: 0; }
         }
-        @keyframes slide-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes expand-down {
-          from { opacity: 0; max-height: 0; transform: translateY(-10px); }
-          to { opacity: 1; max-height: 45vh; transform: translateY(0); }
-        }
-        @keyframes collapse-up {
-          from { opacity: 1; max-height: 45vh; transform: translateY(0); }
-          to { opacity: 0; max-height: 0; transform: translateY(-10px); }
-        }
-        .animate-slide-down { animation: slide-down 0.6s ease-out both; }
-        .animate-slide-up { animation: slide-up 0.6s ease-out both; }
-        .animate-fade-in { animation: fade-in 0.4s ease-out; }
-        .animate-expand-down { animation: expand-down 0.4s ease-out; }
-        .animate-collapse-up { animation: collapse-up 0.3s ease-in; }
-        .scrollbar-thin::-webkit-scrollbar { width: 6px; }
-        .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-          background-color: ${s.scrollThumb};
-          border-radius: 3px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-          background-color: ${s.scrollThumbHover};
-        }
+        ul::-webkit-scrollbar { width: 6px; }
+        ul::-webkit-scrollbar-track { background: transparent; }
+        ul::-webkit-scrollbar-thumb { background-color: ${t.scrollThumb}; border-radius: 3px; }
+        ul::-webkit-scrollbar-thumb:hover { background-color: ${t.scrollThumbHover}; }
       `}</style>
     </div>
   );
