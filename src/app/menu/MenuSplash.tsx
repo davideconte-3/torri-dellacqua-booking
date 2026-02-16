@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -14,16 +14,19 @@ const BOOKING_URL = BOOKING_BASE + (BOOKING_BASE.includes('?') ? '&' : '?') + 's
 
 export default function MenuSplash({ onEnter, isExiting = false }: { onEnter: () => void; isExiting?: boolean }) {
   const [isEvening, setIsEvening] = useState(() => {
-    if (typeof window === 'undefined') return true;
+    if (typeof window === 'undefined') return false;
     const hour = new Date().getHours();
     return hour >= 18 || hour < 6;
   });
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const hour = new Date().getHours();
     setIsEvening(hour >= 18 || hour < 6);
-    setTimeout(() => setIsVisible(true), 100);
+  }, []);
+  useEffect(() => {
+    const t = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(t);
   }, []);
 
   const theme = isEvening

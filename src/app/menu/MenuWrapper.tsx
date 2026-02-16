@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import Link from 'next/link';
 import MenuSplash from './MenuSplash';
 import MenuList from './MenuList';
@@ -37,14 +37,14 @@ const RESTAURANT = {
 export default function MenuWrapper({ categories, skipSplash = false }: { categories: Category[]; skipSplash?: boolean }) {
   const [showSplash, setShowSplash] = useState(true);
   const [isEvening, setIsEvening] = useState(() => {
-    if (typeof window === 'undefined') return true;
+    if (typeof window === 'undefined') return false;
     const hour = new Date().getHours();
     return hour >= 18 || hour < 6;
   });
   const [isVisible, setIsVisible] = useState(false);
   const [splashExiting, setSplashExiting] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const hour = new Date().getHours();
     setIsEvening(hour >= 18 || hour < 6);
   }, []);
