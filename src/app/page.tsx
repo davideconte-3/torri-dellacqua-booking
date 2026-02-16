@@ -36,19 +36,18 @@ function maxDateISO(daysAhead: number): string {
   return d.toISOString().slice(0, 10);
 }
 
-// Giorno: sfondo bianco, colori adattati (immagine restaurant-day.png nello splash)
+// Stessa palette del menu: giorno celeste, sera blu scuro
 const themeDay = {
-  bg: 'bg-white',
-  card: 'bg-gray-50/95 backdrop-blur-sm border-gray-200 shadow-sm',
-  input: 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/20',
-  label: 'text-gray-900',
-  labelMuted: 'text-gray-600',
-  link: 'text-[#1e293b] hover:text-[#2563eb] underline underline-offset-2',
-  btn: 'bg-[#2563eb] text-white hover:bg-[#1d4ed8] focus:ring-[#2563eb]/30',
-  btnSecondary: 'border-gray-300 text-gray-700 hover:bg-gray-100',
-  error: 'bg-red-50 border border-red-200 text-red-800',
-  accent: 'text-gray-900',
-  logo: 'bg-[#1e293b]',
+  bg: 'bg-gradient-to-b from-[#63B1D2] via-[#5aabcc] to-[#4a9ec4]',
+  card: 'bg-white/15 backdrop-blur-md border-white/25',
+  input: 'bg-white/10 border-white/25 text-white placeholder-white/50 focus:border-white/50 focus:ring-2 focus:ring-white/20',
+  label: 'text-white/95',
+  labelMuted: 'text-white/70',
+  link: 'text-white hover:text-white/95 underline underline-offset-2',
+  btn: 'bg-white text-[#2c3e50] hover:bg-white/95 focus:ring-white/30',
+  btnSecondary: 'border-white/40 text-white hover:bg-white/15',
+  error: 'bg-red-500/20 border border-white/20 text-white',
+  accent: 'text-white',
 };
 const themeNight = {
   bg: 'bg-gradient-to-b from-[#34495e] via-[#2c3e50] to-[#34495e]',
@@ -61,7 +60,6 @@ const themeNight = {
   btnSecondary: 'border-white/30 text-white hover:bg-white/10',
   error: 'bg-red-500/20 border border-white/20 text-white',
   accent: 'text-white',
-  logo: 'bg-white',
 };
 
 export default function HomePage() {
@@ -203,25 +201,25 @@ export default function HomePage() {
 
   const t = isEvening ? themeNight : themeDay;
   const inputBase = `w-full px-4 py-3.5 rounded-xl border-2 transition-colors min-h-[48px] touch-manipulation ${t.input}`;
-  const selectBg = isEvening ? 'bg-[#2c3e50]' : 'bg-gray-100 text-gray-900';
+  const selectBg = isEvening ? 'bg-[#2c3e50]' : 'bg-[#4a9ec4]/80';
 
   if (showSuccess) {
     return (
       <main className={`min-h-screen ${t.bg} flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 transition-colors duration-500`}>
         <div className={`${t.card} rounded-3xl shadow-2xl p-8 md:p-12 lg:p-14 max-w-md lg:max-w-lg w-full text-center border`}>
           <div
-            className={`h-20 w-40 mx-auto mb-6 ${t.logo} [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]`}
+            className="h-20 w-40 mx-auto mb-6 bg-white [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]"
             style={{ maskImage: 'url(/torri-dellacqua-logo.svg)', WebkitMaskImage: 'url(/torri-dellacqua-logo.svg)' }}
             role="img"
             aria-label="Torri dell'Acqua"
           />
-          <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 border-2 ${isEvening ? 'bg-white/20 border-white/40' : 'bg-[#2563eb]/10 border-[#2563eb]/30'}`}>
-            <svg className={`w-8 h-8 ${isEvening ? 'text-white' : 'text-[#2563eb]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-white/40">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h1 className={`text-2xl md:text-3xl font-serif mb-3 ${t.label}`}>Prenotazione inviata</h1>
-          <p className={`text-sm mb-8 ${t.labelMuted}`}>Riceverai conferma via email a breve.</p>
+          <h1 className="text-2xl md:text-3xl font-serif text-white mb-3">Prenotazione inviata</h1>
+          <p className="text-white/85 text-sm mb-8">Riceverai conferma via email a breve.</p>
           <button
             type="button"
             onClick={() => setShowSuccess(false)}
@@ -244,15 +242,15 @@ export default function HomePage() {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:text-left">
               <div className="flex flex-col items-center lg:items-start">
                 <div
-                  className={`h-24 md:h-28 lg:h-32 w-44 md:w-52 lg:w-56 ${t.logo} [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center] opacity-95`}
+                  className="h-24 md:h-28 lg:h-32 w-44 md:w-52 lg:w-56 bg-white [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center] opacity-95"
                   style={{ maskImage: 'url(/torri-dellacqua-logo.svg)', WebkitMaskImage: 'url(/torri-dellacqua-logo.svg)' }}
                   role="img"
                   aria-label="Torri dell'Acqua"
                 />
-                <h1 className={`text-xl md:text-2xl lg:text-3xl font-light mt-6 tracking-[0.15em] uppercase ${t.label}`} style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
+                <h1 className="text-xl md:text-2xl lg:text-3xl font-light text-white mt-6 tracking-[0.15em] uppercase" style={{ fontFamily: 'ui-serif, Georgia, serif' }}>
                   Prenota
                 </h1>
-                <p className={`text-sm lg:text-base mt-2 ${t.labelMuted}`}>Scegli data e compila il modulo</p>
+                <p className="text-white/80 text-sm lg:text-base mt-2">Scegli data e compila il modulo</p>
               </div>
               <nav className="flex flex-wrap justify-center lg:justify-end gap-3 mt-6 lg:mt-0">
                 <Link href="/menu" className={`${t.btnSecondary} px-5 py-3 rounded-full text-sm font-light border transition-colors hover:bg-white/20`}>
@@ -265,21 +263,21 @@ export default function HomePage() {
           <form ref={formRef} onSubmit={handleSubmit} className={`${t.card} rounded-3xl p-6 md:p-8 lg:p-10 border`}>
             <div className="lg:grid lg:grid-cols-[1fr_1fr] lg:gap-10 xl:gap-12 space-y-6 lg:space-y-0">
               <div className="space-y-5">
-                <p className={`${t.labelMuted} text-xs uppercase tracking-wider`}>Data e orario</p>
+                <p className="text-white/70 text-xs uppercase tracking-wider">Data e orario</p>
                 <div>
                   <span className={`block text-sm font-medium ${t.label} mb-2`}>Pranzo o cena</span>
                   <div className="flex gap-3">
                     <button
                       type="button"
                       onClick={() => setMealType('pranzo')}
-                      className={`flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all ${mealType === 'pranzo' ? (isEvening ? 'bg-white text-[#2c3e50] border-white' : 'bg-[#2563eb] text-white border-[#2563eb]') : t.btnSecondary}`}
+                      className={`flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all ${mealType === 'pranzo' ? 'bg-white text-[#2c3e50] border-white' : `${t.btnSecondary} border-white/30`}`}
                     >
                       Pranzo
                     </button>
                     <button
                       type="button"
                       onClick={() => setMealType('cena')}
-                      className={`flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all ${mealType === 'cena' ? (isEvening ? 'bg-white text-[#2c3e50] border-white' : 'bg-[#2563eb] text-white border-[#2563eb]') : t.btnSecondary}`}
+                      className={`flex-1 py-3 px-4 rounded-xl border-2 text-sm font-medium transition-all ${mealType === 'cena' ? 'bg-white text-[#2c3e50] border-white' : `${t.btnSecondary} border-white/30`}`}
                     >
                       Cena
                     </button>
@@ -295,7 +293,7 @@ export default function HomePage() {
                       mealType={mealType}
                       minDate={todayISO()}
                       maxDate={maxDateISO(60)}
-                      theme={isEvening ? {
+                      theme={{
                         label: t.label,
                         labelMuted: t.labelMuted,
                         day: 'text-white/90 hover:bg-white/20',
@@ -303,18 +301,10 @@ export default function HomePage() {
                         daySelected: 'bg-white text-[#2c3e50] ring-2 ring-white/60',
                         dayToday: 'text-white bg-white/15 ring-1 ring-white/40',
                         nav: 'text-white/90 hover:bg-white/15 hover:text-white',
-                      } : {
-                        label: t.label,
-                        labelMuted: t.labelMuted,
-                        day: 'text-gray-700 hover:bg-gray-100',
-                        dayDisabled: 'text-gray-400 cursor-not-allowed bg-gray-50',
-                        daySelected: 'bg-[#2563eb] text-white ring-2 ring-[#2563eb]/50',
-                        dayToday: 'text-gray-900 bg-gray-100 ring-1 ring-gray-300',
-                        nav: 'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
                       }}
                     />
                     {selectedDate && (
-                      <p id="date-label" className={`text-sm mt-3 ${mealNotAvailable ? (isEvening ? 'text-red-200' : 'text-red-600') : t.labelMuted}`}>
+                      <p id="date-label" className={`text-sm mt-3 ${mealNotAvailable ? 'text-red-200' : t.labelMuted}`}>
                         {mealNotAvailable
                           ? (getDayService(selectedDate) === 'chiuso'
                             ? `Chiusi di ${dayName}. Scegli un altro giorno.`
@@ -344,8 +334,8 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className={`space-y-5 lg:border-l lg:pl-10 xl:pl-12 ${isEvening ? 'lg:border-white/20' : 'lg:border-gray-200'}`}>
-                <p className={`${t.labelMuted} text-xs uppercase tracking-wider`}>I tuoi dati</p>
+              <div className="space-y-5 lg:border-l lg:border-white/20 lg:pl-10 xl:pl-12">
+                <p className="text-white/70 text-xs uppercase tracking-wider">I tuoi dati</p>
                 <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-x-4 xl:gap-y-4 xl:space-y-0 space-y-5">
                   <div>
                     <label htmlFor="name" className={`block text-sm font-medium ${t.label} mb-1.5`}>Nome e cognome</label>
@@ -422,8 +412,8 @@ export default function HomePage() {
                         setPrivacyAccepted(e.target.checked);
                         setMarketingConsent(e.target.checked);
                       }}
-                      className={`mt-1 w-5 h-5 rounded border-2 cursor-pointer touch-manipulation focus:ring-2 ${isEvening ? 'border-white/40 bg-white/10 checked:bg-white checked:border-white focus:ring-white/30' : 'border-gray-400 bg-white checked:bg-[#2563eb] checked:border-[#2563eb] focus:ring-[#2563eb]/30'}`}
-                      style={{ accentColor: isEvening ? '#34495e' : '#2563eb' }}
+                      className="mt-1 w-5 h-5 rounded border-2 border-white/40 bg-white/10 checked:bg-white checked:border-white focus:ring-2 focus:ring-white/30 cursor-pointer touch-manipulation"
+                      style={{ accentColor: isEvening ? '#34495e' : '#63B1D2' }}
                     />
                     <span className={`${t.label} text-sm`}>
                       Accetto l&apos;<a href="/privacy" target="_blank" rel="noopener noreferrer" className={`${t.link} font-medium`}>informativa sulla privacy</a> e il trattamento dei dati per la prenotazione. *
@@ -434,8 +424,8 @@ export default function HomePage() {
                       type="checkbox"
                       checked={marketingConsent}
                       onChange={(e) => setMarketingConsent(e.target.checked)}
-                      className={`mt-1 w-5 h-5 rounded border-2 cursor-pointer touch-manipulation focus:ring-2 ${isEvening ? 'border-white/40 bg-white/10 checked:bg-white checked:border-white focus:ring-white/30' : 'border-gray-400 bg-white checked:bg-[#2563eb] checked:border-[#2563eb] focus:ring-[#2563eb]/30'}`}
-                      style={{ accentColor: isEvening ? '#34495e' : '#2563eb' }}
+                      className="mt-1 w-5 h-5 rounded border-2 border-white/40 bg-white/10 checked:bg-white checked:border-white focus:ring-2 focus:ring-white/30 cursor-pointer touch-manipulation"
+                      style={{ accentColor: isEvening ? '#34495e' : '#63B1D2' }}
                     />
                     <span className={`${t.labelMuted} text-sm`}>Consenso a comunicazioni promozionali (facoltativo).</span>
                   </label>
@@ -462,7 +452,7 @@ export default function HomePage() {
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
                 <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                   <div
-                    className={`h-14 w-32 shrink-0 [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center] ${t.logo}`}
+                    className="h-14 w-32 bg-white/95 [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] [-webkit-mask-size:contain] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center] shrink-0"
                     style={{
                       maskImage: 'url(/torri-dellacqua-logo.svg)',
                       WebkitMaskImage: 'url(/torri-dellacqua-logo.svg)',
@@ -470,19 +460,19 @@ export default function HomePage() {
                     role="img"
                     aria-label="Torri dell'Acqua"
                   />
-                  <p className={`${t.labelMuted} text-xs mt-3`}>P.IVA {RESTAURANT.piva}</p>
+                  <p className="text-white/60 text-xs mt-3">P.IVA {RESTAURANT.piva}</p>
                 </div>
 
                 <div className="flex-1 space-y-4 lg:max-w-md">
                   <div>
-                    <p className={`${t.labelMuted} text-xs font-medium uppercase tracking-wider mb-1.5`}>Indirizzo</p>
+                    <p className="text-white/50 text-xs font-medium uppercase tracking-wider mb-1.5">Indirizzo</p>
                     <a
                       href={RESTAURANT.addressUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`${t.link} text-sm lg:text-base inline-flex items-center gap-2 ${isEvening ? 'text-white/90 hover:text-white' : 'text-gray-700 hover:text-[#2563eb]'}`}
+                      className={`${t.link} text-white/90 text-sm lg:text-base inline-flex items-center gap-2 hover:text-white`}
                     >
-                      <svg className={`w-4 h-4 shrink-0 ${isEvening ? 'text-white/60' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                      <svg className="w-4 h-4 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
@@ -490,16 +480,16 @@ export default function HomePage() {
                     </a>
                   </div>
                   <div>
-                    <p className={`${t.labelMuted} text-xs font-medium uppercase tracking-wider mb-1.5`}>Contatti</p>
+                    <p className="text-white/50 text-xs font-medium uppercase tracking-wider mb-1.5">Contatti</p>
                     <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm lg:text-base">
-                      <a href={`tel:${RESTAURANT.phone.replace(/\s/g, '')}`} className={`${t.link} inline-flex items-center gap-2 ${isEvening ? 'text-white/90 hover:text-white' : 'text-gray-700 hover:text-[#2563eb]'}`}>
-                        <svg className={`w-4 h-4 shrink-0 ${isEvening ? 'text-white/60' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                      <a href={`tel:${RESTAURANT.phone.replace(/\s/g, '')}`} className={`${t.link} text-white/90 inline-flex items-center gap-2 hover:text-white`}>
+                        <svg className="w-4 h-4 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                         {RESTAURANT.phone}
                       </a>
-                      <a href={`mailto:${RESTAURANT.email}`} className={`${t.link} inline-flex items-center gap-2 ${isEvening ? 'text-white/90 hover:text-white' : 'text-gray-700 hover:text-[#2563eb]'}`}>
-                        <svg className={`w-4 h-4 shrink-0 ${isEvening ? 'text-white/60' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                      <a href={`mailto:${RESTAURANT.email}`} className={`${t.link} text-white/90 inline-flex items-center gap-2 hover:text-white`}>
+                        <svg className="w-4 h-4 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                         {RESTAURANT.email}
@@ -513,7 +503,7 @@ export default function HomePage() {
                     href={RESTAURANT.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-2.5 px-5 py-3 rounded-full border-2 ${t.btnSecondary} text-sm font-medium transition-all ${isEvening ? 'hover:bg-white/20' : 'hover:scale-[1.02]'} `}
+                    className={`inline-flex items-center gap-2.5 px-5 py-3 rounded-full border-2 ${t.btnSecondary} text-sm font-medium transition-all hover:bg-white/20 hover:scale-[1.02]`}
                   >
                     <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" aria-hidden>
                       <rect x={2} y={2} width={20} height={20} rx={5} ry={5} />
@@ -525,8 +515,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className={`pt-6 border-t ${isEvening ? 'border-white/20' : 'border-gray-200'}`}>
-              <Credits onLightBg={!isEvening} />
+            <div className="pt-6 border-t border-white/20">
+              <Credits />
             </div>
           </footer>
         </div>

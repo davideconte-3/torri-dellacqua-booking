@@ -33,12 +33,12 @@ export default function BookingSplash({ onEnter, isExiting = false }: { onEnter:
         photo: '/restaurant-night.jpg',
       }
     : {
-        overlay: 'bg-white/75',
+        overlay: 'bg-white/80',
         text: 'text-[#2c3e50]',
-        button: 'bg-[#2563eb] text-white hover:bg-[#1d4ed8] shadow-2xl hover:shadow-[#2563eb]/25',
-        buttonRing: 'focus:ring-[#2563eb]/30',
-        linkBorder: 'border-[#475569] text-[#1e293b] hover:bg-slate-100 hover:border-[#64748b]',
-        photo: '/restaurant-day.png',
+        button: 'bg-[#63B1D2] text-white hover:bg-[#4a9ec4] shadow-2xl hover:shadow-[#63B1D2]/30',
+        buttonRing: 'focus:ring-[#63B1D2]/30',
+        linkBorder: 'border-[#63B1D2]/60 text-[#2c3e50] hover:bg-[#63B1D2]/20 hover:border-[#63B1D2]',
+        photo: '/restaurant-day.jpg',
       };
 
   return (
@@ -59,7 +59,7 @@ export default function BookingSplash({ onEnter, isExiting = false }: { onEnter:
           priority
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            if (target.src.includes('restaurant-day')) {
+            if (target.src.includes('restaurant-day.jpg')) {
               target.src = '/restaurant-night.jpg';
             }
           }}

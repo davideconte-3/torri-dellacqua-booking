@@ -85,10 +85,8 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
     }, 1000);
   };
 
-  // Refined theme: warm and welcoming, not too dark
   const theme = isEvening
     ? {
-        // Sera: blu scuro elegante ma non troppo pesante
         bg: 'bg-gradient-to-b from-[#34495e] via-[#2c3e50] to-[#34495e]',
         logo: 'bg-white',
         text: 'text-white',
@@ -98,14 +96,13 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
         borderAccent: 'border-white/30',
       }
     : {
-        // Giorno: celeste luminoso e fresco
-        bg: 'bg-gradient-to-b from-[#63B1D2] via-[#5aabcc] to-[#4a9ec4]',
-        logo: 'bg-white',
-        text: 'text-white',
-        textSecondary: 'text-white/90',
-        textTertiary: 'text-white/75',
-        border: 'border-white/25',
-        borderAccent: 'border-white/35',
+        bg: 'bg-white',
+        logo: 'bg-[#1e293b]',
+        text: 'text-gray-900',
+        textSecondary: 'text-gray-700',
+        textTertiary: 'text-gray-600',
+        border: 'border-gray-200',
+        borderAccent: 'border-gray-300',
       };
 
   return (
@@ -134,7 +131,7 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
           </Link>
         </header>
         <div className="flex-1">
-          <MenuList categories={categories} />
+          <MenuList categories={categories} isLightTheme={!isEvening} />
         </div>
         <footer className={`mt-16 pt-10 border-t ${theme.border} animate-fade-in-up`} style={{ animationDelay: '0.8s' }}>
           <div className="flex flex-col items-center text-center">
@@ -167,7 +164,7 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
               href={RESTAURANT.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-white/35 ${theme.text} text-sm font-light hover:bg-white/10 hover:border-white/50 transition-all duration-500 hover:scale-105 hover:shadow-lg hover:shadow-white/10`}
+              className={`group inline-flex items-center gap-2.5 px-6 py-3 rounded-full border ${isEvening ? 'border-white/35 hover:bg-white/10 hover:border-white/50 hover:shadow-white/10' : 'border-gray-300 hover:bg-gray-50 hover:border-gray-400 hover:shadow-gray-200/50'} ${theme.text} text-sm font-light transition-all duration-500 hover:scale-105 hover:shadow-lg`}
               style={{ fontFamily: 'ui-serif, Georgia, serif' }}
             >
               <svg className="w-4 h-4 shrink-0 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
