@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -11,16 +11,19 @@ const RESTAURANT = {
 
 export default function BookingSplash({ onEnter, isExiting = false }: { onEnter: () => void; isExiting?: boolean }) {
   const [isEvening, setIsEvening] = useState(() => {
-    if (typeof window === 'undefined') return true;
+    if (typeof window === 'undefined') return false;
     const hour = new Date().getHours();
     return hour >= 18 || hour < 6;
   });
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const hour = new Date().getHours();
     setIsEvening(hour >= 18 || hour < 6);
-    setTimeout(() => setIsVisible(true), 100);
+  }, []);
+  useEffect(() => {
+    const t = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(t);
   }, []);
 
   const theme = isEvening
@@ -33,12 +36,12 @@ export default function BookingSplash({ onEnter, isExiting = false }: { onEnter:
         photo: '/restaurant-night.jpg',
       }
     : {
-        overlay: 'bg-white/80',
-        text: 'text-[#2c3e50]',
+        overlay: 'bg-white/40',
+        text: 'text-[#1e293b]',
         button: 'bg-[#63B1D2] text-white hover:bg-[#4a9ec4] shadow-2xl hover:shadow-[#63B1D2]/30',
         buttonRing: 'focus:ring-[#63B1D2]/30',
-        linkBorder: 'border-[#63B1D2]/60 text-[#2c3e50] hover:bg-[#63B1D2]/20 hover:border-[#63B1D2]',
-        photo: '/restaurant-day.jpg',
+        linkBorder: 'border-gray-600 text-gray-800 hover:bg-white/60 hover:border-gray-700',
+        photo: '/restaurant-day.png',
       };
 
   return (
@@ -53,13 +56,14 @@ export default function BookingSplash({ onEnter, isExiting = false }: { onEnter:
           src={theme.photo}
           alt="Ristorante Torri dell'Acqua"
           fill
-          className={`object-cover transition-transform duration-1000 ${
+          className={`object-cover object-center transition-transform duration-1000 ${
             isExiting ? 'scale-110' : 'scale-105 animate-subtle-zoom'
           }`}
           priority
+          unoptimized
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            if (target.src.includes('restaurant-day.jpg')) {
+            if (target.src.includes('restaurant-day')) {
               target.src = '/restaurant-night.jpg';
             }
           }}
