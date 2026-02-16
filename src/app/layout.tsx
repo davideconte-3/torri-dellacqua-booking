@@ -6,6 +6,7 @@ import { ConsentProvider } from '@/contexts/ConsentContext';
 import CookieBanner from '@/components/CookieBanner';
 import ConsentModeUpdater from '@/components/ConsentModeUpdater';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import Analytics from '@/components/Analytics';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -52,6 +53,7 @@ gtag('consent','default',{'ad_storage':'denied','analytics_storage':'denied','ad
         {process.env.NEXT_PUBLIC_GA_ID ? (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         ) : null}
+        <Analytics metaPixelId={process.env.NEXT_PUBLIC_META_PIXEL_ID} />
       </body>
     </html>
   );

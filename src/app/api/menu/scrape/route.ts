@@ -10,8 +10,12 @@ function checkAdminPin(request: Request): boolean {
 
 function decode(s: string): string {
   return (s || '')
-    .replace(/&#39;/g, "'")
+    .replace(/&#0*39;/g, "'")
+    .replace(/&#0*8217;/g, "'")
+    .replace(/&apos;/g, "'")
     .replace(/&quot;/g, '"')
+    .replace(/&#0*8220;/g, '"')
+    .replace(/&#0*8221;/g, '"')
     .trim();
 }
 

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Analytics from '@/components/Analytics';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://torridellacqua.it';
 const RESTAURANT_NAME = process.env.NEXT_PUBLIC_RESTAURANT_NAME || "Torri dell'Acqua";
@@ -61,7 +60,6 @@ export default function SanValentinoLayout({ children }: { children: React.React
           }),
         }}
       />
-      <Analytics metaPixelId={process.env.NEXT_PUBLIC_META_PIXEL_ID} googleAnalyticsId={process.env.NEXT_PUBLIC_GA_ID} />
       {children}
     </>
   );
