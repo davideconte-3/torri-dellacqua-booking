@@ -42,8 +42,8 @@ export default function MenuSplash({ onEnter, isExiting = false }: { onEnter: ()
     : {
         overlay: 'bg-white/40',
         text: 'text-[#1e293b]',
-        button: 'bg-[#2563eb] text-white hover:bg-[#1d4ed8] shadow-2xl hover:shadow-[#2563eb]/25',
-        buttonRing: 'focus:ring-[#2563eb]/30',
+        button: 'bg-[#63B1D2] text-white hover:bg-[#4a9ec4] shadow-2xl hover:shadow-[#63B1D2]/30',
+        buttonRing: 'focus:ring-[#63B1D2]/30',
         instagramBorder: 'border-gray-600 text-gray-800 hover:bg-white/60 hover:border-gray-700',
         photo: '/restaurant-day.png',
       };
