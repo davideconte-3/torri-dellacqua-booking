@@ -5,13 +5,12 @@
   "description": "Piattaforma prenotazione tavoli per Torri dell'Acqua",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma db push --accept-data-loss && next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "postinstall": "prisma generate",
     "db:seed": "node prisma/seed.js",
     "db:push": "prisma db push",
-    "menu:import": "node scripts/import-menu.js",
-    "postbuild": "node scripts/import-menu.js"
+    "menu:import": "node scripts/import-menu.js"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

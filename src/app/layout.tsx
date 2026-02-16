@@ -48,12 +48,11 @@ gtag('consent','default',{'ad_storage':'denied','analytics_storage':'denied','ad
           <ConsentModeUpdater />
           {children}
           <CookieBanner />
+          {process.env.NEXT_PUBLIC_GA_ID ? (
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+          ) : null}
+          <Analytics metaPixelId={process.env.NEXT_PUBLIC_META_PIXEL_ID} />
         </ConsentProvider>
-      {/* GA: config dopo load di gtag.js così la raccolta dati parte subito */}
-        {process.env.NEXT_PUBLIC_GA_ID ? (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-        ) : null}
-        <Analytics metaPixelId={process.env.NEXT_PUBLIC_META_PIXEL_ID} />
       </body>
     </html>
   );

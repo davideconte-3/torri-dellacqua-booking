@@ -104,13 +104,6 @@ export default function BookingSplash({ onEnter, isExiting = false }: { onEnter:
           >
             Menu
           </Link>
-          <Link
-            href="/sanvalentino"
-            className={`inline-flex items-center px-6 py-3 rounded-full border ${theme.linkBorder} text-sm font-light tracking-wide transition-all duration-300`}
-            style={{ fontFamily: 'ui-serif, Georgia, serif' }}
-          >
-            San Valentino 2026
-          </Link>
         </div>
 
         <a
