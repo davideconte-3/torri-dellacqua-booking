@@ -87,13 +87,13 @@ export default function MenuWrapper({ categories, skipSplash = false }: { catego
 
   const theme = isEvening
     ? {
-        bg: 'bg-gradient-to-b from-[#34495e] via-[#2c3e50] to-[#34495e]',
+        bg: 'bg-gradient-to-b from-[#2d3a47] via-[#1e2a35] to-[#2d3a47]',
         logo: 'bg-white',
         text: 'text-white',
-        textSecondary: 'text-white/85',
-        textTertiary: 'text-white/70',
-        border: 'border-white/20',
-        borderAccent: 'border-white/30',
+        textSecondary: 'text-white/92',
+        textTertiary: 'text-white/82',
+        border: 'border-white/25',
+        borderAccent: 'border-white/35',
       }
     : {
         bg: 'bg-gray-50',
